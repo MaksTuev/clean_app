@@ -78,7 +78,9 @@ public class LocationService extends Service {
     private void testStartObserveLocation() {
         final int DELAY = 60*1000;
         locationManager.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER, DELAY, 0,
+                LocationManager.NETWORK_PROVIDER,
+                //LocationManager.GPS_PROVIDER,
+                DELAY, 0,
                 locationListener);
     }
 
@@ -86,7 +88,7 @@ public class LocationService extends Service {
     private void writeTestData(Location location) {
         BufferedWriter bw = null;
         try {
-            final String FILENAME = "SetMasterTestData";
+            final String FILENAME = "SetMasterTestData2";
             File sdPath = Environment.getExternalStorageDirectory();
             File sdFile = new File(sdPath, FILENAME);
             bw = new BufferedWriter(new FileWriter(sdFile, true));
