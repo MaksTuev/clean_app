@@ -1,9 +1,26 @@
-apply plugin: 'com.android.application'
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
 
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
 
     compileOptions{
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -12,8 +29,8 @@ android {
 
     defaultConfig {
         applicationId "com.two_man.setmaster"
-        minSdkVersion 21
-        targetSdkVersion 21
+        minSdkVersion 18
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
 
@@ -28,9 +45,29 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.netflix.rxjava:rxjava-android:0.20.7'
-    compile 'com.netflix.rxjava:rxjava-async-util:0.20.7'
+    //common
+    compile 'net.sourceforge.streamsupport:streamsupport:1.4.1'
+    //support
+    compile 'com.android.support:appcompat-v7:23.2.0'
+    compile 'com.android.support:support-annotations:23.2.0'
+    //dagger
+    compile 'com.google.dagger:dagger:2.0.2'
+    apt "com.google.dagger:dagger-compiler:2.0.2"
+    compile 'javax.annotation:jsr250-api:1.0' //for @Generated annotation
+    //rx
+    compile 'io.reactivex:rxjava:1.1.2'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava-async-util:0.21.0'
+    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    //orm
+    compile 'com.j256.ormlite:ormlite-core:4.48'
     compile 'com.j256.ormlite:ormlite-android:4.48'
-    compile 'com.jakewharton:butterknife:6.1.0'
+    //eventBus
+    compile 'org.greenrobot:eventbus:3.0.0'
+    //log
+    compile 'com.jakewharton.timber:timber:4.1.1'
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+        transitive = true;
+    }
 
 }
