@@ -1,26 +1,45 @@
 package com.two_man.setmaster.ui.screen.splash;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 
-import ru.litres.android.audio.R;
-import ru.litres.android.audio.ui.base.activity.BaseActivity;
+import com.two_man.setmaster.R;
+import com.two_man.setmaster.ui.base.BasePresenter;
+import com.two_man.setmaster.ui.base.activity.ActivityModule;
+import com.two_man.setmaster.ui.base.activity.BaseActivityView;
 
-public class SplashActivity extends BaseActivity {
+import javax.inject.Inject;
+
+public class SplashActivity extends BaseActivityView {
+
+    @Inject
+    SplashPresenter splashPresenter;
+
+    @Override
+    protected void satisfyDependencies() {
+        DaggerSplashComponent.builder()
+                .activityModule(new ActivityModule(this))
+                .appComponent(getApplicationComponent())
+                .build()
+                .inject(this);
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_splash;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        if (savedInstanceState == null) {
-            addFragment(R.id.container, new SplashFragment(), "AAA");
-        }
     }
 
-    protected void addFragment(int containerViewId, Fragment fragment, String tag) {
-        FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
-        fragmentTransaction.add(containerViewId, fragment, tag);
-        fragmentTransaction.commit();
+    @Override
+    public String getName() {
+        return "Splash";
+    }
+
+    @Override
+    public BasePresenter getPresenter() {
+        return splashPresenter;
     }
 }

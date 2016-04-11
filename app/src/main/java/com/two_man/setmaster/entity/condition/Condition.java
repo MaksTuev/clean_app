@@ -1,11 +1,12 @@
 package com.two_man.setmaster.entity.condition;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
  *
  */
-public abstract class Condition implements Cloneable {
+public abstract class Condition implements Cloneable, Serializable {
     protected String id;
     protected boolean active = false;
 

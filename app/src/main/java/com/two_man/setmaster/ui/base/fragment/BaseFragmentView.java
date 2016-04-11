@@ -2,20 +2,22 @@ package com.two_man.setmaster.ui.base.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.CallSuper;
 import android.view.View;
 
-import ru.litres.android.audio.ui.app.App;
-import ru.litres.android.audio.ui.app.AppComponent;
-import ru.litres.android.audio.ui.base.HasName;
-import ru.litres.android.audio.ui.base.HasPresenter;
-import ru.litres.android.audio.ui.base.activity.BaseActivity;
-import ru.litres.android.audio.util.log.LogServerUtil;
+import com.two_man.setmaster.ui.app.App;
+import com.two_man.setmaster.ui.app.AppComponent;
+import com.two_man.setmaster.ui.base.BaseView;
+import com.two_man.setmaster.ui.base.HasName;
+import com.two_man.setmaster.ui.base.HasPresenter;
+import com.two_man.setmaster.ui.base.activity.BaseActivity;
+import com.two_man.setmaster.util.log.LogServerUtil;
 
 /**
  * базовый класс для вью, основанной на Fragment
  */
-public abstract class BaseFragmentView extends Fragment implements HasPresenter, HasName{
+public abstract class BaseFragmentView extends Fragment implements BaseView, HasPresenter, HasName {
 
     /**
      * в реализации этого метода необходимо удовлетворить зависимости
@@ -36,7 +38,7 @@ public abstract class BaseFragmentView extends Fragment implements HasPresenter,
         if(savedInstanceState != null){
             getPresenter().onRestore(savedInstanceState);
         }
-        getPresenter().onLoad();
+        new Handler().post(() -> getPresenter().onLoad());
     }
 
     @Override
@@ -64,6 +66,11 @@ public abstract class BaseFragmentView extends Fragment implements HasPresenter,
 
     protected AppComponent getApplicationComponent() {
         return ((App)getActivity().getApplication()).getAppComponent();
+    }
+
+    @Override
+    public void goBack() {
+        getActivity().onBackPressed();
     }
 
     public BaseActivity getBaseActivity(){

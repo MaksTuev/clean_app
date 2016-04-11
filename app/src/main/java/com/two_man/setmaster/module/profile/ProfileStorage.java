@@ -6,6 +6,10 @@ import com.two_man.setmaster.entity.Profile;
  *
  */
 public class ProfileStorage {
+
+    public ProfileStorage() {
+    }
+
     public void add(Profile profile) {
 
     }

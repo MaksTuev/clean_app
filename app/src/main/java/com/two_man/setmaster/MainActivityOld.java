@@ -20,18 +20,18 @@ import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 
 
-public class MainActivity extends Activity {
+public class MainActivityOld extends Activity {
 
     AudioManager am;
     Intent intent  = new Intent("android.service.notification.NotificationListenerService");
     ServiceConnection sConn = new ServiceConnection() {
         public void onServiceConnected(ComponentName name, IBinder binder) {
-            //Log.d(LOG_TAG, "MainActivity onServiceConnected");
+            //Log.d(LOG_TAG, "MainActivityOld onServiceConnected");
             //bound = true;
         }
 
     public void onServiceDisconnected(ComponentName name) {
-        //Log.d(LOG_TAG, "MainActivity onServiceDisconnected");
+        //Log.d(LOG_TAG, "MainActivityOld onServiceDisconnected");
 
         //bound = false;
     }
@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_old);
 
         //bindService(intent, sConn, BIND_AUTO_CREATE);
         ///testStartService();
@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-                setNet(false, MainActivity.this);
+                setNet(false, MainActivityOld.this);
             }
         });
 
@@ -68,7 +68,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-                setNet(true, MainActivity.this);
+                setNet(true, MainActivityOld.this);
 
             }
         });
@@ -131,5 +131,10 @@ public class MainActivity extends Activity {
     }
 
 
-
+    public static void start(Activity activity) {
+        Intent i = new Intent(activity, MainActivityOld.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        activity.finish();
+        activity.startActivity(i);
+    }
 }

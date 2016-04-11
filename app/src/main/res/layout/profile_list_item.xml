@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/profile_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_pr_home"
+        android:scaleType="centerCrop"/>
+    <ImageView
+        android:id="@+id/profile_active_indicator"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="53dp"
+        android:padding="3dp"
+        android:scaleType="centerInside"
+        android:background="@drawable/red_circle"
+        android:src="@drawable/ic_check_white">
+    </ImageView>
+    <TextView
+        android:id="@+id/profile_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="33sp"
+        tool:text = "Home"
+        android:textColor="@android:color/white"
+        android:layout_toRightOf="@id/profile_icon"
+        android:paddingLeft="28dp"
+        android:paddingTop="25dp"
+        android:paddingRight="25dp"/>
+    <TextView
+        android:id="@+id/profile_status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="11sp"
+        tool:text = "Active"
+        android:textColor="@android:color/white"
+        android:layout_toRightOf="@id/profile_icon"
+        android:paddingLeft="30dp"
+        android:layout_marginTop="-3dp"
+        android:singleLine="true"
+        android:layout_below="@id/profile_name_text"
+        android:paddingRight="25dp"/>
+
+    <com.two_man.setmaster.ui.screen.main.widget.SettingPreviewLayout
+        android:id="@+id/profile_setting_preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/profile_status_text"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="20dp"/>
+</merge>

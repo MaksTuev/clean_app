@@ -1,12 +1,13 @@
 package com.two_man.setmaster.ui.screen.splash;
 
-import dagger.Component;
-import ru.litres.android.audio.ui.base.activity.ContainerActivityComponent;
-import ru.litres.android.audio.ui.base.fragment.FragmentModule;
-import ru.litres.android.audio.ui.base.fragment.PerFragment;
+import com.two_man.setmaster.ui.app.AppComponent;
+import com.two_man.setmaster.ui.base.activity.ActivityModule;
+import com.two_man.setmaster.ui.base.activity.PerActivity;
 
-@PerFragment
-@Component(dependencies = ContainerActivityComponent.class, modules = FragmentModule.class)
+import dagger.Component;
+
+@PerActivity
+@Component(dependencies = AppComponent.class, modules = ActivityModule.class)
 public interface SplashComponent {
-    void inject(SplashFragment fragment);
+    void inject(SplashActivity fragment);
 }

@@ -1,6 +1,7 @@
 package com.two_man.setmaster.util;
 
 import com.two_man.setmaster.entity.ConditionSet;
+import com.two_man.setmaster.entity.Profile;
 import com.two_man.setmaster.entity.condition.Condition;
 import com.two_man.setmaster.entity.setting.Setting;
 
@@ -27,6 +28,12 @@ public class CloneUtil {
     public static ArrayList<Condition> cloneConditionList(List<Condition> collection){
         ArrayList<Condition> clone = new ArrayList<>(collection.size());
         for(Condition item: collection) clone.add(item.clone());
+        return clone;
+    }
+
+    public static ArrayList<Profile> cloneProfiles(List<Profile> collection){
+        ArrayList<Profile> clone = new ArrayList<>(collection.size());
+        for(Profile item: collection) clone.add(item.clone());
         return clone;
     }
 }

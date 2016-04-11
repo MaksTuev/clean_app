@@ -1,31 +1,28 @@
 package com.two_man.setmaster.ui.screen.splash;
 
-import javax.inject.Inject;
-
-import ru.litres.android.audio.ui.base.BasePresenter;
-import ru.litres.android.audio.ui.base.fragment.BaseFragmentView;
-import ru.litres.android.audio.ui.base.fragment.FragmentModule;
+import com.two_man.setmaster.ui.base.BasePresenter;
+import com.two_man.setmaster.ui.base.fragment.BaseFragmentView;
 
 /**
  * view экрана сплеша
  */
 public class SplashFragment extends BaseFragmentView {
 
-    @Inject
-    SplashPresenter presenter;
+    //@Inject
+    //SplashPresenter presenter;
 
     @Override
     protected void satisfyDependencies() {
-        DaggerSplashComponent.builder()
+        /*DaggerSplashComponent.builder()
                 .containerActivityComponent(getBaseActivity().getContainerActivityComponent())
                 .fragmentModule(new FragmentModule(this))
                 .build()
-                .inject(this);
+                .inject(this);*/
     }
 
     @Override
     public BasePresenter getPresenter() {
-        return presenter;
+        return null;
     }
 
     @Override

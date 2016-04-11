@@ -1,15 +1,15 @@
-package com.two_man.setmaster.module.condition;
+package com.two_man.setmaster.module.condition.simple;
 
 import com.two_man.setmaster.entity.condition.Condition;
 
 /**
  *
  */
-public class ConditionWrapper {
-    private Condition condition;
+public class  ConditionWrapper<C extends Condition> {
+    private C condition;
     private String profileId;
 
-    public ConditionWrapper(Condition condition, String profileId) {
+    public ConditionWrapper(C condition, String profileId) {
         this.condition = condition;
         this.profileId = profileId;
     }

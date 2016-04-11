@@ -3,13 +3,14 @@ package com.two_man.setmaster.entity;
 import com.two_man.setmaster.entity.condition.Condition;
 import com.two_man.setmaster.util.CloneUtil;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  */
-public class ConditionSet implements Cloneable{
-    private ArrayList<Condition> conditions;
+public class ConditionSet implements Cloneable, Serializable{
+    private ArrayList<Condition> conditions = new ArrayList<>();
     private boolean active;
 
     public ArrayList<Condition> getConditions() {

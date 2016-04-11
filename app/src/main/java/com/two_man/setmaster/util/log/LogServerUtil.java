@@ -1,8 +1,10 @@
 package com.two_man.setmaster.util.log;
 
 import com.crashlytics.android.Crashlytics;
+import com.two_man.setmaster.ui.base.HasName;
 
-import ru.litres.android.audio.ui.base.HasName;
+import timber.log.Timber;
+
 
 /**
  * класс для расширенного логирования ошибок в Crashlytics

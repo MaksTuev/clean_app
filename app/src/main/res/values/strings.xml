@@ -3,4 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="profile_status_active">Активен</string>
+    <string name="profile_status_inactive">Неактивен</string>
+    <string name="save">СОХРАНИТЬ</string>
+    <string name="edit_profile_name_outer_hint">Название профиля</string>
+    <string name="edit_profile_name_hint">Профиль</string>
 </resources>

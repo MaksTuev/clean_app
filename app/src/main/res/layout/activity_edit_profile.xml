@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/edit_profile_content_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/edit_profile_icon"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="40dp"
+            android:layout_alignParentRight="true"
+            android:scaleType="centerCrop"/>
+
+        <FrameLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+
+            <ImageView
+                android:id="@+id/edit_profile_back_btn"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_arrow_back" />
+
+            <TextView
+                android:id="@+id/edit_profile_save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:gravity="center_vertical"
+                android:padding="15dp"
+                android:text="@string/save"
+                android:textSize="15sp" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/edit_profile_name_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginLeft="41dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/edit_profile_name_outer_hint"
+            android:textSize="11sp" />
+
+        <EditText
+            android:id="@+id/edit_profile_name_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginTop="9dp"
+            android:layout_marginLeft="41dp"
+            android:layout_marginRight="25dp"
+            android:hint="@string/edit_profile_name_hint"
+            android:textSize="35sp"
+            tool:text="Профиль"
+            android:singleLine="true"
+            android:inputType="textCapSentences"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/edit_profile_icons_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_profile_name_et"
+            android:layout_marginTop="11dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginBottom="25dp"
+            android:clipToPadding="false"
+            />
+
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="profile_active_bg">#e04658</color>
+    <color name="profile_inactive_bg">#4a5591</color>
+    <color name="profile_icon_half_transparent">#11FFFFFF</color>
+    <color name="fab_color">#e03654</color>
+</resources>

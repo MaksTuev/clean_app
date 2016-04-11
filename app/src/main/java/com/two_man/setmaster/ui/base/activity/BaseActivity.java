@@ -3,9 +3,10 @@ package com.two_man.setmaster.ui.base.activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import ru.litres.android.audio.ui.app.App;
-import ru.litres.android.audio.ui.app.AppComponent;
-import ru.litres.android.audio.ui.base.fragment.BaseFragmentView;
+import com.two_man.setmaster.ui.app.App;
+import com.two_man.setmaster.ui.app.AppComponent;
+import com.two_man.setmaster.ui.base.fragment.BaseFragmentView;
+
 
 /**
  * бызовый класс всех Activity

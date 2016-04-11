@@ -6,11 +6,11 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 
-import ru.litres.android.audio.ui.base.BasePresenter;
-import ru.litres.android.audio.ui.base.HasName;
-import ru.litres.android.audio.ui.base.activity.BaseActivityView;
-import ru.litres.android.audio.ui.base.fragment.BaseFragmentView;
-import ru.litres.android.audio.util.log.LogServerUtil;
+import com.two_man.setmaster.ui.base.BasePresenter;
+import com.two_man.setmaster.ui.base.HasName;
+import com.two_man.setmaster.ui.base.activity.BaseActivityView;
+import com.two_man.setmaster.ui.base.fragment.BaseFragmentView;
+import com.two_man.setmaster.util.log.LogServerUtil;
 
 /**
  * базовый класс диалога

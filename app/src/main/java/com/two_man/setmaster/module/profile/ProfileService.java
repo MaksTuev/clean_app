@@ -7,9 +7,10 @@ import com.two_man.setmaster.module.condition.ConditionChecker;
 import com.two_man.setmaster.module.condition.simple.ConditionStateChangedEvent;
 import com.two_man.setmaster.module.profile.event.ChangedStatus;
 import com.two_man.setmaster.module.profile.event.ProfileChangedEvent;
+import com.two_man.setmaster.util.CloneUtil;
 import com.two_man.setmaster.util.rx.SimpleOnSubscribe;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -24,12 +25,11 @@ public class ProfileService {
     private ConditionChecker conditionChecker;
     private ProfileStorage profileStorage;
 
-    private List<Profile> profiles;
+    private ArrayList<Profile> profiles = new ArrayList<>();
 
     private SimpleOnSubscribe<ProfileChangedEvent> profileChangedOnSubscribe;
     private Observable<ProfileChangedEvent> profileChangedObservable;
 
-    @Inject
     public ProfileService(ConditionChecker conditionChecker, ProfileStorage profileStorage) {
         this.conditionChecker = conditionChecker;
         this.profileStorage = profileStorage;
@@ -37,11 +37,11 @@ public class ProfileService {
         initListeners();
     }
 
-    public Observable<ProfileChangedEvent> observeProfileChanged(){
+    public Observable<ProfileChangedEvent> observeProfileChanged() {
         return profileChangedObservable;
     }
 
-    public void updateProfile(Profile profile){
+    public void updateProfile(Profile profile) {
         synchronized (this) {
             Profile newProfile = profile.clone();
             Profile oldProfile = getProfileOrigin(newProfile.getId());
@@ -54,7 +54,7 @@ public class ProfileService {
     }
 
     public void deleteProfile(String id) {
-        synchronized (this){
+        synchronized (this) {
             Profile profile = getProfileOrigin(id);
             profiles.remove(profile);
             profileStorage.remove(profile);
@@ -63,7 +63,7 @@ public class ProfileService {
         }
     }
 
-    public void addProfile(Profile profile){
+    public void addProfile(Profile profile) {
         synchronized (this) {
             Profile newProfile = profile.clone();
             profiles.add(newProfile);
@@ -73,22 +73,28 @@ public class ProfileService {
         }
     }
 
-    public Profile getProfile(String id){
+    public Profile getProfile(String id) {
         synchronized (this) {
             return getProfileOrigin(id).clone();
         }
     }
 
-    private void onConditionStateChanged(ConditionStateChangedEvent event){
+    public ArrayList<Profile> getAllProfiles() {
+        synchronized (this) {
+            return CloneUtil.cloneProfiles(profiles);
+        }
+    }
+
+    private void onConditionStateChanged(ConditionStateChangedEvent event) {
         synchronized (this) {
             Profile profile = getProfileOrigin(event.getProfileId());
-            if(profile == null) return;
+            if (profile == null) return;
             boolean conditionEventHandled = false;
             boolean profileActive = false;
-            for (ConditionSet conditionSet : profile.getConditionSets()){
+            for (ConditionSet conditionSet : profile.getConditionSets()) {
                 boolean conditionSetActive = true;
-                for(Condition condition : conditionSet.getConditions()){
-                    if(!conditionEventHandled && condition.getId().equals(event.getConditionId())){
+                for (Condition condition : conditionSet.getConditions()) {
+                    if (!conditionEventHandled && condition.getId().equals(event.getConditionId())) {
                         condition.setActive(event.isActive());
                         conditionEventHandled = true;
                     }
@@ -104,15 +110,15 @@ public class ProfileService {
 
     private void updateConditionRegistrations(Profile oldProfile, Profile newProfile) {
         conditionChecker.updateConditionRegistrations(
-                oldProfile.clone(),
-                newProfile.clone());
+                oldProfile != null ? oldProfile.clone() : null,
+                newProfile != null ? newProfile.clone() : null);
     }
 
     private void notifyOnProfileChangedListeners(Profile profile, ChangedStatus status) {
         profileChangedOnSubscribe.emit(new ProfileChangedEvent(profile.clone(), status));
     }
 
-    private Profile getProfileOrigin(String id){
+    private Profile getProfileOrigin(String id) {
         return StreamSupport.stream(profiles)
                 .filter(profile -> profile.getId().equals(id))
                 .findFirst()

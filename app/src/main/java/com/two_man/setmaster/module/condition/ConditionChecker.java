@@ -4,6 +4,7 @@ import com.two_man.setmaster.entity.ConditionSet;
 import com.two_man.setmaster.entity.Profile;
 import com.two_man.setmaster.entity.condition.Condition;
 import com.two_man.setmaster.module.condition.simple.ConditionStateChangedEvent;
+import com.two_man.setmaster.module.condition.simple.ConditionWrapper;
 import com.two_man.setmaster.module.condition.simple.SimpleConditionChecker;
 
 import java.util.ArrayList;
@@ -21,14 +22,13 @@ import rx.Observable;
  */
 public class ConditionChecker {
 
-    private Map<Class, SimpleConditionChecker> simpleConditionCheckers;
+    private Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckers;
     private Observable<ConditionStateChangedEvent> conditionStateChangedObservable;
 
-    @Inject
-    public ConditionChecker(Map<Class, SimpleConditionChecker> simpleConditionCheckers) {
-        this.simpleConditionCheckers = simpleConditionCheckers;
+    public ConditionChecker(Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckersMap) {
+        this.simpleConditionCheckers = simpleConditionCheckersMap;
         conditionStateChangedObservable = Observable.merge(
-                StreamSupport.stream(simpleConditionCheckers.values())
+                StreamSupport.stream(this.simpleConditionCheckers.values())
                         .map(SimpleConditionChecker::observeConditionStateChanged)
                         .collect(Collectors.toList()));
     }

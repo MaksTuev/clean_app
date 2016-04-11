@@ -1,18 +1,22 @@
 package com.two_man.setmaster.ui.base.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.CallSuper;
 import android.support.annotation.LayoutRes;
 
-import ru.litres.android.audio.ui.base.HasName;
-import ru.litres.android.audio.ui.base.HasPresenter;
-import ru.litres.android.audio.util.log.LogServerUtil;
+import com.two_man.setmaster.ui.base.BaseView;
+import com.two_man.setmaster.ui.base.HasName;
+import com.two_man.setmaster.ui.base.HasPresenter;
+import com.two_man.setmaster.util.log.LogServerUtil;
 
 /**
  * базовый класс для вью, основанной на Activity
  */
-public abstract class BaseActivityView extends BaseActivity implements HasPresenter, HasName {
+public abstract class BaseActivityView extends BaseActivity implements BaseView, HasPresenter, HasName {
 
+
+    private Handler handler = new Handler();
     /**
      * в реализации этого метода необходимо удовлетворить зависимости
      */
@@ -28,10 +32,10 @@ public abstract class BaseActivityView extends BaseActivity implements HasPresen
         setContentView(getContentView());
         satisfyDependencies();
         initPresenter();
-        if(savedInstanceState != null){
-            getPresenter().onRestore(savedInstanceState);
+        if (savedInstanceState != null) {
+            handler.post(() -> getPresenter().onRestore(savedInstanceState));
         }
-        getPresenter().onLoad();
+        handler.post(() -> getPresenter().onLoad());
     }
 
     @Override
@@ -44,6 +48,11 @@ public abstract class BaseActivityView extends BaseActivity implements HasPresen
     protected void onSaveInstanceState(Bundle outState) {
         getPresenter().onSave(outState);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void goBack() {
+        this.onBackPressed();
     }
 
     @Override
