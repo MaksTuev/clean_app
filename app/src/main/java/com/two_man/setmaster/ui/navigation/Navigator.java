@@ -1,6 +1,6 @@
 package com.two_man.setmaster.ui.navigation;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.two_man.setmaster.entity.Profile;
 import com.two_man.setmaster.ui.screen.editprofile.EditProfileActivity;
@@ -12,9 +12,9 @@ import com.two_man.setmaster.ui.screen.profile.ProfileActivity;
  */
 public class Navigator {
 
-    private Activity activity;
+    private AppCompatActivity activity;
 
-    public Navigator(Activity activity) {
+    public Navigator(AppCompatActivity activity) {
         this.activity = activity;
     }
 

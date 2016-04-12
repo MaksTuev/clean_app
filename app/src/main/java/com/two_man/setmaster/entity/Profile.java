@@ -137,4 +137,10 @@ public class Profile implements Cloneable, Serializable{
             }
         }
     }
+
+    public ConditionSet getConditionSet(String conditionSetId) {
+        return StreamSupport.stream(conditionSets)
+                .filter(conditionSet -> conditionSet.getId().equals(conditionSetId))
+                .reduce(null, (prev, next)->next);
+    }
 }

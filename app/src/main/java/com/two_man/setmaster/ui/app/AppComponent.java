@@ -23,6 +23,7 @@ public interface AppComponent {
     Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckers();
     Map<Class<? extends Setting>, SettingApplier> settingAppliers();
     ArrayList<Class<? extends Setting>> settingsTypes();
+    ArrayList<Class<? extends Condition>> conditionsTypes();
     SettingManager settingManager();
     ProfileService profileService();
     ConditionChecker conditionChecker();

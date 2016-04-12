@@ -14,10 +14,13 @@ import android.widget.TextView;
 
 import com.two_man.setmaster.R;
 import com.two_man.setmaster.entity.Profile;
+import com.two_man.setmaster.entity.condition.Condition;
 import com.two_man.setmaster.entity.setting.Setting;
 import com.two_man.setmaster.ui.base.BasePresenter;
 import com.two_man.setmaster.ui.base.activity.ActivityModule;
 import com.two_man.setmaster.ui.base.activity.BaseActivityView;
+import com.two_man.setmaster.ui.screen.profile.condition.ConditionSetPagerAdapter;
+import com.two_man.setmaster.ui.screen.profile.condition.ConditionSetView;
 import com.two_man.setmaster.ui.screen.profile.setting.SettingGridAdapter;
 import com.two_man.setmaster.ui.util.ProfileViewUtil;
 
@@ -39,9 +42,12 @@ public class ProfileActivity extends BaseActivityView {
     private RecyclerView settingsGrid;
     private ViewPager conditionPager;
     private CircleIndicator conditionPagerIndicator;
-    private SettingGridAdapter settingGridAdapter;
     private View headerContainer;
     private ImageView profileIcon;
+    private View addConditionFab;
+
+    private SettingGridAdapter settingGridAdapter;
+    private ConditionSetPagerAdapter conditionSetAdapter;
 
     @Override
     protected void satisfyDependencies() {
@@ -58,8 +64,21 @@ public class ProfileActivity extends BaseActivityView {
         super.onCreate(savedInstanceState);
         findViews();
         initViews();
+        initListeners();
         initToolbar();
         initSettingGrid();
+        initConditionPager();
+    }
+
+    private void initConditionPager() {
+        conditionSetAdapter = new ConditionSetPagerAdapter();
+        conditionPager.setAdapter(conditionSetAdapter);
+        conditionPagerIndicator.setViewPager(conditionPager);
+        conditionSetAdapter.setOnConditionActionListener(onConditionActionListener);
+    }
+
+    private void initListeners() {
+        addConditionFab.setOnClickListener(v -> presenter.openAddCondition(true));
     }
 
     @Override
@@ -73,7 +92,7 @@ public class ProfileActivity extends BaseActivityView {
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.inflateMenu(R.menu.profile_menu);
         toolbar.setOnMenuItemClickListener(item -> {
-            if(item.getItemId() == R.id.profile_edit_menu){
+            if (item.getItemId() == R.id.profile_edit_menu) {
                 presenter.editProfile();
             }
             return true;
@@ -100,6 +119,7 @@ public class ProfileActivity extends BaseActivityView {
         conditionPager = (ViewPager)findViewById(R.id.profile_conditions_pager);
         conditionPagerIndicator = (CircleIndicator)findViewById(R.id.profile_pager_indicator);
         profileIcon = (ImageView)findViewById(R.id.profile_icon);
+        addConditionFab = findViewById(R.id.profile_add_fab);
     }
 
     @Override
@@ -115,7 +135,7 @@ public class ProfileActivity extends BaseActivityView {
         settingGridAdapter.showSettings(profile.getSettings());
         profileIcon.setImageResource(profile.getImageResId());
         headerContainer.setBackgroundColor(ProfileViewUtil.getProfileAccentColor(this, profile));
-        //todo cond
+        conditionSetAdapter.showConditionSets(profile.getConditionSets());
     }
 
     private void onAddSettingClick(){
@@ -125,6 +145,19 @@ public class ProfileActivity extends BaseActivityView {
     private void onSettingClick(Setting setting, int yCenterPosition) {
         presenter.openChangeSetting(setting);
     }
+
+    private ConditionSetView.OnConditionActionListener onConditionActionListener = new ConditionSetView.OnConditionActionListener() {
+        @Override
+        public void onClick(String conditionSetId, Condition condition) {
+            presenter.openChangeCondition(conditionSetId, condition);
+        }
+
+        @Override
+        public void onDelete(String conditionSetId, Condition condition) {
+            presenter.deleteCondition(conditionSetId, condition);
+        }
+    }
+
 
     @Override
     protected int getContentView() {
@@ -146,5 +179,9 @@ public class ProfileActivity extends BaseActivityView {
         i.putExtra(EXTRA_PROFILE, profile);
         i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         activity.startActivity(i);
+    }
+
+    public String getSelectedConditionSetId() {
+        return "";
     }
 }

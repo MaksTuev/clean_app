@@ -1,6 +1,7 @@
 package com.two_man.setmaster.ui.base.activity;
 
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.two_man.setmaster.ui.base.dialog.ActivityDialogManager;
 import com.two_man.setmaster.ui.base.dialog.DialogManager;
@@ -11,15 +12,15 @@ import dagger.Provides;
 
 @Module
 public class ActivityModule {
-    private Activity activity;
+    private AppCompatActivity activity;
 
-    public ActivityModule(Activity activity) {
+    public ActivityModule(AppCompatActivity activity) {
         this.activity = activity;
     }
 
     @Provides
     @PerActivity
-    Activity provideActivity(){
+    AppCompatActivity provideActivity(){
         return activity;
     }
 
@@ -31,7 +32,7 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
-    Navigator provideNavigator(Activity activity){
+    Navigator provideNavigator(AppCompatActivity activity){
         return new Navigator(activity);
     }
 

@@ -1,19 +1,24 @@
 package com.two_man.setmaster.ui.base.dialog;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 
 import javax.inject.Inject;
 
 public class ActivityDialogManager implements DialogManager {
-    private Activity activity;
+    private AppCompatActivity activity;
 
     @Inject
-    public ActivityDialogManager(Activity activity) {
+    public ActivityDialogManager(AppCompatActivity activity) {
         this.activity = activity;
     }
 
     @Override
     public void show(BaseDialog dialog) {
+        dialog.show(activity);
+    }
+
+    @Override
+    public void show(BaseBottomSheetDialog dialog) {
         dialog.show(activity);
     }
 }

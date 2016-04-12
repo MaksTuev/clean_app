@@ -12,4 +12,16 @@
     <string name="setting_name_ring">Громкость звонка</string>
     <string name="add_setting">Добавить настройку</string>
     <string name="delete">Удалить</string>
+    <string name="add_condition_set">Содать набор условий</string>
+    <string name="add_condition">Добавить условие</string>
+    <string name="condition_name_time">Время / день недели</string>
+    <string name="condition_name_wifi">Подключение к Wi-Fi</string>
+    <string name="condition_status_active">Активно</string>
+    <string name="monday">пн</string>
+    <string name="tuesday">вт</string>
+    <string name="wenstay">ср</string>
+    <string name="thursday">чт</string>
+    <string name="friday">пт</string>
+    <string name="saturday">сб</string>
+    <string name="sunday">вс</string>
 </resources>

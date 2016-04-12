@@ -1,8 +1,6 @@
 package com.two_man.setmaster.ui.screen.main;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -30,8 +28,8 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    protected void addFragment(int containerViewId, Fragment fragment, String tag) {
-        FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
+    protected void addFragment(int containerViewId, android.support.v4.app.Fragment fragment, String tag) {
+        android.support.v4.app.FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(containerViewId, fragment, tag);
         fragmentTransaction.commit();
     }

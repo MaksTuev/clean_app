@@ -1,6 +1,5 @@
 package com.two_man.setmaster.ui.base.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.CallSuper;
@@ -17,7 +16,7 @@ import com.two_man.setmaster.util.log.LogServerUtil;
 /**
  * базовый класс для вью, основанной на Fragment
  */
-public abstract class BaseFragmentView extends Fragment implements BaseView, HasPresenter, HasName {
+public abstract class BaseFragmentView extends android.support.v4.app.Fragment implements BaseView, HasPresenter, HasName {
 
     /**
      * в реализации этого метода необходимо удовлетворить зависимости

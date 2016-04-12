@@ -1,5 +1,7 @@
 package com.two_man.setmaster.ui.base.activity;
 
+import android.support.v7.app.AppCompatActivity;
+
 import com.two_man.setmaster.entity.condition.Condition;
 import com.two_man.setmaster.entity.setting.Setting;
 import com.two_man.setmaster.module.condition.ConditionChecker;
@@ -31,5 +33,6 @@ public interface ContainerActivityComponent {
     ProfileService profileService();
     ConditionChecker conditionChecker();
     Navigator navigator();
+    AppCompatActivity activity();
 
 }

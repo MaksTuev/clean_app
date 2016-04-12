@@ -1,6 +1,8 @@
 package com.two_man.setmaster.ui.screen.profile;
 
+import com.two_man.setmaster.entity.ConditionSet;
 import com.two_man.setmaster.entity.Profile;
+import com.two_man.setmaster.entity.condition.Condition;
 import com.two_man.setmaster.entity.setting.Setting;
 import com.two_man.setmaster.module.profile.ProfileService;
 import com.two_man.setmaster.module.profile.event.ChangedStatus;
@@ -9,6 +11,8 @@ import com.two_man.setmaster.ui.base.BasePresenter;
 import com.two_man.setmaster.ui.base.activity.PerActivity;
 import com.two_man.setmaster.ui.base.dialog.DialogManager;
 import com.two_man.setmaster.ui.navigation.Navigator;
+import com.two_man.setmaster.ui.screen.profile.condition.add.AddConditionDialog;
+import com.two_man.setmaster.ui.screen.profile.condition.add.AddConditionOrConditionSetDialog;
 import com.two_man.setmaster.ui.screen.profile.setting.changesetting.OnSettingChangeListener;
 import com.two_man.setmaster.ui.screen.profile.setting.changesetting.SettingChangeDialogCreator;
 import com.two_man.setmaster.ui.screen.profile.setting.choosesetting.ChooseSettingDialog;
@@ -25,8 +29,11 @@ import rx.Subscription;
  *
  */
 @PerActivity
-public class ProfilePresenter extends BasePresenter<ProfileActivity> implements ChooseSettingDialog.OnSettingChosenListener,
-        OnSettingChangeListener {
+public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
+        ChooseSettingDialog.OnSettingChosenListener,
+        OnSettingChangeListener,
+        AddConditionOrConditionSetDialog.AddConditionOrConditionSetDialogListener,
+        AddConditionDialog.AddConditionDialogListener {
 
     private ProfileService profileService;
     private Navigator navigator;
@@ -34,18 +41,21 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements 
     private ArrayList<Class<? extends Setting>> supportedSettings;
     private SettingChangeDialogCreator settingChangeDialogCreator;
     private Profile profile;
+    private ArrayList<Class<? extends Condition>> supportedConditions;
 
     @Inject
     public ProfilePresenter(ProfileService profileService,
                             Navigator navigator,
                             DialogManager dialogManager,
                             ArrayList<Class<? extends Setting>> supportedSettings,
-                            SettingChangeDialogCreator settingChangeDialogCreator) {
+                            SettingChangeDialogCreator settingChangeDialogCreator,
+                            ArrayList<Class<? extends Condition>> supportedConditions) {
         this.profileService = profileService;
         this.navigator = navigator;
         this.dialogManager = dialogManager;
         this.supportedSettings = supportedSettings;
         this.settingChangeDialogCreator = settingChangeDialogCreator;
+        this.supportedConditions = supportedConditions;
     }
 
     public void init(Profile profile) {
@@ -129,4 +139,56 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements 
         profile.deleteSetting(setting);
         profileService.updateProfile(profile);
     }
+
+    public void openAddCondition(boolean conditionSetEmpty){
+        if(conditionSetEmpty){
+            dialogManager.show(AddConditionOrConditionSetDialog.newInstance());
+        } else {
+            dialogManager.show(AddConditionDialog.newInstance(supportedConditions));
+        }
+    }
+
+    @Override
+    public void onNewConditionSet() {
+
+    }
+
+    @Override
+    public void onNewCondition() {
+        dialogManager.show(AddConditionDialog.newInstance(getAllowedConditions()));
+    }
+
+    @Override
+    public void onAddCondition(Class<? extends Condition> conditionType) {
+
+    }
+
+
+
+    public void deleteCondition(String conditionSetId, Condition condition) {
+
+    }
+
+    public void openChangeCondition(String conditionSetId, Condition condition) {
+
+    }
+
+    public ArrayList<Class<? extends Condition>> getAllowedConditions() {
+        ArrayList<Class<? extends Condition>> conditionClasses = new ArrayList<>();
+        ConditionSet selectedConditionSet = new ConditionSet();//profile.getConditionSet(getView().getSelectedConditionSetId()); //todo
+        for(Class<? extends Condition> conditionClass : supportedConditions){
+            boolean found = false;
+            for(Condition condition : selectedConditionSet.getConditions()){
+                if(condition.getClass() == conditionClass){
+                    found = true;
+                }
+            }
+            if(!found){
+                conditionClasses.add(conditionClass);
+            }
+        };
+        return conditionClasses;
+    }
+
+
 }

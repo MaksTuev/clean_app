@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/condition_container"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:layout_marginTop="1dp"
+    android:layout_marginBottom="1dp"
+    android:elevation="2dp"
+    android:background="@drawable/black_card">
+    <ImageView
+        android:id="@+id/condition_icon"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_weight="0"
+        android:layout_gravity="center_vertical"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical">
+        <TextView
+            android:id="@+id/condition_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="17dp"
+            android:singleLine="true"/>
+        <TextView
+            android:id="@+id/condition_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:text="@string/condition_status_active"
+            android:textSize="11dp"
+            android:singleLine="true"/>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/condition_delete"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:padding="12dp"
+        android:src="@drawable/ic_delete"
+        android:layout_gravity="center_vertical"/>
+
+</LinearLayout>

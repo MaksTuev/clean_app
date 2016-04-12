@@ -28,20 +28,6 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="56dp">
-                <!--<FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp">
-
-                    <ImageView
-                        android:id="@+id/edit_profile_back_btn"
-                        android:layout_width="56dp"
-                        android:layout_height="match_parent"
-                        android:padding="15dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_arrow_back" />
-
-                </FrameLayout>
-            -->
             </android.support.v7.widget.Toolbar>
 
             <TextView
@@ -94,7 +80,7 @@
         />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/main_add_fab"
+        android:id="@+id/profile_add_fab"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_gravity="bottom|right"

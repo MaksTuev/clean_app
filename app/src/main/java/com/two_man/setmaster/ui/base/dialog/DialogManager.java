@@ -5,5 +5,6 @@ package com.two_man.setmaster.ui.base.dialog;
  */
 public interface DialogManager {
     void show(BaseDialog dialog);
+    void show(BaseBottomSheetDialog dialog);
 
 }

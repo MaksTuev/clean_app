@@ -1,6 +1,7 @@
 package com.two_man.setmaster.ui.base.dialog;
 
-import android.app.Fragment;
+
+import android.support.v4.app.Fragment;
 
 import javax.inject.Inject;
 
@@ -15,6 +16,11 @@ public class FragmentDialogManager implements DialogManager {
 
     @Override
     public void show(BaseDialog dialog) {
+        dialog.show(fragment);
+    }
+
+    @Override
+    public void show(BaseBottomSheetDialog dialog) {
         dialog.show(fragment);
     }
 }

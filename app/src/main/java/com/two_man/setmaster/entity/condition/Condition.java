@@ -7,8 +7,13 @@ import java.util.UUID;
  *
  */
 public abstract class Condition implements Cloneable, Serializable {
-    protected String id;
-    protected boolean active = false;
+    private String id;
+    private boolean active = false;
+
+    public Condition(String id, boolean active) {
+        this.id = id;
+        this.active = active;
+    }
 
     @Override
     public abstract Condition clone();

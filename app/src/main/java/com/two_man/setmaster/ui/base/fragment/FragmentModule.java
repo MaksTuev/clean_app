@@ -1,11 +1,9 @@
 package com.two_man.setmaster.ui.base.fragment;
 
-import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 
 import com.two_man.setmaster.ui.base.dialog.DialogManager;
 import com.two_man.setmaster.ui.base.dialog.FragmentDialogManager;
-import com.two_man.setmaster.ui.navigation.Navigator;
 
 import dagger.Module;
 import dagger.Provides;

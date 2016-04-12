@@ -94,7 +94,7 @@ public class ChangeVolumeSettingDialog extends BaseDialog {
     private void initViews() {
         settingIcon.setImageResource(SettingViewUtil.getSettingImage(setting.getClass()));
         settingIcon.setColorFilter(accentColor);
-        deleteBtn.setColorFilter(ContextCompat.getColor(getActivity(), R.color.gray));
+        deleteBtn.setColorFilter(ContextCompat.getColor(getActivity(), R.color.light_gray));
         settingName.setText(SettingViewUtil.getSettingName(setting.getClass()));
 
         settingValue.setProgress((int) (setting.getValue() * 100));
@@ -112,12 +112,11 @@ public class ChangeVolumeSettingDialog extends BaseDialog {
         settingValue = (AppCompatSeekBar) view.findViewById(R.id.setting_value);
     }
 
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        Dialog dialog = new ChangeSettingDialog(getActivity(), getTheme());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-
         return dialog;
     }
 

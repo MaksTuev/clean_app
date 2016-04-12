@@ -1,8 +1,9 @@
 package com.two_man.setmaster.ui.base.dialog;
 
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.two_man.setmaster.ui.base.BasePresenter;
@@ -12,14 +13,9 @@ import com.two_man.setmaster.ui.base.fragment.BaseFragmentView;
 import com.two_man.setmaster.util.log.LogServerUtil;
 
 /**
- * базовый класс диалога
- * Этот диалог следует показывать из Presenter'a через  {@link DialogManager}
- * Диалог позволяет получиить листенер с помощью метода {@link this#getListener(Class)}
- * В качестве листенера ВСЕГДА выступает тот же Presenter, с которого и был показан диалог,
- * поэтому Presenter должен реализовать интерфейс, который будет передан в метод {@link this#getListener(Class)}
+ *
  */
-public abstract class BaseDialog extends DialogFragment implements HasName {
-
+public abstract class BaseBottomSheetDialog extends BottomSheetDialogFragment implements HasName{
     private static final String STATE_PARENT_TYPE = "state_parent";
 
     private Parent parentType;
@@ -35,7 +31,7 @@ public abstract class BaseDialog extends DialogFragment implements HasName {
         show(parentFragment.getFragmentManager());
     }
 
-    protected void show(android.support.v4.app.FragmentManager fragmentManager){
+    protected void show(FragmentManager fragmentManager){
         show(fragmentManager, this.getClass().getSimpleName());
     }
 
