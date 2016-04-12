@@ -12,8 +12,6 @@ import com.two_man.setmaster.util.rx.SimpleOnSubscribe;
 
 import java.util.ArrayList;
 
-import javax.inject.Inject;
-
 import java8.util.stream.StreamSupport;
 import rx.Observable;
 
@@ -35,6 +33,14 @@ public class ProfileService {
         this.profileStorage = profileStorage;
         initObservable();
         initListeners();
+    }
+
+    public Observable<Void> initialize(){
+        return profileStorage.getAllProfiles()
+                .flatMap(Observable::from)
+                .doOnNext(this::initProfile)
+                .toList()
+                .flatMap(profiles -> Observable.just(null));
     }
 
     public Observable<ProfileChangedEvent> observeProfileChanged() {
@@ -82,6 +88,15 @@ public class ProfileService {
     public ArrayList<Profile> getAllProfiles() {
         synchronized (this) {
             return CloneUtil.cloneProfiles(profiles);
+        }
+    }
+
+    private void initProfile(Profile profile){
+        synchronized (this){
+            Profile newProfile = profile.clone();
+            profiles.add(newProfile);
+            updateConditionRegistrations(null, newProfile);
+            notifyOnProfileChangedListeners(newProfile, ChangedStatus.UPDATED);
         }
     }
 

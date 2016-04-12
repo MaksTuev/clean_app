@@ -13,10 +13,10 @@
         android:scaleType="centerCrop"/>
     <ImageView
         android:id="@+id/profile_active_indicator"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="53dp"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginLeft="59dp"
+        android:layout_marginTop="59dp"
         android:padding="3dp"
         android:scaleType="centerInside"
         android:background="@drawable/red_circle"
@@ -55,5 +55,6 @@
         android:layout_below="@id/profile_status_text"
         android:layout_marginRight="20dp"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp">
+    </com.two_man.setmaster.ui.screen.main.widget.SettingPreviewLayout>
 </merge>

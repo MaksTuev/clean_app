@@ -9,7 +9,7 @@ import dagger.Component;
 /**
  *
  */
-@Component(dependencies = AppComponent.class, modules = {ActivityModule.class})
+@Component(dependencies = AppComponent.class, modules = {ActivityModule.class, ProfileModule.class})
 @PerActivity
 public interface ProfileComponent {
     void inject(ProfileActivity activity);

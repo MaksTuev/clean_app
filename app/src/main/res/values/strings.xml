@@ -8,4 +8,8 @@
     <string name="save">СОХРАНИТЬ</string>
     <string name="edit_profile_name_outer_hint">Название профиля</string>
     <string name="edit_profile_name_hint">Профиль</string>
+    <string name="setting_name_media_volume">Громкость медиа</string>
+    <string name="setting_name_ring">Громкость звонка</string>
+    <string name="add_setting">Добавить настройку</string>
+    <string name="delete">Удалить</string>
 </resources>

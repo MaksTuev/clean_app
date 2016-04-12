@@ -4,4 +4,7 @@
     <color name="profile_inactive_bg">#4a5591</color>
     <color name="profile_icon_half_transparent">#11FFFFFF</color>
     <color name="fab_color">#e03654</color>
+    <color name="white">#ffffffff</color>
+    <color name="dark_gray">#1c1c1c</color>
+    <color name="gray">#797979</color>
 </resources>

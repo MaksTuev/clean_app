@@ -16,6 +16,7 @@ import com.two_man.setmaster.entity.Profile;
 import com.two_man.setmaster.ui.base.BasePresenter;
 import com.two_man.setmaster.ui.base.activity.ActivityModule;
 import com.two_man.setmaster.ui.base.activity.BaseActivityView;
+import com.two_man.setmaster.ui.util.ProfileViewUtil;
 
 import java.util.List;
 
@@ -74,12 +75,9 @@ public class EditProfileActivity extends BaseActivityView {
         } else {
             handler.post(() -> iconAdapter.setSelectedIcon(0));
         }
-        boolean activeProfile = profile!=null && profile.isActive();
-        int backgroundColor = activeProfile
-                ? ContextCompat.getColor(this, R.color.profile_active_bg)
-                : ContextCompat.getColor(this, R.color.profile_inactive_bg);
-        iconAdapter.setSelectedIconColor(backgroundColor);
-        contentContainer.setBackgroundColor(backgroundColor);
+
+        iconAdapter.setSelectedIconColor(ProfileViewUtil.getProfileAccentColor(this, profile));
+        contentContainer.setBackgroundColor(ProfileViewUtil.getProfileAccentColor(this, profile));
 
     }
 

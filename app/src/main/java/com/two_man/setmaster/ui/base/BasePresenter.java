@@ -3,6 +3,9 @@ package com.two_man.setmaster.ui.base;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
+
 /**
  * базовый класс для презентера
  *
@@ -13,6 +16,8 @@ import android.support.annotation.NonNull;
  *           если V не интерфейс, то использование методов View, относящихся к андроид фреймворку запрещено
  */
 public class BasePresenter<V> {
+
+    private CompositeSubscription compositeSubscription = new CompositeSubscription();
 
     private V view;
 
@@ -28,11 +33,18 @@ public class BasePresenter<V> {
     }
 
     public void onDestroy() {
+        if(!compositeSubscription.isUnsubscribed()){
+            compositeSubscription.unsubscribe();
+        }
     }
 
     public void onRestore(@NonNull Bundle savedInstanceState) {
     }
 
     public void onSave(@NonNull Bundle outState) {
+    }
+
+    protected void addToSubscriptions(Subscription subscription){
+        compositeSubscription.add(subscription);
     }
 }

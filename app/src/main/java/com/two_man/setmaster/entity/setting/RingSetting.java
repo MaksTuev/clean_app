@@ -1,30 +1,28 @@
 package com.two_man.setmaster.entity.setting;
 
-import java.util.UUID;
-
 /**
  *
  */
-public class RingSetting extends Setting {
-    private String id;
-    private float value;
+public class RingSetting extends ValuableSetting {
+
+    public RingSetting() {
+        super(0);
+    }
 
     public RingSetting(float value) {
-        id = UUID.randomUUID().toString();
-        this.value = value;
+        super(value);
     }
 
     private RingSetting(String id, float value) {
-        this.id = id;
-        this.value = value;
+        super(id, value);
     }
 
     @Override
     public Setting clone() {
-        return new RingSetting(id, value);
+        return new RingSetting(getId(), getValue());
     }
 
     public boolean isEnabled(){
-        return value != 0;
+        return getValue() != 0;
     }
 }

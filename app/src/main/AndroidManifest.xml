@@ -37,6 +37,11 @@
             android:label="EditProfile"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".ui.screen.profile.ProfileActivity"
+            android:label="Profile"
+            android:screenOrientation="portrait">
+        </activity>
         <service
             android:name=".LocationService"
             android:enabled="true"

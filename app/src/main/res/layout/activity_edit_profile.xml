@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edit_profile_name_et"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="23dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:layout_marginBottom="25dp"

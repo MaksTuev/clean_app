@@ -112,4 +112,29 @@ public class Profile implements Cloneable, Serializable{
                 CloneUtil.cloneConditionSetList(conditionSets),
                 CloneUtil.cloneSettingList(settings));
     }
+
+    public void addSetting(Setting setting) {
+        this.settings.add(setting);
+    }
+
+    public void updateSetting(Setting updatedSetting) {
+        for(int i = 0; i< settings.size(); i++){
+            Setting setting = settings.get(i);
+            if(updatedSetting.getId().equals(setting.getId())){
+                settings.remove(i);
+                settings.add(i, updatedSetting);
+                break;
+            }
+        }
+    }
+
+    public void deleteSetting(Setting deletedSetting) {
+        for(int i = 0; i< settings.size(); i++){
+            Setting setting = settings.get(i);
+            if(deletedSetting.getId().equals(setting.getId())){
+                settings.remove(i);
+                break;
+            }
+        }
+    }
 }

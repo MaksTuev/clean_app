@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.two_man.setmaster.R;
 import com.two_man.setmaster.entity.Profile;
+import com.two_man.setmaster.ui.util.ProfileViewUtil;
 
 /**
  *
@@ -46,6 +47,11 @@ public class ProfileListItemView extends RelativeLayout {
     protected void initView(Context context) {
         inflate(context);
         findChildViews(context);
+        initListeners();
+    }
+
+    private void initListeners() {
+        this.setOnClickListener(v -> onProfileActionListener.onProfileClick(profile));
     }
 
     public void show(Profile profile){
@@ -53,20 +59,12 @@ public class ProfileListItemView extends RelativeLayout {
         profileIcon.setImageResource(profile.getImageResId());
         profileActiveIndicator.setVisibility(profile.isActive() ? VISIBLE : GONE);
         profileNameText.setText(profile.getName());
-        profileStatusText.setText(getProfileStatusText(profile));
+        profileStatusText.setText(ProfileViewUtil.getProfileStatusText(profile));
         profileSettingPreviewLayout.showSettings(profile.getSettings());
     }
 
     public void setListener(OnProfileActionListener onProfileActionListener){
         this.onProfileActionListener = onProfileActionListener;
-    }
-
-    private int getProfileStatusText(Profile profile) {
-        if(profile.isActive()){
-            return R.string.profile_status_active;
-        } else {
-            return R.string.profile_status_inactive;
-        }
     }
 
     private void findChildViews(Context context) {
@@ -83,5 +81,6 @@ public class ProfileListItemView extends RelativeLayout {
     }
 
     public interface OnProfileActionListener {
+        void onProfileClick(Profile profile);
     }
 }

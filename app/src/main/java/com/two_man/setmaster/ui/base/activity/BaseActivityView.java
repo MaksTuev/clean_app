@@ -52,7 +52,7 @@ public abstract class BaseActivityView extends BaseActivity implements BaseView,
 
     @Override
     public void goBack() {
-        this.onBackPressed();
+        this.finish();
     }
 
     @Override

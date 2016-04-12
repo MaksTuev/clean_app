@@ -92,4 +92,9 @@ public class MainFragmentView extends BaseFragmentView implements ProfileListIte
     public BasePresenter getPresenter() {
         return presenter;
     }
+
+    @Override
+    public void onProfileClick(Profile profile) {
+        presenter.openProfile(profile);
+    }
 }

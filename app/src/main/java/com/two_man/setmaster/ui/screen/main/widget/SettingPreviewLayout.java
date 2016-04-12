@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -43,15 +45,20 @@ public class SettingPreviewLayout extends LinearLayout {
     }
 
     public void showSettings(ArrayList<Setting> settings) {
+        removeAllViews();
         for (Setting setting : settings) {
-            ImageView settingView = (ImageView) LayoutInflater.from(getContext()).inflate(R.layout.setting_preview_layout_item, this, false);
-            settingView.setImageResource(getSettingImage(setting));
-            this.addView(settingView);
+            View settingView = LayoutInflater.from(getContext()).inflate(R.layout.setting_preview_layout_item, this, false);
+            ViewGroup.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            this.addView(settingView, layoutParams);
+            ImageView settingIcon = (ImageView)settingView.findViewById(R.id.icon);
+            settingIcon.setImageResource(getSettingImage(setting));
         }
     }
 
     @DrawableRes
-    private int getSettingImage(Setting setting) {
+        private int getSettingImage(Setting setting) {
         if (setting instanceof RingSetting) {
             RingSetting ringSetting = (RingSetting) setting;
             return ringSetting.isEnabled()
@@ -69,7 +76,7 @@ public class SettingPreviewLayout extends LinearLayout {
     }
 
     private void inflate(Context context) {
-        inflate(context, R.layout.setting_preview_layout, this);
+        setOrientation(HORIZONTAL);
     }
 
 

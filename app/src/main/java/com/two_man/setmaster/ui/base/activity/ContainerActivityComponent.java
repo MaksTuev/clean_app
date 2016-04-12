@@ -11,7 +11,7 @@ import com.two_man.setmaster.ui.app.AppComponent;
 import com.two_man.setmaster.ui.base.fragment.BaseFragmentView;
 import com.two_man.setmaster.ui.navigation.Navigator;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 import dagger.Component;
@@ -26,7 +26,7 @@ import dagger.Component;
 public interface ContainerActivityComponent {
     Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckers();
     Map<Class<? extends Setting>, SettingApplier> settingAppliers();
-    List<Class<? extends Setting>> settingsTypes();
+    ArrayList<Class<? extends Setting>> settingsTypes();
     SettingManager settingManager();
     ProfileService profileService();
     ConditionChecker conditionChecker();

@@ -57,4 +57,8 @@ public class MainPresenter extends BasePresenter<MainFragmentView> {
     public void onStart() {
         showData();
     }
+
+    public void openProfile(Profile profile) {
+        navigator.openProfile(profile);
+    }
 }

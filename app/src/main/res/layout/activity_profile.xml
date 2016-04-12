@@ -1,5 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/profile_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp">
+
+            <ImageView
+                android:id="@+id/profile_icon"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="40dp"
+                android:layout_alignParentRight="true"
+                android:scaleType="centerCrop"/>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
+                <!--<FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp">
+
+                    <ImageView
+                        android:id="@+id/edit_profile_back_btn"
+                        android:layout_width="56dp"
+                        android:layout_height="match_parent"
+                        android:padding="15dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_arrow_back" />
+
+                </FrameLayout>
+            -->
+            </android.support.v7.widget.Toolbar>
+
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolbar"
+                android:layout_marginLeft="41dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="9dp"
+                android:singleLine="true"
+                android:textSize="35sp"
+                android:textColor="@color/white"
+                tool:text="Профиль" />
+
+            <TextView
+                android:id="@+id/profile_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_name"
+                android:layout_marginLeft="41dp"
+                android:layout_marginTop="-3dp"
+                android:textSize="11sp"
+                android:textColor="@color/white"
+                tool:text="status" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/profile_settings_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_status"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+        </RelativeLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/profile_conditions_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/profile_pager_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="22dp"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/main_add_fab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_add_white_18dp"
+        app:backgroundTint="@color/fab_color"
+        app:elevation="4dp"
+        app:fabSize="normal" />
 
 </FrameLayout>

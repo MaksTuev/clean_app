@@ -37,6 +37,7 @@ public class EditProfilePresenter extends BasePresenter<EditProfileActivity> {
             profileService.updateProfile(profile);
         }
         getView().goBack();
+        navigator.openProfile(profileService.getProfile(profile.getId()));
     }
 
     @Override

@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-
 import java8.util.stream.Collectors;
 import java8.util.stream.StreamSupport;
 
@@ -26,7 +24,7 @@ public class SettingManager {
     private List<Profile> activeProfiles = new ArrayList<>();
 
     public SettingManager(Map<Class<? extends Setting>, SettingApplier> settingAppliers,
-                          List<Class<? extends Setting>> settingTypes,
+                          ArrayList<Class<? extends Setting>> settingTypes,
                           ProfileService profileService) {
         this.settingAppliers = settingAppliers;
         this.settingTypes = settingTypes;
