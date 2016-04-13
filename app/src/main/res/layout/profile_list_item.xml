@@ -54,7 +54,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/profile_status_text"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp">
     </com.two_man.setmaster.ui.screen.main.widget.SettingPreviewLayout>
 </merge>

@@ -166,4 +166,14 @@ public class Profile implements Cloneable, Serializable{
         }
         throw new IllegalArgumentException("condition "+ newCondition+ "not exist");
     }
+
+    public void deleteConditionSet(ConditionSet conditionSetForDelete) {
+        for(ConditionSet conditionSet : conditionSets){
+            if(conditionSet.getId().equals(conditionSetForDelete.getId())){
+                conditionSets.remove(conditionSet);
+                return;
+            }
+        }
+        throw new IllegalArgumentException("conditionSet "+ conditionSetForDelete+ "not exist");
+    }
 }

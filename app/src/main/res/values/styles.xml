@@ -30,6 +30,6 @@
         <item name="colorControlActivated">@color/profile_inactive_bg</item>
     </style>
 
-    <color name="background">#2f353d</color>
+
 
 </resources>

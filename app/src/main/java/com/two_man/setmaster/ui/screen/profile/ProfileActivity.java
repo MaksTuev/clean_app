@@ -136,7 +136,7 @@ public class ProfileActivity extends BaseActivityView {
     public void bindProfile(Profile profile) {
         name.setText(profile.getName());
         status.setText(ProfileViewUtil.getProfileStatusText(profile));
-        settingGridAdapter.showSettings(profile.getSettings());
+        settingGridAdapter.showSettings(profile.getSettings(), presenter.allowAddSetting());
         profileIcon.setImageResource(profile.getImageResId());
         headerContainer.setBackgroundColor(ProfileViewUtil.getProfileAccentColor(this, profile));
         conditionSetAdapter.showConditionSets(profile.getConditionSets());

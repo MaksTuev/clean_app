@@ -22,6 +22,7 @@ import com.two_man.setmaster.ui.screen.profile.setting.choosesetting.ChooseSetti
 import com.two_man.setmaster.ui.util.SettingUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -113,18 +114,7 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
     }
 
     public void chooseSetting() {
-        ArrayList<Class<? extends Setting>> settingClasses = new ArrayList<>();
-        for (Class<? extends Setting> settingClass : supportedSettings) {
-            boolean found = false;
-            for (Setting setting : profile.getSettings()) {
-                if (setting.getClass() == settingClass) {
-                    found = true;
-                }
-            }
-            if (!found) {
-                settingClasses.add(settingClass);
-            }
-        }
+        ArrayList<Class<? extends Setting>> settingClasses = getAllowedSettings();
         dialogManager.show(ChooseSettingDialog.newInstance(settingClasses));
     }
 
@@ -155,7 +145,7 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
     public void openAddCondition(String conditionSetId) {
         boolean conditionSetEmpty = profile.getConditionSet(conditionSetId).isEmpty();
         ArrayList<Class<? extends Condition>> allowedConditions = getAllowedConditions();
-        if(allowedConditions.size() == 0){
+        if (allowedConditions.size() == 0) {
             onNewConditionSet();
             return;
         }
@@ -168,9 +158,9 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
 
     @Override
     public void onNewConditionSet() {
-        for(int i = 0; i< profile.getConditionSets().size(); i++){
+        for (int i = 0; i < profile.getConditionSets().size(); i++) {
             ConditionSet conditionSet = profile.getConditionSets().get(i);
-            if(conditionSet.isEmpty()){
+            if (conditionSet.isEmpty()) {
                 getView().openConditionSet(i);
                 return;
             }
@@ -202,13 +192,26 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
 
 
     public void deleteCondition(String conditionSetId, Condition condition) {
-        ConditionSet conditionSet = profile.getConditionSet(conditionSetId);
-        conditionSet.delete(condition);
+        ConditionSet activeConditionSet = profile.getConditionSet(conditionSetId);
+        activeConditionSet.delete(condition);
+        List<ConditionSet> emptyConditionSets = new ArrayList<>();
+        for (ConditionSet conditionSet : profile.getConditionSets()) {
+            if (conditionSet.isEmpty()) {
+                emptyConditionSets.add(conditionSet);
+            }
+        }
+        if (emptyConditionSets.size() > 1) {
+            profile.deleteConditionSet(emptyConditionSets.get(emptyConditionSets.size() - 1));
+        }
         profileService.updateProfile(profile);
     }
 
     public void openChangeCondition(String conditionSetId, Condition condition) {
         navigator.openChangeCondition(condition, profile);
+    }
+
+    public boolean allowAddSetting() {
+        return getAllowedSettings().size() != 0;
     }
 
     public ArrayList<Class<? extends Condition>> getAllowedConditions() {
@@ -229,5 +232,20 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
         return conditionClasses;
     }
 
+    private ArrayList<Class<? extends Setting>> getAllowedSettings() {
+        ArrayList<Class<? extends Setting>> settingClasses = new ArrayList<>();
+        for (Class<? extends Setting> settingClass : supportedSettings) {
+            boolean found = false;
+            for (Setting setting : profile.getSettings()) {
+                if (setting.getClass() == settingClass) {
+                    found = true;
+                }
+            }
+            if (!found) {
+                settingClasses.add(settingClass);
+            }
+        }
+        return settingClasses;
+    }
 
 }

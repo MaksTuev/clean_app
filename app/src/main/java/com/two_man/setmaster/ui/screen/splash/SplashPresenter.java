@@ -5,13 +5,17 @@ import com.two_man.setmaster.ui.base.BasePresenter;
 import com.two_man.setmaster.ui.base.activity.PerActivity;
 import com.two_man.setmaster.ui.navigation.Navigator;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Inject;
+
+import rx.Observable;
 
 /**
  * presenter экрана сплеша
  */
 @PerActivity
-public class SplashPresenter extends BasePresenter<SplashFragment> {
+public class SplashPresenter extends BasePresenter<SplashActivity> {
 
     private InitializeAppInteractor initializeAppInteractor;
     private Navigator navigator;
@@ -25,11 +29,14 @@ public class SplashPresenter extends BasePresenter<SplashFragment> {
     @Override
     public void onLoad() {
         super.onLoad();
-        initializeAppInteractor.initialize()
+        Observable.zip(
+                initializeAppInteractor.initialize(),
+                Observable.timer(500, TimeUnit.MILLISECONDS),
+                (o1, o2)->null)
                 .subscribe(this::onInitialized);
     }
 
-    private void onInitialized(Object o){
+    private void onInitialized(Object o) {
         navigator.openMain();
     }
 }

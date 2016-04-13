@@ -22,6 +22,7 @@ public class SettingGridAdapter extends RecyclerView.Adapter {
     private ArrayList<Setting> settings = new ArrayList<>();
     private OnAddSettingClickListener onAddSettingClickListener;
     private OnSettingClickListener onSettingClickListener;
+    private boolean allowAddsetting;
 
     public SettingGridAdapter(RecyclerView recyclerView) {
         initLayoutManager(recyclerView);
@@ -42,8 +43,9 @@ public class SettingGridAdapter extends RecyclerView.Adapter {
         recyclerView.setLayoutManager(layoutManager);
     }
 
-    public void showSettings(ArrayList<Setting> settings){
+    public void showSettings(ArrayList<Setting> settings, boolean allowAddSetting){
         this.settings = settings;
+        this.allowAddsetting = allowAddSetting;
         notifyDataSetChanged();
     }
 
@@ -91,7 +93,7 @@ public class SettingGridAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return settings.size() + 1;
+        return settings.size() + (allowAddsetting ? 1 : 0);
     }
 
     @Override

@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
-        android:paddingTop="5dp"
+        android:paddingTop="2dp"
         android:paddingBottom="50dp"
         android:id="@+id/condition_list"
         android:layout_width="match_parent"

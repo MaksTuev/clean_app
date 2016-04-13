@@ -6,8 +6,8 @@
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/icon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginLeft="14dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_add_circle">

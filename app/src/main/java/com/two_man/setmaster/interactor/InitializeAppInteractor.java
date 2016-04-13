@@ -12,6 +12,7 @@ public class InitializeAppInteractor {
 
     private final SettingManager settingManager;
     private final ProfileService profileService;
+    private boolean initialized = false;
 
     public InitializeAppInteractor(SettingManager settingManager, ProfileService profileService) {
         this.settingManager = settingManager;
@@ -19,6 +20,9 @@ public class InitializeAppInteractor {
     }
 
     public Observable<Void> initialize() {
-        return profileService.initialize();
+        return initialized
+                ? Observable.just(null)
+                : profileService.initialize()
+                .doOnNext(o -> initialized = true);
     }
 }
