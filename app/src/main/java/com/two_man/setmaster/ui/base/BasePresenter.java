@@ -1,5 +1,6 @@
 package com.two_man.setmaster.ui.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
@@ -46,5 +47,9 @@ public class BasePresenter<V> {
 
     protected void addToSubscriptions(Subscription subscription){
         compositeSubscription.add(subscription);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
     }
 }

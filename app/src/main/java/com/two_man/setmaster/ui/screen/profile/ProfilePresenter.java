@@ -1,5 +1,7 @@
 package com.two_man.setmaster.ui.screen.profile;
 
+import android.content.Intent;
+
 import com.two_man.setmaster.entity.ConditionSet;
 import com.two_man.setmaster.entity.Profile;
 import com.two_man.setmaster.entity.condition.Condition;
@@ -11,6 +13,7 @@ import com.two_man.setmaster.ui.base.BasePresenter;
 import com.two_man.setmaster.ui.base.activity.PerActivity;
 import com.two_man.setmaster.ui.base.dialog.DialogManager;
 import com.two_man.setmaster.ui.navigation.Navigator;
+import com.two_man.setmaster.ui.screen.condition.ChangeConditionBaseActivityView;
 import com.two_man.setmaster.ui.screen.profile.condition.add.AddConditionDialog;
 import com.two_man.setmaster.ui.screen.profile.condition.add.AddConditionOrConditionSetDialog;
 import com.two_man.setmaster.ui.screen.profile.setting.changesetting.OnSettingChangeListener;
@@ -74,6 +77,15 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
         super.onDestroy();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data != null) {
+            Condition condition = (Condition) data.getSerializableExtra(ChangeConditionBaseActivityView.EXTRA_CONDITION);
+            profile.updateCondition(condition);
+            profileService.updateProfile(profile);
+        }
+    }
+
     private void initListeners() {
         Subscription onProfileChangedSubscription = profileService.observeProfileChanged()
                 .flatMap(event -> event.getProfile().getId().equals(profile.getId())
@@ -83,8 +95,8 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
         addToSubscriptions(onProfileChangedSubscription);
     }
 
-    private void onProfileChanged(ProfileChangedEvent event){
-        if(event.getStatus() == ChangedStatus.DELETED){
+    private void onProfileChanged(ProfileChangedEvent event) {
+        if (event.getStatus() == ChangedStatus.DELETED) {
             getView().goBack();
         } else {
             this.profile = event.getProfile();
@@ -102,14 +114,14 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
 
     public void chooseSetting() {
         ArrayList<Class<? extends Setting>> settingClasses = new ArrayList<>();
-        for(Class<? extends Setting> settingClass : supportedSettings){
+        for (Class<? extends Setting> settingClass : supportedSettings) {
             boolean found = false;
-            for(Setting setting : profile.getSettings()){
-                if(setting.getClass() == settingClass){
+            for (Setting setting : profile.getSettings()) {
+                if (setting.getClass() == settingClass) {
                     found = true;
                 }
             }
-            if(!found){
+            if (!found) {
                 settingClasses.add(settingClass);
             }
         }
@@ -140,17 +152,32 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
         profileService.updateProfile(profile);
     }
 
-    public void openAddCondition(boolean conditionSetEmpty){
-        if(conditionSetEmpty){
+    public void openAddCondition(String conditionSetId) {
+        boolean conditionSetEmpty = profile.getConditionSet(conditionSetId).isEmpty();
+        ArrayList<Class<? extends Condition>> allowedConditions = getAllowedConditions();
+        if(allowedConditions.size() == 0){
+            onNewConditionSet();
+            return;
+        }
+        if (!conditionSetEmpty) {
             dialogManager.show(AddConditionOrConditionSetDialog.newInstance());
         } else {
-            dialogManager.show(AddConditionDialog.newInstance(supportedConditions));
+            dialogManager.show(AddConditionDialog.newInstance(allowedConditions));
         }
     }
 
     @Override
     public void onNewConditionSet() {
-
+        for(int i = 0; i< profile.getConditionSets().size(); i++){
+            ConditionSet conditionSet = profile.getConditionSets().get(i);
+            if(conditionSet.isEmpty()){
+                getView().openConditionSet(i);
+                return;
+            }
+        }
+        profile.addConditionSet(new ConditionSet());
+        profileService.updateProfile(profile);
+        getView().openConditionSet(profile.getConditionSets().size() - 1);
     }
 
     @Override
@@ -160,33 +187,45 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
 
     @Override
     public void onAddCondition(Class<? extends Condition> conditionType) {
-
+        try {
+            Condition condition = conditionType.newInstance();
+            ConditionSet conditionSet = profile.getConditionSet(getView().getSelectedConditionSetId());
+            conditionSet.addCondition(condition);
+            profileService.updateProfile(profile);
+            navigator.openChangeCondition(condition, profile);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
-
 
 
     public void deleteCondition(String conditionSetId, Condition condition) {
-
+        ConditionSet conditionSet = profile.getConditionSet(conditionSetId);
+        conditionSet.delete(condition);
+        profileService.updateProfile(profile);
     }
 
     public void openChangeCondition(String conditionSetId, Condition condition) {
-
+        navigator.openChangeCondition(condition, profile);
     }
 
     public ArrayList<Class<? extends Condition>> getAllowedConditions() {
         ArrayList<Class<? extends Condition>> conditionClasses = new ArrayList<>();
-        ConditionSet selectedConditionSet = new ConditionSet();//profile.getConditionSet(getView().getSelectedConditionSetId()); //todo
-        for(Class<? extends Condition> conditionClass : supportedConditions){
+        ConditionSet selectedConditionSet = profile.getConditionSet(getView().getSelectedConditionSetId());
+        for (Class<? extends Condition> conditionClass : supportedConditions) {
             boolean found = false;
-            for(Condition condition : selectedConditionSet.getConditions()){
-                if(condition.getClass() == conditionClass){
+            for (Condition condition : selectedConditionSet.getConditions()) {
+                if (condition.getClass() == conditionClass) {
                     found = true;
                 }
             }
-            if(!found){
+            if (!found) {
                 conditionClasses.add(conditionClass);
             }
-        };
+        }
+        ;
         return conditionClasses;
     }
 

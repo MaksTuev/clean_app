@@ -6,11 +6,15 @@ package com.two_man.setmaster.entity.condition;
 public class WiFiCondition extends Condition {
     private String networkName;
 
+    public WiFiCondition(){
+        this("Unspecified");
+    }
+
     public WiFiCondition(String networkName) {
         this.networkName = networkName;
     }
 
-    public WiFiCondition(String id, boolean active, String networkName){
+    private WiFiCondition(String id, boolean active, String networkName){
         super(id, active);
         this.networkName = networkName;
     }

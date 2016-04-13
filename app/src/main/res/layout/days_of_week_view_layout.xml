@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <CheckedTextView
+            android:id="@+id/monday"
+            style="@style/DayOfWeekStyle"
+            android:text="@string/monday" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <CheckedTextView
+            android:id="@+id/tuesday"
+            style="@style/DayOfWeekStyle"
+            android:text="@string/tuesday" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <CheckedTextView
+            android:id="@+id/wednesday"
+            style="@style/DayOfWeekStyle"
+            android:text="@string/wednesday" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <CheckedTextView
+            android:id="@+id/thursday"
+            style="@style/DayOfWeekStyle"
+            android:text="@string/thursday" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <CheckedTextView
+            android:id="@+id/friday"
+            style="@style/DayOfWeekStyle"
+            android:text="@string/friday" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <CheckedTextView
+            android:id="@+id/saturday"
+            style="@style/DayOfWeekStyle"
+            android:text="@string/saturday" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <CheckedTextView
+            android:id="@+id/sunday"
+            style="@style/DayOfWeekStyle"
+            android:text="@string/sunday" />
+    </FrameLayout>
+</merge>

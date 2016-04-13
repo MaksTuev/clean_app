@@ -11,14 +11,14 @@ import java.util.ArrayList;
  *
  */
 public class DayOfWeekUtil {
-    public static String getStringValue(Context context, DayOfWeek day){
-        switch (day){
+    public static String getStringValue(Context context, DayOfWeek day) {
+        switch (day) {
             case MONDAY:
                 return context.getString(R.string.monday);
             case TUESDAY:
                 return context.getString(R.string.tuesday);
             case WEDNESDAY:
-                return context.getString(R.string.wenstay);
+                return context.getString(R.string.wednesday);
             case THURSDAY:
                 return context.getString(R.string.thursday);
             case FRIDAY:
@@ -44,7 +44,11 @@ public class DayOfWeekUtil {
             DayOfWeek day = days.get(i);
             if (day.ordinal() - prevDay.ordinal() != 1) {
                 if (prevDay != startRange) {
-                    result += "-" + DayOfWeekUtil.getStringValue(context, prevDay);
+                    if (prevDay.ordinal() - startRange.ordinal() == 1) {
+                        result += ", " + DayOfWeekUtil.getStringValue(context, prevDay)+", ";
+                    } else {
+                        result += "-" + DayOfWeekUtil.getStringValue(context, prevDay) + ", ";
+                    }
                 } else {
                     result += ", ";
                 }
@@ -55,11 +59,12 @@ public class DayOfWeekUtil {
         }
 
         if (prevDay != startRange) {
-            result += "-" + DayOfWeekUtil.getStringValue(context, prevDay);
-        } else {
-            result += ", ";
+            if (prevDay.ordinal() - startRange.ordinal() == 1) {
+                result += ", " + DayOfWeekUtil.getStringValue(context, prevDay);
+            } else {
+                result += "-" + DayOfWeekUtil.getStringValue(context, prevDay);
+            }
         }
-        result += DayOfWeekUtil.getStringValue(context, prevDay);
         return result;
 
     }

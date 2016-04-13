@@ -45,4 +45,23 @@ public class ConditionSet implements Cloneable, Serializable{
     public String getId() {
         return id;
     }
+
+    public void addCondition(Condition condition) {
+        conditions.add(condition);
+    }
+
+    public void delete(Condition conditionForDelete) {
+        for(int i = 0; i<conditions.size(); i++){
+            Condition condition = conditions.get(i);
+            if(condition.getId().equals(conditionForDelete.getId())){
+                conditions.remove(i);
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Condition "+conditionForDelete+" not exist");
+    }
+
+    public boolean isEmpty() {
+        return conditions.size() == 0;
+    }
 }

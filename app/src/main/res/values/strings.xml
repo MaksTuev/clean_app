@@ -19,9 +19,12 @@
     <string name="condition_status_active">Активно</string>
     <string name="monday">пн</string>
     <string name="tuesday">вт</string>
-    <string name="wenstay">ср</string>
+    <string name="wednesday">ср</string>
     <string name="thursday">чт</string>
     <string name="friday">пт</string>
     <string name="saturday">сб</string>
     <string name="sunday">вс</string>
+    <string name="time_condition_from">от</string>
+    <string name="time_condition_days">Дни недели</string>
+    <string name="time_condition_to">до</string>
 </resources>

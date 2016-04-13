@@ -1,5 +1,6 @@
 package com.two_man.setmaster.ui.base.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.CallSuper;
@@ -62,4 +63,8 @@ public abstract class BaseActivityView extends BaseActivity implements BaseView,
         LogServerUtil.logViewDestroyed(this);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        getPresenter().onActivityResult(requestCode, resultCode, data);
+    }
 }

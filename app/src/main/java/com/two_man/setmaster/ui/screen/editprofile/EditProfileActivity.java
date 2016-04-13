@@ -83,7 +83,7 @@ public class EditProfileActivity extends BaseActivityView {
 
     private void findViews() {
         contentContainer = findViewById(R.id.edit_profile_content_container);
-        backBtn = findViewById(R.id.edit_profile_back_btn);
+        backBtn = findViewById(R.id.edit_profile_decline_btn);
         saveBtn = findViewById(R.id.edit_profile_save_btn);
         nameEt = (EditText)findViewById(R.id.edit_profile_name_et);
         iconGrid = (RecyclerView)findViewById(R.id.edit_profile_icons_grid);

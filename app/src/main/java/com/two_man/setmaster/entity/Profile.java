@@ -2,11 +2,13 @@ package com.two_man.setmaster.entity;
 
 import android.support.annotation.DrawableRes;
 
+import com.two_man.setmaster.entity.condition.Condition;
 import com.two_man.setmaster.entity.setting.Setting;
 import com.two_man.setmaster.util.CloneUtil;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import java8.util.stream.StreamSupport;
@@ -31,6 +33,7 @@ public class Profile implements Cloneable, Serializable{
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.imageResId = image;
+        conditionSets.add(new ConditionSet());
     }
 
 
@@ -88,8 +91,8 @@ public class Profile implements Cloneable, Serializable{
         return conditionSets;
     }
 
-    public void setConditionSets(ArrayList<ConditionSet> conditionSets) {
-        this.conditionSets = conditionSets;
+    public void addConditionSet(ConditionSet conditionSet) {
+        this.conditionSets.add(conditionSet);
     }
 
     public ArrayList<Setting> getSettings() {
@@ -104,13 +107,6 @@ public class Profile implements Cloneable, Serializable{
         return (S)StreamSupport.stream(settings)
                 .filter(setting -> setting.getClass() == settingClass)
                 .reduce(null, (prev, next) -> next);
-    }
-
-    @Override
-    public Profile clone(){
-        return new Profile(id, name, imageResId, active,
-                CloneUtil.cloneConditionSetList(conditionSets),
-                CloneUtil.cloneSettingList(settings));
     }
 
     public void addSetting(Setting setting) {
@@ -142,5 +138,32 @@ public class Profile implements Cloneable, Serializable{
         return StreamSupport.stream(conditionSets)
                 .filter(conditionSet -> conditionSet.getId().equals(conditionSetId))
                 .reduce(null, (prev, next)->next);
+    }
+
+    @Override
+    public Profile clone(){
+        return new Profile(id, name, imageResId, active,
+                CloneUtil.cloneConditionSetList(conditionSets),
+                CloneUtil.cloneSettingList(settings));
+    }
+
+    public void updateCondition(Condition newCondition) {
+        for(ConditionSet conditionSet : conditionSets){
+            boolean updated = false;
+            List<Condition> conditions = conditionSet.getConditions();
+            for(int i = 0; i<conditions.size(); i++){
+                Condition condition = conditions.get(i);
+                if(condition.getId().equals(newCondition.getId())){
+                    conditions.remove(i);
+                    conditions.add(i, newCondition);
+                    updated = true;
+                    break;
+                }
+            }
+            if(updated){
+                return;
+            }
+        }
+        throw new IllegalArgumentException("condition "+ newCondition+ "not exist");
     }
 }

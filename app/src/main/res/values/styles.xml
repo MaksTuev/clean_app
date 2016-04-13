@@ -8,6 +8,28 @@
         <item name="android:windowBackground">@color/background</item>
     </style>
 
+    <style name="DayOfWeekStyle">
+        <item name="android:layout_width">33dp</item>
+        <item name="android:layout_height">33dp</item>
+        <item name="android:background">@drawable/day_of_week_red_bg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/day_of_week_text_color</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="BlueStyle" parent="AppTheme">
+        <item name="colorAccent">@color/profile_inactive_bg</item>
+        <item name="android:colorAccent">@color/profile_inactive_bg</item>
+        <item name="colorPrimary">@color/profile_inactive_bg</item>
+        <item name="android:colorPrimary">@color/profile_inactive_bg</item>
+        <item name="colorControlNormal">@color/profile_inactive_bg</item>
+        <item name="android:colorControlNormal">@color/profile_inactive_bg</item>
+        <item name="android:colorControlActivated">@color/profile_inactive_bg</item>
+        <item name="colorControlActivated">@color/profile_inactive_bg</item>
+    </style>
+
     <color name="background">#2f353d</color>
 
 </resources>

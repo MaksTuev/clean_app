@@ -13,10 +13,31 @@ public class TimeCondition extends Condition {
     private ArrayList<DayOfWeek> days = new ArrayList<>(Arrays.asList(DayOfWeek.ENUMS));
 
 
-    public TimeCondition(String id, boolean active, Date from, Date to, ArrayList<DayOfWeek> days) {
+    public TimeCondition() {
+    }
+
+    public TimeCondition(Date from, Date to, ArrayList<DayOfWeek> days) {
+        this.from = from;
+        this.to = to;
+        this.days = days;
+    }
+
+    private TimeCondition(String id, boolean active, Date from, Date to, ArrayList<DayOfWeek> days) {
         super(id, active);
         this.from = from;
         this.to = to;
+        this.days = days;
+    }
+
+    public void setFrom(Date from) {
+        this.from = from;
+    }
+
+    public void setTo(Date to) {
+        this.to = to;
+    }
+
+    public void setDays(ArrayList<DayOfWeek> days) {
         this.days = days;
     }
 

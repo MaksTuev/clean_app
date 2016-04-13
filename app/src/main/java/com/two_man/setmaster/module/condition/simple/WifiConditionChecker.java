@@ -21,6 +21,6 @@ public class WifiConditionChecker implements SimpleConditionChecker<WiFiConditio
 
     @Override
     public Observable<ConditionStateChangedEvent> observeConditionStateChanged() {
-        return null;
+        return Observable.empty();
     }
 }

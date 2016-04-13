@@ -12,7 +12,7 @@ import com.two_man.setmaster.entity.condition.Condition;
 /**
  *
  */
-public class ConditionSetView extends FrameLayout{
+public class ConditionSetView extends FrameLayout {
 
     private ConditionSet conditionSet;
     private RecyclerView conditionList;
@@ -69,7 +69,7 @@ public class ConditionSetView extends FrameLayout{
     }
 
     private void inflate(Context context) {
-        inflate(context, R.layout.condition_set_view_layout, null);
+        inflate(context, R.layout.condition_set_view_layout, this);
         conditionList = (RecyclerView)findViewById(R.id.condition_list);
     }
 

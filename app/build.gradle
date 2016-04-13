@@ -73,5 +73,6 @@ dependencies {
     }
     //widget
     compile 'me.relex:circleindicator:1.1.8@aar'
+    compile 'com.wdullaer:materialdatetimepicker:2.3.0'
 
 }

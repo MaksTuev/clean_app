@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/condition_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp">
+
+        <FrameLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+
+            <ImageView
+                android:id="@+id/decline_btn"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_clear" />
+
+            <TextView
+                android:id="@+id/save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:gravity="center_vertical"
+                android:padding="15dp"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@id/condition_name"
+            android:layout_width="wrap_content"
+            android:text="@string/condition_name_time"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginBottom="38dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="23dp"
+            android:textColor="@color/white"
+            android:textSize="21dp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/time_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="69dp"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/time_condition_from_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="@string/time_condition_from"
+                        android:textSize="20dp"
+                        android:paddingBottom="8dp"
+                        android:paddingRight="4dp"/>
+
+                    <TextView
+                        android:id="@+id/time_condition_from_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="1dp"
+                        android:textColor="@color/gray"
+                        android:textSize="40dp"
+                        tools:text="16:00" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/time_condition_to_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="@string/time_condition_to"
+                        android:textSize="20dp"
+                        android:paddingBottom="8dp"
+                        android:paddingRight="4dp"/>
+
+                    <TextView
+                        android:id="@+id/time_condition_to_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="1dp"
+                        android:textColor="@color/gray"
+                        android:textSize="40dp"
+                        tools:text="18:00" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/time_condition_days_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/time_container"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="67dp"
+                android:text="@string/time_condition_days"
+                android:textColor="@color/gray"
+                android:textSize="14sp" />
+
+            <com.two_man.setmaster.ui.screen.condition.time.widget.DaysOfWeekView
+                android:id="@+id/weekdays"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/time_condition_days_text"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

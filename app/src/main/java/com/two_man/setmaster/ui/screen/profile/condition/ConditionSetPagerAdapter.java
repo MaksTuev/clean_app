@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class ConditionSetPagerAdapter extends PagerAdapter {
 
-    private ArrayList<ConditionSet> conditionSets;
+    private ArrayList<ConditionSet> conditionSets = new ArrayList<>();
     private ConditionSetView.OnConditionActionListener innerOnConditionActionListener;
     private ConditionSetView.OnConditionActionListener onConditionActionListener;
 
@@ -62,12 +62,19 @@ public class ConditionSetPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        super.destroyItem(container, position, object);
-        container.removeView((View)object);
+        container.removeView((View) object);
+    }
+
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 
     @Override
     public boolean isViewFromObject(View arg0, Object arg1) {
         return arg0 == ((View) arg1);
+    }
+
+    public String getConditionSetId(int currentItem) {
+        return conditionSets.get(currentItem).getId();
     }
 }
