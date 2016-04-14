@@ -19,18 +19,18 @@ import timber.log.Timber;
 /**
  *
  */
-public class ConditionChecker {
+public class ComplexConditionChecker {
 
     private Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckers;
     private Observable<ConditionStateChangedEvent> conditionStateChangedObservable;
 
-    public ConditionChecker(Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckersMap) {
+    public ComplexConditionChecker(Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckersMap) {
         this.simpleConditionCheckers = simpleConditionCheckersMap;
         conditionStateChangedObservable = Observable.merge(
                 StreamSupport.stream(this.simpleConditionCheckers.values())
                         .map(SimpleConditionChecker::observeConditionStateChanged)
                         .collect(Collectors.toList()))
-        .doOnNext(event -> Timber.d("ConditionChanged: "+ event));
+                .doOnNext(event -> Timber.d("ConditionChanged: " + event));
     }
 
     public void updateConditionRegistrations(Profile oldProfile, Profile newProfile) {

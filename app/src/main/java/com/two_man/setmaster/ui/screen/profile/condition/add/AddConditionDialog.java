@@ -47,7 +47,7 @@ public class AddConditionDialog extends BaseBottomSheetDialog {
         View contentView = View.inflate(getContext(), R.layout.add_condition_dialog, null);
         dialog.setContentView(contentView);
         mBottomSheetBehavior = BottomSheetBehavior.from(((View) contentView.getParent()));
-        new Handler().post(() -> mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED));
+        new Handler().postDelayed(() -> mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED), 200);
         initViews(contentView);
     }
 

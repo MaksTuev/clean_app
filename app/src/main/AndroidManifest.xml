@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.two_man.setmaster" >
+    package="com.two_man.setmaster">
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 
     <application
+        android:name=".ui.app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name=".ui.app.App">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.screen.splash.SplashActivity"
             android:label="Splash"
@@ -32,48 +32,42 @@
         <activity
             android:name=".ui.screen.main.MainActivity"
             android:label="Main"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".ui.screen.editprofile.EditProfileActivity"
             android:label="EditProfile"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".ui.screen.condition.time.ChangeTimeConditionActivity"
             android:label="EditProfile"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".ui.screen.condition.wifi.ChangeWifiConditionActivity"
             android:label="Main"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.screen.profile.ProfileActivity"
             android:label="Profile"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"/>
 
-        <receiver
-            android:name=".module.condition.simple.time.TimeBroadcastReceiver">
+        <receiver android:name=".module.condition.simple.time.TimeBroadcastReceiver"/>
+
+        <receiver android:name=".module.condition.simple.wifi.WifiStatusBroadcastReceiver">
             <intent-filter>
-                <action android:name="setmaster.TimeConditionChecker.alarm" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
             </intent-filter>
         </receiver>
 
         <service
             android:name=".LocationService"
             android:enabled="true"
-            android:exported="true" >
-        </service>
+            android:exported="true"/>
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c3128b2f54e4a39ddd84710f31a7cb595f71e3ef" />
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

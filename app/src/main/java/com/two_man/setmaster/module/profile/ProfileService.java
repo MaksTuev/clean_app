@@ -3,7 +3,7 @@ package com.two_man.setmaster.module.profile;
 import com.two_man.setmaster.entity.ConditionSet;
 import com.two_man.setmaster.entity.Profile;
 import com.two_man.setmaster.entity.condition.Condition;
-import com.two_man.setmaster.module.condition.ConditionChecker;
+import com.two_man.setmaster.module.condition.ComplexConditionChecker;
 import com.two_man.setmaster.module.condition.simple.ConditionStateChangedEvent;
 import com.two_man.setmaster.module.profile.event.ChangedStatus;
 import com.two_man.setmaster.module.profile.event.ProfileChangedEvent;
@@ -20,7 +20,7 @@ import rx.Observable;
  */
 public class ProfileService {
 
-    private ConditionChecker conditionChecker;
+    private ComplexConditionChecker complexConditionChecker;
     private ProfileStorage profileStorage;
 
     private ArrayList<Profile> profiles = new ArrayList<>();
@@ -28,8 +28,8 @@ public class ProfileService {
     private SimpleOnSubscribe<ProfileChangedEvent> profileChangedOnSubscribe;
     private Observable<ProfileChangedEvent> profileChangedObservable;
 
-    public ProfileService(ConditionChecker conditionChecker, ProfileStorage profileStorage) {
-        this.conditionChecker = conditionChecker;
+    public ProfileService(ComplexConditionChecker complexConditionChecker, ProfileStorage profileStorage) {
+        this.complexConditionChecker = complexConditionChecker;
         this.profileStorage = profileStorage;
         initObservable();
         initListeners();
@@ -125,7 +125,7 @@ public class ProfileService {
     }
 
     private void updateConditionRegistrations(Profile oldProfile, Profile newProfile) {
-        conditionChecker.updateConditionRegistrations(
+        complexConditionChecker.updateConditionRegistrations(
                 oldProfile != null ? oldProfile.clone() : null,
                 newProfile != null ? newProfile.clone() : null);
     }
@@ -142,7 +142,7 @@ public class ProfileService {
     }
 
     private void initListeners() {
-        conditionChecker.observeConditionStateChanged()
+        complexConditionChecker.observeConditionStateChanged()
                 .subscribe(this::onConditionStateChanged);
     }
 

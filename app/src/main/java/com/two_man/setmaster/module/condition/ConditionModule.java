@@ -7,7 +7,7 @@ import com.two_man.setmaster.entity.condition.TimeCondition;
 import com.two_man.setmaster.entity.condition.WiFiCondition;
 import com.two_man.setmaster.module.condition.simple.SimpleConditionChecker;
 import com.two_man.setmaster.module.condition.simple.time.TimeConditionChecker;
-import com.two_man.setmaster.module.condition.simple.WifiConditionChecker;
+import com.two_man.setmaster.module.condition.simple.wifi.WifiConditionChecker;
 import com.two_man.setmaster.ui.app.PerApplication;
 
 import java.util.ArrayList;
@@ -25,18 +25,18 @@ public class ConditionModule {
 
     @Provides
     @PerApplication
-    ConditionChecker provideConditionChecker(
+    ComplexConditionChecker provideConditionChecker(
             Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckers){
-        return new ConditionChecker(simpleConditionCheckers);
+        return new ComplexConditionChecker(simpleConditionCheckers);
     }
 
     @Provides
     @PerApplication
     Map<Class<? extends Condition>, SimpleConditionChecker<?>> provideSimpleConditionCheckers(
-            Context appContext,
+            WifiConditionChecker wifiConditionChecker,
             TimeConditionChecker timeConditionChecker){
         Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckers = new HashMap<>();
-        simpleConditionCheckers.put(WiFiCondition.class, new WifiConditionChecker());
+        simpleConditionCheckers.put(WiFiCondition.class, wifiConditionChecker);
         simpleConditionCheckers.put(TimeCondition.class, timeConditionChecker);
         return simpleConditionCheckers;
     }
@@ -54,6 +54,12 @@ public class ConditionModule {
     @PerApplication
     TimeConditionChecker provideTimeConditionChecker(Context appContext){
         return new TimeConditionChecker(appContext);
+    }
+
+    @Provides
+    @PerApplication
+    WifiConditionChecker provideWifiConditionChecker(Context context){
+        return new WifiConditionChecker(context);
     }
 
 }
