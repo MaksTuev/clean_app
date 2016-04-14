@@ -26,6 +26,20 @@ public class MainActivity extends BaseActivity {
         if(savedInstanceState == null){
             addFragment(R.id.container, MainFragmentView.newInstance(), MainFragmentView.class.getSimpleName());
         }
+
+        /*AlarmManager am = (AlarmManager)getSystemService(ALARM_SERVICE);
+        Intent intent = new Intent(this, TimeBroadcastReceiver.class);
+        //Intent i = new Intent(appContext, MainActivity.class);
+        PendingIntent result = PendingIntent.getBroadcast(this, 1111, intent, 0);
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.MILLISECOND, 2000);
+        am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), result);
+
+        Intent intent2 = new Intent(this, TimeBroadcastReceiver.class);
+        PendingIntent result2 = PendingIntent.getBroadcast(this, 11112, intent2, 0);
+        Calendar c2 = Calendar.getInstance();
+        c2.add(Calendar.MILLISECOND, 5000);
+        am.set(AlarmManager.RTC_WAKEUP, c2.getTimeInMillis(), result2);*/
     }
 
     protected void addFragment(int containerViewId, android.support.v4.app.Fragment fragment, String tag) {

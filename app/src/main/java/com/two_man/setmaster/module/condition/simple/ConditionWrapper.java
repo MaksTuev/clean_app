@@ -14,7 +14,7 @@ public class  ConditionWrapper<C extends Condition> {
         this.profileId = profileId;
     }
 
-    public Condition getCondition() {
+    public C getCondition() {
         return condition;
     }
 

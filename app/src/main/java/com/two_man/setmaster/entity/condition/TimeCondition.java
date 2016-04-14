@@ -2,18 +2,27 @@ package com.two_man.setmaster.entity.condition;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
  *
  */
 public class TimeCondition extends Condition {
-    private Date from = new Date(0);
-    private Date to = new Date(60 * 1000);
+    private Date from;
+    private Date to;
     private ArrayList<DayOfWeek> days = new ArrayList<>(Arrays.asList(DayOfWeek.ENUMS));
 
 
     public TimeCondition() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(0);
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 0);
+        from = calendar.getTime();
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE, 0);
+        to = calendar.getTime();
     }
 
     public TimeCondition(Date from, Date to, ArrayList<DayOfWeek> days) {

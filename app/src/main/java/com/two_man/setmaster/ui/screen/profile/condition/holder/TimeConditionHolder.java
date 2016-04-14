@@ -14,6 +14,7 @@ import com.two_man.setmaster.ui.util.ConditionViewUtil;
 import com.two_man.setmaster.ui.util.DayOfWeekUtil;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  *
@@ -46,7 +47,7 @@ public class TimeConditionHolder extends RecyclerView.ViewHolder implements Cond
     }
 
     private String getValue(TimeCondition condition) {
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.getDefault());
         String result = formatter.format(condition.getFrom()) + " - "
                 + formatter.format(condition.getTo()) + " "
                 + DayOfWeekUtil.daysToString(condition.getDays(), value.getContext());

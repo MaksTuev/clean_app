@@ -11,11 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-
 import java8.util.stream.Collectors;
 import java8.util.stream.StreamSupport;
 import rx.Observable;
+import timber.log.Timber;
 
 /**
  *
@@ -30,7 +29,8 @@ public class ConditionChecker {
         conditionStateChangedObservable = Observable.merge(
                 StreamSupport.stream(this.simpleConditionCheckers.values())
                         .map(SimpleConditionChecker::observeConditionStateChanged)
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList()))
+        .doOnNext(event -> Timber.d("ConditionChanged: "+ event));
     }
 
     public void updateConditionRegistrations(Profile oldProfile, Profile newProfile) {

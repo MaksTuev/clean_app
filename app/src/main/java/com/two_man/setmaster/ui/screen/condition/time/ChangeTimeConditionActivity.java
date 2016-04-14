@@ -21,6 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -33,7 +34,7 @@ public class ChangeTimeConditionActivity extends ChangeConditionBaseActivityView
     @Inject
     ChangeTimeConditionPresenter presenter;
 
-    SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
     private TextView name;
     private TextView fromText;
@@ -92,7 +93,6 @@ public class ChangeTimeConditionActivity extends ChangeConditionBaseActivityView
     }
 
     private void initViews() {
-        //headerContainer.setBackgroundColor(accentColor);
         fromText.setTextColor(accentColor);
         toText.setTextColor(accentColor);
         weekdaysView.setAccentColor(accentColor);
@@ -139,15 +139,22 @@ public class ChangeTimeConditionActivity extends ChangeConditionBaseActivityView
     }
 
     private void onFromTimePicked(RadialPickerLayout radialPickerLayout, int hour, int min, int sec) {
-        Date date = new Date(hour*60*60*1000+ min*60*1000);
+        Date date = getDate(hour, min);
         fromValue.setText(dateFormat.format(date));
     }
 
-
-
     private void onToTimePicked(RadialPickerLayout radialPickerLayout, int hour, int min, int sec) {
-        Date date = new Date(hour*60*60*1000+ min*60*1000);
+        Date date = getDate(hour, min);
         toValue.setText(dateFormat.format(date));
+    }
+
+    private Date getDate(int hour, int min){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(0);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, min);
+        Date date = calendar.getTime();
+        return date;
     }
 
     @Override

@@ -25,4 +25,13 @@ public class ConditionStateChangedEvent {
     public boolean isActive() {
         return active;
     }
+
+    @Override
+    public String toString() {
+        return "ConditionStateChangedEvent{" +
+                "profileId='" + profileId + '\'' +
+                ", conditionId='" + conditionId + '\'' +
+                ", active=" + active +
+                '}';
+    }
 }

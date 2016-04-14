@@ -65,7 +65,7 @@ public class ProfileStorage {
             days.add(DayOfWeek.WEDNESDAY);
             days.add(DayOfWeek.FRIDAY);
             days.add(DayOfWeek.SATURDAY);
-            SimpleDateFormat f = new SimpleDateFormat("hh:mm");
+            SimpleDateFormat f = new SimpleDateFormat("HH:mm");
             Date from = f.parse("12:00");
             Date to = f.parse("20:10");
             TimeCondition timeCondition = new TimeCondition(from, to, days);
@@ -92,7 +92,7 @@ public class ProfileStorage {
             days.add(DayOfWeek.FRIDAY);
             days.add(DayOfWeek.SATURDAY);
             days.add(DayOfWeek.SUNDAY);
-            SimpleDateFormat f = new SimpleDateFormat("hh:mm");
+            SimpleDateFormat f = new SimpleDateFormat("HH:mm");
             Date from = null;
             from = f.parse("12:00");
 

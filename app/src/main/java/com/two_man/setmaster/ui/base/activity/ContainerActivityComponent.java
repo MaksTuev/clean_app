@@ -30,6 +30,7 @@ public interface ContainerActivityComponent {
     Map<Class<? extends Setting>, SettingApplier> settingAppliers();
     ArrayList<Class<? extends Setting>> settingsTypes();
     SettingManager settingManager();
+
     ProfileService profileService();
     ConditionChecker conditionChecker();
     Navigator navigator();

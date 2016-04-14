@@ -115,6 +115,7 @@ public class ProfileService {
                     }
                     conditionSetActive = conditionSetActive && condition.isActive();
                 }
+                conditionSetActive = conditionSetActive && conditionSet.getConditions().size() != 0;
                 conditionSet.setActive(conditionSetActive);
                 profileActive = profileActive || conditionSetActive;
             }
