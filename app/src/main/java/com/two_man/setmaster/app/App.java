@@ -1,4 +1,4 @@
-package com.two_man.setmaster.ui.app;
+package com.two_man.setmaster.app;
 
 import android.app.Application;
 

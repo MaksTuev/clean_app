@@ -2,6 +2,7 @@ package com.two_man.setmaster.ui.base.activity;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.two_man.setmaster.app.AppComponent;
 import com.two_man.setmaster.entity.condition.Condition;
 import com.two_man.setmaster.entity.setting.Setting;
 import com.two_man.setmaster.module.condition.ComplexConditionChecker;
@@ -9,7 +10,6 @@ import com.two_man.setmaster.module.condition.simple.SimpleConditionChecker;
 import com.two_man.setmaster.module.profile.ProfileService;
 import com.two_man.setmaster.module.setting.SettingManager;
 import com.two_man.setmaster.module.setting.applyer.SettingApplier;
-import com.two_man.setmaster.ui.app.AppComponent;
 import com.two_man.setmaster.ui.base.fragment.BaseFragmentView;
 import com.two_man.setmaster.ui.navigation.Navigator;
 

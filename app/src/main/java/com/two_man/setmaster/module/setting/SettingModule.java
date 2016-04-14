@@ -1,13 +1,15 @@
 package com.two_man.setmaster.module.setting;
 
+import android.content.Context;
+
+import com.two_man.setmaster.app.PerApplication;
 import com.two_man.setmaster.entity.setting.MediaVolumeSetting;
 import com.two_man.setmaster.entity.setting.RingSetting;
 import com.two_man.setmaster.entity.setting.Setting;
 import com.two_man.setmaster.module.profile.ProfileService;
-import com.two_man.setmaster.module.setting.applyer.MediaVolumeSettingAppyer;
-import com.two_man.setmaster.module.setting.applyer.RingSettingAppyer;
+import com.two_man.setmaster.module.setting.applyer.MediaVolumeSettingApplier;
+import com.two_man.setmaster.module.setting.applyer.RingSettingApplier;
 import com.two_man.setmaster.module.setting.applyer.SettingApplier;
-import com.two_man.setmaster.ui.app.PerApplication;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,10 +34,12 @@ public class SettingModule {
 
     @Provides
     @PerApplication
-    Map<Class<? extends Setting>, SettingApplier> provideSettingAppliers(){
+    Map<Class<? extends Setting>, SettingApplier> provideSettingAppliers(
+            RingSettingApplier ringSettingApplier,
+            MediaVolumeSettingApplier mediaVolumeSettingApplier){
         Map<Class<? extends Setting>, SettingApplier> settingAppliers = new HashMap<>();
-        settingAppliers.put(RingSetting.class, new RingSettingAppyer());
-        settingAppliers.put(MediaVolumeSetting.class, new MediaVolumeSettingAppyer());
+        settingAppliers.put(RingSetting.class, ringSettingApplier);
+        settingAppliers.put(MediaVolumeSetting.class, mediaVolumeSettingApplier);
         return settingAppliers;
     }
 
@@ -46,5 +50,17 @@ public class SettingModule {
         settingTypes.add(RingSetting.class);
         settingTypes.add(MediaVolumeSetting.class);
         return settingTypes;
+    }
+
+    @Provides
+    @PerApplication
+    RingSettingApplier provideRingSettingApplier(Context context){
+        return new RingSettingApplier(context);
+    }
+
+    @Provides
+    @PerApplication
+    MediaVolumeSettingApplier provideMediaVolumeSettingAppyer(Context context){
+        return new MediaVolumeSettingApplier(context);
     }
 }

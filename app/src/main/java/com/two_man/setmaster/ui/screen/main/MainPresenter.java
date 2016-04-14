@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import rx.android.schedulers.AndroidSchedulers;
+
 /**
  *
  */
@@ -36,6 +38,7 @@ public class MainPresenter extends BasePresenter<MainFragmentView> {
 
     private void observeChanges() {
         profileService.observeProfileChanged()
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(event -> {
                     if (event.getStatus() == ChangedStatus.DELETED) {
                         showData();

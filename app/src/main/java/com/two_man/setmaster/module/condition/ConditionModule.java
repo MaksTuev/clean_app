@@ -2,13 +2,13 @@ package com.two_man.setmaster.module.condition;
 
 import android.content.Context;
 
+import com.two_man.setmaster.app.PerApplication;
 import com.two_man.setmaster.entity.condition.Condition;
 import com.two_man.setmaster.entity.condition.TimeCondition;
 import com.two_man.setmaster.entity.condition.WiFiCondition;
 import com.two_man.setmaster.module.condition.simple.SimpleConditionChecker;
 import com.two_man.setmaster.module.condition.simple.time.TimeConditionChecker;
 import com.two_man.setmaster.module.condition.simple.wifi.WifiConditionChecker;
-import com.two_man.setmaster.ui.app.PerApplication;
 
 import java.util.ArrayList;
 import java.util.HashMap;

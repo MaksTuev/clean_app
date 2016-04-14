@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.two_man.setmaster.ui.app.App;
+import com.two_man.setmaster.app.App;
 
 import javax.inject.Inject;
 

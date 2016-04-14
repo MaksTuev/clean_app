@@ -3,8 +3,8 @@ package com.two_man.setmaster.ui.base.activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.two_man.setmaster.ui.app.App;
-import com.two_man.setmaster.ui.app.AppComponent;
+import com.two_man.setmaster.app.App;
+import com.two_man.setmaster.app.AppComponent;
 import com.two_man.setmaster.ui.base.fragment.BaseFragmentView;
 
 

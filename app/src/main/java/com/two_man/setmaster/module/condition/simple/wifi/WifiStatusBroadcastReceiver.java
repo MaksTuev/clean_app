@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
-import com.two_man.setmaster.ui.app.App;
+import com.two_man.setmaster.app.App;
 
 import javax.inject.Inject;
 

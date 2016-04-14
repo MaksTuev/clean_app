@@ -1,8 +1,8 @@
 package com.two_man.setmaster.interactor;
 
+import com.two_man.setmaster.app.PerApplication;
 import com.two_man.setmaster.module.profile.ProfileService;
 import com.two_man.setmaster.module.setting.SettingManager;
-import com.two_man.setmaster.ui.app.PerApplication;
 
 import dagger.Module;
 import dagger.Provides;

@@ -28,6 +28,7 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
  *
@@ -92,6 +93,7 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
                 .flatMap(event -> event.getProfile().getId().equals(profile.getId())
                         ? Observable.just(event)
                         : Observable.empty())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onProfileChanged);
         addToSubscriptions(onProfileChangedSubscription);
     }

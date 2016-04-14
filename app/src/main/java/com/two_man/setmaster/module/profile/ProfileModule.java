@@ -1,7 +1,7 @@
 package com.two_man.setmaster.module.profile;
 
+import com.two_man.setmaster.app.PerApplication;
 import com.two_man.setmaster.module.condition.ComplexConditionChecker;
-import com.two_man.setmaster.ui.app.PerApplication;
 
 import dagger.Module;
 import dagger.Provides;

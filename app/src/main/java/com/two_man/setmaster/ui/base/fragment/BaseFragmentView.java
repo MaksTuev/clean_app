@@ -5,8 +5,8 @@ import android.os.Handler;
 import android.support.annotation.CallSuper;
 import android.view.View;
 
-import com.two_man.setmaster.ui.app.App;
-import com.two_man.setmaster.ui.app.AppComponent;
+import com.two_man.setmaster.app.App;
+import com.two_man.setmaster.app.AppComponent;
 import com.two_man.setmaster.ui.base.BaseView;
 import com.two_man.setmaster.ui.base.HasName;
 import com.two_man.setmaster.ui.base.HasPresenter;

@@ -1,4 +1,4 @@
-package com.two_man.setmaster.ui.app;
+package com.two_man.setmaster.app;
 
 import android.content.Context;
 
@@ -13,6 +13,8 @@ import com.two_man.setmaster.module.condition.simple.wifi.WifiConditionChecker;
 import com.two_man.setmaster.module.condition.simple.wifi.WifiStatusBroadcastReceiver;
 import com.two_man.setmaster.module.profile.ProfileService;
 import com.two_man.setmaster.module.setting.SettingManager;
+import com.two_man.setmaster.module.setting.applyer.MediaVolumeSettingApplier;
+import com.two_man.setmaster.module.setting.applyer.RingSettingApplier;
 import com.two_man.setmaster.module.setting.applyer.SettingApplier;
 
 import java.util.ArrayList;
@@ -33,6 +35,8 @@ public interface AppComponent {
     ArrayList<Class<? extends Condition>> conditionsTypes();
 
     Map<Class<? extends Setting>, SettingApplier> settingAppliers();
+    RingSettingApplier ringSettingApplier();
+    MediaVolumeSettingApplier mediaVolumeSettingApplier();
     ArrayList<Class<? extends Setting>> settingsTypes();
     SettingManager settingManager();
 

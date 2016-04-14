@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import java8.util.stream.StreamSupport;
 import rx.Observable;
+import rx.schedulers.Schedulers;
 
 /**
  *
@@ -25,13 +26,11 @@ public class ProfileService {
 
     private ArrayList<Profile> profiles = new ArrayList<>();
 
-    private SimpleOnSubscribe<ProfileChangedEvent> profileChangedOnSubscribe;
-    private Observable<ProfileChangedEvent> profileChangedObservable;
+    private SimpleOnSubscribe<ProfileChangedEvent> profileChangedOnSubscribe = new SimpleOnSubscribe<>();;
 
     public ProfileService(ComplexConditionChecker complexConditionChecker, ProfileStorage profileStorage) {
         this.complexConditionChecker = complexConditionChecker;
         this.profileStorage = profileStorage;
-        initObservable();
         initListeners();
     }
 
@@ -44,7 +43,8 @@ public class ProfileService {
     }
 
     public Observable<ProfileChangedEvent> observeProfileChanged() {
-        return profileChangedObservable;
+        return Observable.create(profileChangedOnSubscribe)
+                .subscribeOn(Schedulers.io());
     }
 
     public void updateProfile(Profile profile) {
@@ -146,8 +146,4 @@ public class ProfileService {
                 .subscribe(this::onConditionStateChanged);
     }
 
-    private void initObservable() {
-        profileChangedOnSubscribe = new SimpleOnSubscribe<>();
-        profileChangedObservable = Observable.create(profileChangedOnSubscribe);
-    }
 }

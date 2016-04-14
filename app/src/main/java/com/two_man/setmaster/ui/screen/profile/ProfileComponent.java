@@ -1,6 +1,6 @@
 package com.two_man.setmaster.ui.screen.profile;
 
-import com.two_man.setmaster.ui.app.AppComponent;
+import com.two_man.setmaster.app.AppComponent;
 import com.two_man.setmaster.ui.base.activity.ActivityModule;
 import com.two_man.setmaster.ui.base.activity.PerActivity;
 
