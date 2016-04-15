@@ -14,15 +14,19 @@ public class InitializeAppInteractor {
     private final ProfileService profileService;
     private boolean initialized = false;
 
-    public InitializeAppInteractor(SettingManager settingManager, ProfileService profileService) {
+    public InitializeAppInteractor(SettingManager settingManager,
+                                   ProfileService profileService) {
         this.settingManager = settingManager;
         this.profileService = profileService;
     }
 
     public Observable<Void> initialize() {
-        return initialized
-                ? Observable.just(null)
-                : profileService.initialize()
-                .doOnNext(o -> initialized = true);
+        if(initialized){
+            return Observable.just(null);
+
+        } else {
+            initialized = true;
+            return profileService.initialize();
+        }
     }
 }

@@ -250,4 +250,7 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
         return settingClasses;
     }
 
+    public void deleteProfile() {
+        profileService.deleteProfile(profile.getId());
+    }
 }

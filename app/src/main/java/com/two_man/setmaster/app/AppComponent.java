@@ -11,11 +11,17 @@ import com.two_man.setmaster.module.condition.simple.time.TimeBroadcastReceiver;
 import com.two_man.setmaster.module.condition.simple.time.TimeConditionChecker;
 import com.two_man.setmaster.module.condition.simple.wifi.WifiConditionChecker;
 import com.two_man.setmaster.module.condition.simple.wifi.WifiStatusBroadcastReceiver;
+import com.two_man.setmaster.module.profile.DefaultProfileCreator;
 import com.two_man.setmaster.module.profile.ProfileService;
+import com.two_man.setmaster.module.service.AppService;
+import com.two_man.setmaster.module.service.AppServiceInteractor;
+import com.two_man.setmaster.module.service.DeviceBootReceiver;
 import com.two_man.setmaster.module.setting.SettingManager;
 import com.two_man.setmaster.module.setting.applyer.MediaVolumeSettingApplier;
 import com.two_man.setmaster.module.setting.applyer.RingSettingApplier;
 import com.two_man.setmaster.module.setting.applyer.SettingApplier;
+import com.two_man.setmaster.module.storage.db.DataBaseHelper;
+import com.two_man.setmaster.module.storage.db.dao.ProfileDao;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -27,6 +33,8 @@ import dagger.Component;
 public interface AppComponent {
     void inject(TimeBroadcastReceiver obj);
     void inject(WifiStatusBroadcastReceiver obj);
+    void inject(AppService obj);
+    void inject(DeviceBootReceiver obj);
 
     ComplexConditionChecker conditionChecker();
     Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckers();
@@ -41,6 +49,12 @@ public interface AppComponent {
     SettingManager settingManager();
 
     ProfileService profileService();
+    DefaultProfileCreator defaultProfileCreator();
+    ProfileDao profileDao();
     InitializeAppInteractor initializeAppInteractor();
+
+    DataBaseHelper dataBaseHelper();
+    AppServiceInteractor appServiceInteractor();
     Context appContext();
+
 }

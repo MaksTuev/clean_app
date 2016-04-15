@@ -1,5 +1,7 @@
 package com.two_man.setmaster.module.profile;
 
+import android.support.annotation.Nullable;
+
 import com.two_man.setmaster.entity.ConditionSet;
 import com.two_man.setmaster.entity.Profile;
 import com.two_man.setmaster.entity.condition.Condition;
@@ -7,10 +9,12 @@ import com.two_man.setmaster.module.condition.ComplexConditionChecker;
 import com.two_man.setmaster.module.condition.simple.ConditionStateChangedEvent;
 import com.two_man.setmaster.module.profile.event.ChangedStatus;
 import com.two_man.setmaster.module.profile.event.ProfileChangedEvent;
+import com.two_man.setmaster.module.storage.ProfileStorage;
 import com.two_man.setmaster.util.CloneUtil;
 import com.two_man.setmaster.util.rx.SimpleOnSubscribe;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import java8.util.stream.StreamSupport;
 import rx.Observable;
@@ -23,23 +27,47 @@ public class ProfileService {
 
     private ComplexConditionChecker complexConditionChecker;
     private ProfileStorage profileStorage;
+    private DefaultProfileCreator defaultProfileCreator;
 
     private ArrayList<Profile> profiles = new ArrayList<>();
 
     private SimpleOnSubscribe<ProfileChangedEvent> profileChangedOnSubscribe = new SimpleOnSubscribe<>();;
 
-    public ProfileService(ComplexConditionChecker complexConditionChecker, ProfileStorage profileStorage) {
+    public ProfileService(ComplexConditionChecker complexConditionChecker,
+                          ProfileStorage profileStorage,
+                          DefaultProfileCreator defaultProfileCreator) {
         this.complexConditionChecker = complexConditionChecker;
         this.profileStorage = profileStorage;
+        this.defaultProfileCreator = defaultProfileCreator;
         initListeners();
     }
 
     public Observable<Void> initialize(){
         return profileStorage.getAllProfiles()
+                .map(profiles -> initGlobalProfile(profiles))
                 .flatMap(Observable::from)
                 .doOnNext(this::initProfile)
                 .toList()
                 .flatMap(profiles -> Observable.just(null));
+    }
+
+    private  ArrayList<Profile> initGlobalProfile(ArrayList<Profile> profiles) {
+        Profile globalProfile = null;
+        for(Profile profile : profiles){
+            if(profile.isGlobal()){
+                globalProfile = profile;
+                profiles.remove(profile);
+                break;
+            }
+        }
+        if(globalProfile == null){
+            globalProfile = defaultProfileCreator.createGlobal();
+            profileStorage.add(globalProfile);
+        }
+        globalProfile.setActive(true);
+        this.profiles.add(globalProfile);
+        notifyOnProfileChangedListeners(globalProfile, ChangedStatus.UPDATED);
+        return profiles;
     }
 
     public Observable<ProfileChangedEvent> observeProfileChanged() {
@@ -56,6 +84,17 @@ public class ProfileService {
             profileStorage.update(newProfile);
             updateConditionRegistrations(oldProfile, newProfile);
             notifyOnProfileChangedListeners(newProfile, ChangedStatus.UPDATED);
+        }
+    }
+
+    public void updateGlobalProfile(Profile globalProfile) {
+        synchronized (this) {
+            assert globalProfile.isGlobal();
+            Profile newProfile = globalProfile.clone();
+            Profile oldProfile = getProfileOrigin(newProfile.getId());
+            profiles.remove(oldProfile);
+            profiles.add(newProfile);
+            profileStorage.update(newProfile);
         }
     }
 
@@ -87,7 +126,15 @@ public class ProfileService {
 
     public ArrayList<Profile> getAllProfiles() {
         synchronized (this) {
-            return CloneUtil.cloneProfiles(profiles);
+            ArrayList<Profile> profiles = CloneUtil.cloneProfiles(this.profiles);
+            for(Profile profile: profiles){
+                if(profile.isGlobal()){
+                    profiles.remove(profile);
+                    break;
+                }
+            }
+            Collections.sort(profiles);
+            return profiles;
         }
     }
 
@@ -134,11 +181,11 @@ public class ProfileService {
         profileChangedOnSubscribe.emit(new ProfileChangedEvent(profile.clone(), status));
     }
 
+    @Nullable
     private Profile getProfileOrigin(String id) {
         return StreamSupport.stream(profiles)
                 .filter(profile -> profile.getId().equals(id))
-                .findFirst()
-                .get();
+                .reduce(null, (prev, next)->next);
     }
 
     private void initListeners() {

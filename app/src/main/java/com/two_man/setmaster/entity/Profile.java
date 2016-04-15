@@ -16,8 +16,8 @@ import java8.util.stream.StreamSupport;
 /**
  *
  */
-public class Profile implements Cloneable, Serializable{
-    private static final int PRIORITY_GLOBAL = 0;
+public class Profile implements Cloneable, Serializable, Comparable<Profile>{
+    public static final int PRIORITY_GLOBAL = 0;
     private static final int PRIORITY_DEFAULT = 1;
 
     private String id;
@@ -41,12 +41,14 @@ public class Profile implements Cloneable, Serializable{
                    String name,
                    int imageResId,
                    boolean active,
+                    int priority,
                    ArrayList<ConditionSet> conditionSets,
                    ArrayList<Setting> settings) {
         this.id = id;
         this.name = name;
         this.imageResId = imageResId;
         this.active = active;
+        this.priority = priority;
         this.conditionSets = conditionSets;
         this.settings = settings;
     }
@@ -110,6 +112,10 @@ public class Profile implements Cloneable, Serializable{
     }
 
     public void addSetting(Setting setting) {
+        Setting oldSetting = getSetting(setting.getClass());
+        if(oldSetting != null){
+            settings.remove(oldSetting);
+        }
         this.settings.add(setting);
     }
 
@@ -142,7 +148,7 @@ public class Profile implements Cloneable, Serializable{
 
     @Override
     public Profile clone(){
-        return new Profile(id, name, imageResId, active,
+        return new Profile(id, name, imageResId, active, priority,
                 CloneUtil.cloneConditionSetList(conditionSets),
                 CloneUtil.cloneSettingList(settings));
     }
@@ -175,5 +181,30 @@ public class Profile implements Cloneable, Serializable{
             }
         }
         throw new IllegalArgumentException("conditionSet "+ conditionSetForDelete+ "not exist");
+    }
+
+    public void clearActiveState() {
+        active = false;
+        for(ConditionSet conditionSet : conditionSets){
+            conditionSet.setActive(false);
+            for(Condition condition: conditionSet.getConditions()){
+                condition.setActive(false);
+            }
+        }
+    }
+
+    public boolean isGlobal(){
+        return priority == PRIORITY_GLOBAL;
+    }
+
+    @Override
+    public int compareTo(Profile another) {
+        int priorityOrder = getPriority() - another.getPriority();
+        if(priorityOrder != 0){
+            return priorityOrder;
+        } else {
+            return getName().compareTo(another.getName());
+        }
+
     }
 }

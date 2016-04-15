@@ -98,6 +98,8 @@ public class ProfileActivity extends BaseActivityView {
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.profile_edit_menu) {
                 presenter.editProfile();
+            } else if(item.getItemId() == R.id.profile_delete_menu){
+                presenter.deleteProfile();
             }
             return true;
         });

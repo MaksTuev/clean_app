@@ -20,6 +20,7 @@ import java8.util.stream.StreamSupport;
 public class SettingManager {
     private Map<Class<? extends Setting>, SettingApplier> settingAppliers;
     private List<Class<? extends Setting>> settingTypes;
+    private final ProfileService profileService;
 
     private List<Profile> activeProfiles = new ArrayList<>();
 
@@ -28,6 +29,7 @@ public class SettingManager {
                           ProfileService profileService) {
         this.settingAppliers = settingAppliers;
         this.settingTypes = settingTypes;
+        this.profileService = profileService;
         profileService.observeProfileChanged()
                 .subscribe(this::onProfileChanged);
     }
@@ -56,8 +58,12 @@ public class SettingManager {
             }
             Profile appliedProfilesWithSetting = profilesWithSetting.get(0);
             if (appliedProfilesWithSetting.getId().equals(newProfile.getId())) {
+                SettingApplier settingApplier = settingAppliers.get(settingType);
+                if(profilesWithSetting.size() == 1 && !appliedProfilesWithSetting.isGlobal()){
+                    saveOldSettingInGlobalProfile(settingType);
+                }
                 Setting newSetting = newProfile.getSetting(settingType);
-                settingAppliers.get(settingType).apply(newSetting);
+                settingApplier.apply(newSetting);
             }
         }
     }
@@ -76,10 +82,37 @@ public class SettingManager {
                     Profile newAppliedProfilesWithSetting = profilesWithSetting.get(1);
                     Setting newSetting = newAppliedProfilesWithSetting.getSetting(settingType);
                     settingAppliers.get(settingType).apply(newSetting);
+                    if(newAppliedProfilesWithSetting.isGlobal()){
+                        clearSettingInGlobalProfile(newAppliedProfilesWithSetting, settingType);
+                    }
                 }
             }
         }
         activeProfiles.remove(oldProfile);
+    }
+
+    private void clearSettingInGlobalProfile(Profile globalProfile, Class<? extends Setting> settingType) {
+        Setting setting = globalProfile.getSetting(settingType);
+        globalProfile.deleteSetting(setting);
+        profileService.updateGlobalProfile(globalProfile);
+    }
+
+    private void saveOldSettingInGlobalProfile(Class<? extends Setting> settingType) {
+        Profile globalProfile = getGlobalProfile();
+        if(globalProfile != null) {
+            Setting currentSetting = settingAppliers.get(settingType).getCurrent();
+            globalProfile.addSetting(currentSetting);
+            profileService.updateGlobalProfile(globalProfile);
+        }
+    }
+
+    private Profile getGlobalProfile(){
+        for(Profile profile: activeProfiles){
+            if(profile.isGlobal()){
+                return profile;
+            }
+        }
+        return null;
     }
 
     private void addProfileToActiveProfiles(Profile newProfile) {
