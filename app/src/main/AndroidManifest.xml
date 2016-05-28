@@ -77,10 +77,6 @@
         </receiver>
 
 
-        <service
-            android:name=".LocationService"
-            android:enabled="true"
-            android:exported="true"/>
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c3128b2f54e4a39ddd84710f31a7cb595f71e3ef" />
