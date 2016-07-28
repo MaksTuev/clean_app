@@ -3,7 +3,7 @@ package com.agna.setmaster.ui.screen.splash;
 import com.agna.setmaster.module.initialize.InitializeAppInteractor;
 import com.agna.setmaster.module.service.AppServiceInteractor;
 import com.agna.setmaster.ui.base.BasePresenter;
-import com.agna.setmaster.ui.base.activity.PerActivity;
+import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.navigation.Navigator;
 
 import java.util.concurrent.TimeUnit;
@@ -15,7 +15,7 @@ import rx.Observable;
 /**
  * presenter экрана сплеша
  */
-@PerActivity
+@PerScreen
 public class SplashPresenter extends BasePresenter<SplashActivity> {
 
     private InitializeAppInteractor initializeAppInteractor;

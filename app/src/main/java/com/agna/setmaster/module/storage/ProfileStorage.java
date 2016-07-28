@@ -1,5 +1,6 @@
 package com.agna.setmaster.module.storage;
 
+import com.agna.setmaster.app.PerApplication;
 import com.agna.setmaster.entity.Profile;
 import com.agna.setmaster.module.storage.db.dao.ProfileDao;
 import com.agna.setmaster.module.storage.db.entity.ProfileObj;
@@ -7,15 +8,19 @@ import com.agna.setmaster.module.storage.db.entity.ProfileObj;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 import timber.log.Timber;
 
 /**
  * TODO create normal storage
  */
+@PerApplication
 public class ProfileStorage {
     private ProfileDao profileDao;
 
+    @Inject
     public ProfileStorage(ProfileDao profileDao) {
         this.profileDao = profileDao;
     }

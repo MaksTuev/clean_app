@@ -6,19 +6,24 @@ import com.agna.setmaster.entity.Profile;
 import com.agna.setmaster.entity.condition.Condition;
 import com.agna.setmaster.entity.condition.TimeCondition;
 import com.agna.setmaster.entity.condition.WiFiCondition;
+import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.screen.condition.time.ChangeTimeConditionActivity;
 import com.agna.setmaster.ui.screen.condition.wifi.ChangeWifiConditionActivity;
 import com.agna.setmaster.ui.screen.editprofile.EditProfileActivity;
 import com.agna.setmaster.ui.screen.main.MainActivity;
 import com.agna.setmaster.ui.screen.profile.ProfileActivity;
 
+import javax.inject.Inject;
+
 /**
  *
  */
+@PerScreen
 public class Navigator {
 
     private AppCompatActivity activity;
 
+    @Inject
     public Navigator(AppCompatActivity activity) {
         this.activity = activity;
     }

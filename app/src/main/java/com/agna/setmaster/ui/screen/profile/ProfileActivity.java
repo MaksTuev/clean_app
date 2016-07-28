@@ -53,12 +53,28 @@ public class ProfileActivity extends BaseActivityView {
 
     @Override
     protected void satisfyDependencies() {
+        Profile profile = (Profile) getIntent().getSerializableExtra(EXTRA_PROFILE);
         DaggerProfileComponent.builder()
                 .appComponent(getApplicationComponent())
                 .activityModule(new ActivityModule(this))
-                .profileModule(new ProfileModule())
+                .profileModule(new ProfileModule(profile))
                 .build()
                 .inject(this);
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_profile;
+    }
+
+    @Override
+    public String getName() {
+        return "Profile";
+    }
+
+    @Override
+    public BasePresenter getPresenter() {
+        return presenter;
     }
 
     @Override
@@ -131,8 +147,7 @@ public class ProfileActivity extends BaseActivityView {
     @Override
     public void initPresenter() {
         super.initPresenter();
-        Profile profile = (Profile) getIntent().getSerializableExtra(EXTRA_PROFILE);
-        presenter.init(profile);
+
     }
 
     public void bindProfile(Profile profile) {
@@ -165,20 +180,7 @@ public class ProfileActivity extends BaseActivityView {
     };
 
 
-    @Override
-    protected int getContentView() {
-        return R.layout.activity_profile;
-    }
 
-    @Override
-    public String getName() {
-        return "Profile";
-    }
-
-    @Override
-    public BasePresenter getPresenter() {
-        return presenter;
-    }
 
     public static void start(Activity activity, Profile profile) {
         Intent i = new Intent(activity, ProfileActivity.class);

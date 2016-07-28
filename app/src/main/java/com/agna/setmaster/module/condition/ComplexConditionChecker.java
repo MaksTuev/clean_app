@@ -1,5 +1,6 @@
 package com.agna.setmaster.module.condition;
 
+import com.agna.setmaster.app.PerApplication;
 import com.agna.setmaster.entity.ConditionSet;
 import com.agna.setmaster.entity.Profile;
 import com.agna.setmaster.entity.condition.Condition;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import java8.util.stream.Collectors;
 import java8.util.stream.StreamSupport;
 import rx.Observable;
@@ -19,11 +22,13 @@ import timber.log.Timber;
 /**
  *
  */
+@PerApplication
 public class ComplexConditionChecker {
 
     private Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckers;
     private Observable<ConditionStateChangedEvent> conditionStateChangedObservable;
 
+    @Inject
     public ComplexConditionChecker(Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckersMap) {
         this.simpleConditionCheckers = simpleConditionCheckersMap;
         conditionStateChangedObservable = Observable.merge(

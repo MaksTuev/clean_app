@@ -1,7 +1,5 @@
 package com.agna.setmaster.module.condition;
 
-import android.content.Context;
-
 import com.agna.setmaster.app.PerApplication;
 import com.agna.setmaster.entity.condition.Condition;
 import com.agna.setmaster.entity.condition.TimeCondition;
@@ -25,13 +23,6 @@ public class ConditionModule {
 
     @Provides
     @PerApplication
-    ComplexConditionChecker provideConditionChecker(
-            Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckers){
-        return new ComplexConditionChecker(simpleConditionCheckers);
-    }
-
-    @Provides
-    @PerApplication
     Map<Class<? extends Condition>, SimpleConditionChecker<?>> provideSimpleConditionCheckers(
             WifiConditionChecker wifiConditionChecker,
             TimeConditionChecker timeConditionChecker){
@@ -49,17 +40,4 @@ public class ConditionModule {
         supportedConditions.add(WiFiCondition.class);
         return supportedConditions;
     }
-
-    @Provides
-    @PerApplication
-    TimeConditionChecker provideTimeConditionChecker(Context appContext){
-        return new TimeConditionChecker(appContext);
-    }
-
-    @Provides
-    @PerApplication
-    WifiConditionChecker provideWifiConditionChecker(Context context){
-        return new WifiConditionChecker(context);
-    }
-
 }

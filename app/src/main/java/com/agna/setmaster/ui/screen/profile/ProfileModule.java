@@ -1,9 +1,7 @@
 package com.agna.setmaster.ui.screen.profile;
 
-import android.content.Context;
-
-import com.agna.setmaster.ui.base.activity.PerActivity;
-import com.agna.setmaster.ui.screen.profile.setting.change.SettingChangeDialogCreator;
+import com.agna.setmaster.entity.Profile;
+import com.agna.setmaster.ui.base.PerScreen;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,12 +11,15 @@ import dagger.Provides;
  */
 @Module
 public class ProfileModule {
+    private Profile profile;
 
-    @Provides
-    @PerActivity
-    SettingChangeDialogCreator provideSettingChangeDialogCreator(Context context){
-        return new SettingChangeDialogCreator(context);
+    public ProfileModule(Profile profile) {
+        this.profile = profile;
     }
 
-
+    @Provides
+    @PerScreen
+    public Profile provideProfile(){
+        return profile;
+    }
 }

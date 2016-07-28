@@ -4,9 +4,7 @@ import android.content.Context;
 
 import com.agna.setmaster.module.condition.ConditionModule;
 import com.agna.setmaster.module.profile.ProfileModule;
-import com.agna.setmaster.module.service.AppServiceInteractor;
 import com.agna.setmaster.module.setting.SettingModule;
-import com.agna.setmaster.module.storage.db.DataBaseHelper;
 
 import dagger.Module;
 import dagger.Provides;
@@ -28,15 +26,4 @@ public class AppModule {
                 return appContext;
         }
 
-        @PerApplication
-        @Provides
-        DataBaseHelper provideDataBaseHelper(Context context){
-                return new DataBaseHelper(context);
-        }
-
-        @PerApplication
-        @Provides
-        AppServiceInteractor provideAppServiceInteractor(Context context){
-                return new AppServiceInteractor(context);
-        }
 }

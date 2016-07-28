@@ -3,7 +3,7 @@ package com.agna.setmaster.module.storage.db;
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.DatabaseTableConfig;
-import com.agna.setmaster.util.log.LogServerUtil;
+import com.agna.setmaster.app.log.LogServerUtil;
 
 import java.sql.SQLException;
 import java.util.List;

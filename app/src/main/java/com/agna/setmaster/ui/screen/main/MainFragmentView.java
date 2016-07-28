@@ -77,7 +77,7 @@ public class MainFragmentView extends BaseFragmentView implements ProfileListIte
     @Override
     protected void satisfyDependencies() {
         DaggerMainComponent.builder()
-                .containerActivityComponent(getBaseActivity().getContainerActivityComponent())
+                .appComponent(getApplicationComponent())
                 .fragmentModule(new FragmentModule(this))
                 .build()
                 .inject(this);

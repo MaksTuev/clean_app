@@ -1,5 +1,6 @@
 package com.agna.setmaster.module.setting;
 
+import com.agna.setmaster.app.PerApplication;
 import com.agna.setmaster.entity.Profile;
 import com.agna.setmaster.entity.setting.Setting;
 import com.agna.setmaster.module.profile.ProfileService;
@@ -11,12 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import java8.util.stream.Collectors;
 import java8.util.stream.StreamSupport;
 
 /**
  *
  */
+@PerApplication
 public class SettingManager {
     private Map<Class<? extends Setting>, SettingApplier> settingAppliers;
     private List<Class<? extends Setting>> settingTypes;
@@ -24,6 +28,7 @@ public class SettingManager {
 
     private List<Profile> activeProfiles = new ArrayList<>();
 
+    @Inject
     public SettingManager(Map<Class<? extends Setting>, SettingApplier> settingAppliers,
                           ArrayList<Class<? extends Setting>> settingTypes,
                           ProfileService profileService) {

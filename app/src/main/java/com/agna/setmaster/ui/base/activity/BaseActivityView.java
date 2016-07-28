@@ -9,7 +9,7 @@ import android.support.annotation.LayoutRes;
 import com.agna.setmaster.ui.base.BaseView;
 import com.agna.setmaster.ui.base.HasName;
 import com.agna.setmaster.ui.base.HasPresenter;
-import com.agna.setmaster.util.log.LogServerUtil;
+import com.agna.setmaster.app.log.LogServerUtil;
 
 /**
  * базовый класс для вью, основанной на Activity

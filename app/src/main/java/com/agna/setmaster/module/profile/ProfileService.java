@@ -2,6 +2,7 @@ package com.agna.setmaster.module.profile;
 
 import android.support.annotation.Nullable;
 
+import com.agna.setmaster.app.PerApplication;
 import com.agna.setmaster.entity.ConditionSet;
 import com.agna.setmaster.entity.Profile;
 import com.agna.setmaster.entity.condition.Condition;
@@ -16,6 +17,8 @@ import com.agna.setmaster.util.rx.SimpleOnSubscribe;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.inject.Inject;
+
 import java8.util.stream.StreamSupport;
 import rx.Observable;
 import rx.schedulers.Schedulers;
@@ -23,6 +26,7 @@ import rx.schedulers.Schedulers;
 /**
  *
  */
+@PerApplication
 public class ProfileService {
 
     private ComplexConditionChecker complexConditionChecker;
@@ -33,6 +37,7 @@ public class ProfileService {
 
     private SimpleOnSubscribe<ProfileChangedEvent> profileChangedOnSubscribe = new SimpleOnSubscribe<>();;
 
+    @Inject
     public ProfileService(ComplexConditionChecker complexConditionChecker,
                           ProfileStorage profileStorage,
                           DefaultProfileCreator defaultProfileCreator) {

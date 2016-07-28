@@ -4,7 +4,7 @@ import com.agna.setmaster.entity.Profile;
 import com.agna.setmaster.module.profile.ProfileService;
 import com.agna.setmaster.module.profile.event.ChangedStatus;
 import com.agna.setmaster.ui.base.BasePresenter;
-import com.agna.setmaster.ui.base.fragment.PerFragment;
+import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.navigation.Navigator;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import rx.android.schedulers.AndroidSchedulers;
 /**
  *
  */
-@PerFragment
+@PerScreen
 public class MainPresenter extends BasePresenter<MainFragmentView> {
 
     private ProfileService profileService;

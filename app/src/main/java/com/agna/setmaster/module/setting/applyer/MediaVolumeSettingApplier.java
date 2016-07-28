@@ -3,15 +3,20 @@ package com.agna.setmaster.module.setting.applyer;
 import android.content.Context;
 import android.media.AudioManager;
 
+import com.agna.setmaster.app.PerApplication;
 import com.agna.setmaster.entity.setting.MediaVolumeSetting;
+
+import javax.inject.Inject;
 
 /**
  *
  */
+@PerApplication
 public class MediaVolumeSettingApplier implements SettingApplier<MediaVolumeSetting> {
     private Context appContext;
     private AudioManager audioManger;
 
+    @Inject
     public MediaVolumeSettingApplier(Context appContext) {
         this.appContext = appContext;
         audioManger = (AudioManager) appContext.getSystemService(Context.AUDIO_SERVICE);

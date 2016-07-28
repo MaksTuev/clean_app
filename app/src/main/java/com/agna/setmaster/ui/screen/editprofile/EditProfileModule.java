@@ -1,7 +1,7 @@
 package com.agna.setmaster.ui.screen.editprofile;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.ui.base.activity.PerActivity;
+import com.agna.setmaster.ui.base.PerScreen;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +19,7 @@ public class EditProfileModule {
     }
 
     @Provides
-    @PerActivity
+    @PerScreen
     List<Integer> provideIcons(){
         return Arrays.asList(
                 R.drawable.ic_profile_city,

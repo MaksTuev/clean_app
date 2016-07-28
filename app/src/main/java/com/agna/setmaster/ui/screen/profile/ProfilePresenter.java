@@ -10,7 +10,7 @@ import com.agna.setmaster.module.profile.ProfileService;
 import com.agna.setmaster.module.profile.event.ChangedStatus;
 import com.agna.setmaster.module.profile.event.ProfileChangedEvent;
 import com.agna.setmaster.ui.base.BasePresenter;
-import com.agna.setmaster.ui.base.activity.PerActivity;
+import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.base.dialog.DialogManager;
 import com.agna.setmaster.ui.navigation.Navigator;
 import com.agna.setmaster.ui.screen.condition.ChangeConditionBaseActivityView;
@@ -26,14 +26,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
  *
  */
-@PerActivity
+@PerScreen
 public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
         ChooseSettingDialog.OnSettingChosenListener,
         OnSettingChangeListener,
@@ -45,11 +44,13 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
     private DialogManager dialogManager;
     private ArrayList<Class<? extends Setting>> supportedSettings;
     private SettingChangeDialogCreator settingChangeDialogCreator;
-    private Profile profile;
     private ArrayList<Class<? extends Condition>> supportedConditions;
 
+    private Profile profile;
+
     @Inject
-    public ProfilePresenter(ProfileService profileService,
+    public ProfilePresenter(Profile profile,
+                            ProfileService profileService,
                             Navigator navigator,
                             DialogManager dialogManager,
                             ArrayList<Class<? extends Setting>> supportedSettings,
@@ -61,9 +62,6 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
         this.supportedSettings = supportedSettings;
         this.settingChangeDialogCreator = settingChangeDialogCreator;
         this.supportedConditions = supportedConditions;
-    }
-
-    public void init(Profile profile) {
         this.profile = profile;
     }
 
@@ -90,9 +88,7 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
 
     private void initListeners() {
         Subscription onProfileChangedSubscription = profileService.observeProfileChanged()
-                .flatMap(event -> event.getProfile().getId().equals(profile.getId())
-                        ? Observable.just(event)
-                        : Observable.empty())
+                .filter(event -> event.getProfile().getId().equals(profile.getId()))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onProfileChanged);
         addToSubscriptions(onProfileChangedSubscription);
@@ -185,9 +181,7 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
             conditionSet.addCondition(condition);
             profileService.updateProfile(profile);
             navigator.openChangeCondition(condition, profile);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }

@@ -9,7 +9,7 @@ import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.HasName;
 import com.agna.setmaster.ui.base.activity.BaseActivityView;
 import com.agna.setmaster.ui.base.fragment.BaseFragmentView;
-import com.agna.setmaster.util.log.LogServerUtil;
+import com.agna.setmaster.app.log.LogServerUtil;
 
 /**
  * базовый класс диалога

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 
-import com.agna.setmaster.ui.base.activity.PerActivity;
+import com.agna.setmaster.ui.base.PerScreen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import dagger.Provides;
 public class ChangeWifiConditionModule {
 
     @Provides
-    @PerActivity
+    @PerScreen
     ArrayList<WifiConfiguration> provideWifiNetworks(Context context){
         ArrayList<WifiConfiguration> result = new ArrayList<>();
         WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);

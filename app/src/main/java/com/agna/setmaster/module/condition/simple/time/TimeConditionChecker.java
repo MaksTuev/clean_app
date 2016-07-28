@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
+import com.agna.setmaster.app.PerApplication;
 import com.agna.setmaster.entity.condition.DayOfWeek;
 import com.agna.setmaster.entity.condition.TimeCondition;
 import com.agna.setmaster.module.condition.simple.ConditionStateChangedEvent;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
@@ -24,6 +27,7 @@ import timber.log.Timber;
 /**
  *
  */
+@PerApplication
 public class TimeConditionChecker implements SimpleConditionChecker<TimeCondition> {
     public static final String ACTION_ALARM = "setmaster.TimeConditionChecker.alarm";
     public static final String EXTRA_CONDITION_ID = "EXTRA_CONDITION_ID";
@@ -37,6 +41,7 @@ public class TimeConditionChecker implements SimpleConditionChecker<TimeConditio
     private AlarmManager alarmManager;
     private SimpleOnSubscribe<ConditionStateChangedEvent> onConditionChangedOnSubscribe = new SimpleOnSubscribe<>();
 
+    @Inject
     public TimeConditionChecker(Context appContext) {
         this.appContext = appContext;
         this.alarmManager = (AlarmManager)appContext.getSystemService(Context.ALARM_SERVICE);

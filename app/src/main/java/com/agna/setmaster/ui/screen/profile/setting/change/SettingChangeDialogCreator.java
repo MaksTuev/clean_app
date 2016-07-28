@@ -6,15 +6,20 @@ import android.support.annotation.ColorInt;
 import com.agna.setmaster.entity.Profile;
 import com.agna.setmaster.entity.setting.Setting;
 import com.agna.setmaster.entity.setting.ValuableSetting;
+import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.base.dialog.BaseDialog;
 import com.agna.setmaster.ui.util.ProfileViewUtil;
+
+import javax.inject.Inject;
 
 /**
  *
  */
+@PerScreen
 public class SettingChangeDialogCreator {
     private Context context;
 
+    @Inject
     public SettingChangeDialogCreator(Context context) {
 
         this.context = context;

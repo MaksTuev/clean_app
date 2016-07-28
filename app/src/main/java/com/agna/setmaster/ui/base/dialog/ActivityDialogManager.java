@@ -2,8 +2,11 @@ package com.agna.setmaster.ui.base.dialog;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.agna.setmaster.ui.base.PerScreen;
+
 import javax.inject.Inject;
 
+@PerScreen
 public class ActivityDialogManager implements DialogManager {
     private AppCompatActivity activity;
 

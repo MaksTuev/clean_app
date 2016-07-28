@@ -1,9 +1,9 @@
 package com.agna.setmaster.ui.base.fragment;
 
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 
-import com.agna.setmaster.ui.base.dialog.DialogManager;
-import com.agna.setmaster.ui.base.dialog.FragmentDialogManager;
+import com.agna.setmaster.ui.base.PerScreen;
 
 import dagger.Module;
 import dagger.Provides;
@@ -17,15 +17,15 @@ public class FragmentModule {
     }
 
     @Provides
-    @PerFragment
+    @PerScreen
     Fragment provideFragment(){
         return fragment;
     }
 
     @Provides
-    @PerFragment
-    DialogManager provideDialogManager(FragmentDialogManager dialogManager){
-        return dialogManager;
+    @PerScreen
+    AppCompatActivity provideActivity(){
+        return (AppCompatActivity)fragment.getActivity();
     }
 
 }

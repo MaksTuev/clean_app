@@ -3,8 +3,11 @@ package com.agna.setmaster.ui.base.dialog;
 
 import android.support.v4.app.Fragment;
 
+import com.agna.setmaster.ui.base.PerScreen;
+
 import javax.inject.Inject;
 
+@PerScreen
 public class FragmentDialogManager implements DialogManager {
 
     private Fragment fragment;

@@ -3,14 +3,17 @@ package com.agna.setmaster.module.storage.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.agna.setmaster.app.PerApplication;
+import com.agna.setmaster.module.storage.db.entity.ProfileObj;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.misc.TransactionManager;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.agna.setmaster.module.storage.db.entity.ProfileObj;
 
 import java.sql.SQLException;
+
+import javax.inject.Inject;
 
 import rx.Observable;
 import timber.log.Timber;
@@ -18,6 +21,7 @@ import timber.log.Timber;
 /**
  *
  */
+@PerApplication
 public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
 
     public static final String DATABASE_NAME = "litres_listen.db";
@@ -25,6 +29,7 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
 
     private Context appContext;
 
+    @Inject
     public DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         Timber.i(DataBaseHelper.class.getSimpleName() + ".ctr");
