@@ -13,7 +13,7 @@
             android:layout_width="@dimen/setting_grid_image"
             android:layout_height="@dimen/setting_grid_image"
             android:layout_gravity="center_horizontal"/>
-        <com.two_man.setmaster.ui.screen.profile.setting.holder.SettingGridItemPreviewProgress
+        <com.agna.setmaster.ui.screen.profile.setting.holder.SettingGridItemPreviewProgress
             android:id="@+id/setting_value"
             android:layout_width="52dp"
             android:layout_height="2dp"

@@ -28,7 +28,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.two_man.setmaster"
+        applicationId "com.agna.setmaster"
         minSdkVersion 18
         targetSdkVersion 23
         versionCode 1
@@ -64,8 +64,7 @@ dependencies {
     //orm
     compile 'com.j256.ormlite:ormlite-core:4.48'
     compile 'com.j256.ormlite:ormlite-android:4.48'
-    //eventBus
-    compile 'org.greenrobot:eventbus:3.0.0'
+
     //log
     compile 'com.jakewharton.timber:timber:4.1.1'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {

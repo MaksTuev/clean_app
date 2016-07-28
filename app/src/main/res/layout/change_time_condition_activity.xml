@@ -133,7 +133,7 @@
                 android:textColor="@color/gray"
                 android:textSize="14sp" />
 
-            <com.two_man.setmaster.ui.screen.condition.time.widget.DaysOfWeekView
+            <com.agna.setmaster.ui.screen.condition.time.widget.DaysOfWeekView
                 android:id="@+id/weekdays"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

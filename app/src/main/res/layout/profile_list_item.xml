@@ -47,7 +47,7 @@
         android:layout_below="@id/profile_name_text"
         android:paddingRight="25dp"/>
 
-    <com.two_man.setmaster.ui.screen.main.widget.SettingPreviewLayout
+    <com.agna.setmaster.ui.screen.main.widget.SettingPreviewLayout
         android:id="@+id/profile_setting_preview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,5 +56,5 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp">
-    </com.two_man.setmaster.ui.screen.main.widget.SettingPreviewLayout>
+    </com.agna.setmaster.ui.screen.main.widget.SettingPreviewLayout>
 </merge>
