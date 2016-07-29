@@ -3,7 +3,7 @@ package com.agna.setmaster.ui.screen.editprofile;
 import com.agna.setmaster.entity.Profile;
 import com.agna.setmaster.module.profile.ProfileService;
 import com.agna.setmaster.ui.base.BasePresenter;
-import com.agna.setmaster.ui.navigation.Navigator;
+import com.agna.setmaster.ui.common.navigation.Navigator;
 
 import javax.inject.Inject;
 
@@ -33,7 +33,7 @@ public class EditProfilePresenter extends BasePresenter<EditProfileActivity> {
             profileService.addProfile(profile);
         } else {
             profile.setName(name);
-            profile.setImageResId(iconRes);
+            profile.setIconId(iconRes);
             profileService.updateProfile(profile);
         }
         getView().goBack();

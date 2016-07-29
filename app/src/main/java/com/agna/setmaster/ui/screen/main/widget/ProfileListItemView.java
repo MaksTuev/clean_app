@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.agna.setmaster.R;
 import com.agna.setmaster.entity.Profile;
+import com.agna.setmaster.util.ProfileIconHelper;
 import com.agna.setmaster.ui.util.ProfileViewUtil;
 
 /**
@@ -56,7 +57,7 @@ public class ProfileListItemView extends RelativeLayout {
 
     public void show(Profile profile) {
         this.profile = profile;
-        profileIcon.setImageResource(profile.getImageResId());
+        profileIcon.setImageResource(ProfileIconHelper.getIconRes(profile.getIconId()));
         profileActiveIndicator.setVisibility(profile.isActive() ? VISIBLE : GONE);
         profileNameText.setText(profile.getName());
         profileStatusText.setText(ProfileViewUtil.getProfileStatusText(profile));

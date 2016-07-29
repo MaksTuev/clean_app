@@ -12,7 +12,7 @@ import com.agna.setmaster.module.profile.event.ProfileChangedEvent;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.base.dialog.DialogManager;
-import com.agna.setmaster.ui.navigation.Navigator;
+import com.agna.setmaster.ui.common.navigation.Navigator;
 import com.agna.setmaster.ui.screen.condition.ChangeConditionBaseActivityView;
 import com.agna.setmaster.ui.screen.profile.condition.add.AddConditionDialog;
 import com.agna.setmaster.ui.screen.profile.condition.add.AddConditionOrConditionSetDialog;

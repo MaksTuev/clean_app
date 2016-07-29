@@ -16,9 +16,8 @@ import com.agna.setmaster.entity.Profile;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.activity.ActivityModule;
 import com.agna.setmaster.ui.base.activity.BaseActivityView;
+import com.agna.setmaster.util.ProfileIconHelper;
 import com.agna.setmaster.ui.util.ProfileViewUtil;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -30,8 +29,6 @@ public class EditProfileActivity extends BaseActivityView {
     public static final String EXTRA_PROFILE = "EXTRA_PROFILE";
     @Inject
     EditProfilePresenter presenter;
-    @Inject
-    List<Integer> icons;
 
     private View backBtn;
     private View saveBtn;
@@ -47,7 +44,6 @@ public class EditProfileActivity extends BaseActivityView {
     protected void satisfyDependencies() {
         DaggerEditProfileComponent.builder()
                 .activityModule(new ActivityModule(this))
-                .editProfileModule(new EditProfileModule())
                 .appComponent(getApplicationComponent())
                 .build()
                 .inject(this);
@@ -71,7 +67,7 @@ public class EditProfileActivity extends BaseActivityView {
     public void bindProfile(Profile profile) {
         if (profile != null) {
             nameEt.setText(profile.getName());
-            iconAdapter.setSelectedIcon(icons.indexOf(profile.getImageResId()));
+            iconAdapter.setSelectedIcon(profile.getIconId());
         } else {
             handler.post(() -> iconAdapter.setSelectedIcon(0));
         }
@@ -99,7 +95,11 @@ public class EditProfileActivity extends BaseActivityView {
     }
 
     private void initGrid() {
-        iconAdapter = new IconGridAdapter(iconGrid, icons, icon::setImageResource);
+        iconAdapter = new IconGridAdapter(iconGrid, ProfileIconHelper.getAll(), this::updateLargeIcon);
+    }
+
+    private void updateLargeIcon(int iconId) {
+        icon.setImageResource(ProfileIconHelper.getIconRes(iconId));
     }
 
     @Override

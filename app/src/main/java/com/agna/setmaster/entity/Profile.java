@@ -23,7 +23,7 @@ public class Profile implements Cloneable, Serializable, Comparable<Profile> {
     private String id;
     private String name;
     @DrawableRes
-    private int imageResId;
+    private int iconId;
     private int priority = PRIORITY_DEFAULT;
     private boolean active;
     private ArrayList<ConditionSet> conditionSets = new ArrayList<>();
@@ -32,21 +32,21 @@ public class Profile implements Cloneable, Serializable, Comparable<Profile> {
     public Profile(String name, @DrawableRes int image) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
-        this.imageResId = image;
+        this.iconId = image;
         conditionSets.add(new ConditionSet());
     }
 
 
     private Profile(String id,
                     String name,
-                    int imageResId,
+                    int iconId,
                     boolean active,
                     int priority,
                     ArrayList<ConditionSet> conditionSets,
                     ArrayList<Setting> settings) {
         this.id = id;
         this.name = name;
-        this.imageResId = imageResId;
+        this.iconId = iconId;
         this.active = active;
         this.priority = priority;
         this.conditionSets = conditionSets;
@@ -81,12 +81,12 @@ public class Profile implements Cloneable, Serializable, Comparable<Profile> {
         this.name = name;
     }
 
-    public int getImageResId() {
-        return imageResId;
+    public int getIconId() {
+        return iconId;
     }
 
-    public void setImageResId(int imageResId) {
-        this.imageResId = imageResId;
+    public void setIconId(int iconId) {
+        this.iconId = iconId;
     }
 
     public ArrayList<ConditionSet> getConditionSets() {
@@ -148,7 +148,7 @@ public class Profile implements Cloneable, Serializable, Comparable<Profile> {
 
     @Override
     public Profile clone() {
-        return new Profile(id, name, imageResId, active, priority,
+        return new Profile(id, name, iconId, active, priority,
                 CloneUtil.cloneConditionSetList(conditionSets),
                 CloneUtil.cloneSettingList(settings));
     }

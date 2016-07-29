@@ -2,9 +2,9 @@ package com.agna.setmaster.module.profile;
 
 import android.content.Context;
 
-import com.agna.setmaster.R;
 import com.agna.setmaster.app.PerApplication;
 import com.agna.setmaster.entity.Profile;
+import com.agna.setmaster.util.ProfileIconHelper;
 
 import javax.inject.Inject;
 
@@ -22,7 +22,7 @@ public class DefaultProfileCreator {
     }
 
     public Profile createGlobal() {
-        Profile globalProfile = new Profile("Global", R.drawable.ic_profile_world);
+        Profile globalProfile = new Profile("Global", ProfileIconHelper.getGlobalProfileIconId());
         globalProfile.setPriority(Profile.PRIORITY_GLOBAL);
         globalProfile.setActive(true);
         return globalProfile;

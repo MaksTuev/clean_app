@@ -4,7 +4,7 @@ import com.agna.setmaster.module.initialize.InitializeAppInteractor;
 import com.agna.setmaster.module.service.AppServiceInteractor;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.PerScreen;
-import com.agna.setmaster.ui.navigation.Navigator;
+import com.agna.setmaster.ui.common.navigation.Navigator;
 
 import java.util.concurrent.TimeUnit;
 

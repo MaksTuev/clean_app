@@ -24,6 +24,7 @@ import com.agna.setmaster.ui.screen.profile.condition.ConditionSetPagerAdapter;
 import com.agna.setmaster.ui.screen.profile.condition.ConditionSetView;
 import com.agna.setmaster.ui.screen.profile.setting.SettingGridAdapter;
 import com.agna.setmaster.ui.util.ProfileViewUtil;
+import com.agna.setmaster.util.ProfileIconHelper;
 
 import javax.inject.Inject;
 
@@ -154,7 +155,7 @@ public class ProfileActivity extends BaseActivityView {
         name.setText(profile.getName());
         status.setText(ProfileViewUtil.getProfileStatusText(profile));
         settingGridAdapter.showSettings(profile.getSettings(), presenter.allowAddSetting());
-        profileIcon.setImageResource(profile.getImageResId());
+        profileIcon.setImageResource(ProfileIconHelper.getIconRes(profile.getIconId()));
         headerContainer.setBackgroundColor(ProfileViewUtil.getProfileAccentColor(this, profile));
         conditionSetAdapter.showConditionSets(profile.getConditionSets());
     }

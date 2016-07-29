@@ -26,7 +26,7 @@ public class IconGridAdapter extends RecyclerView.Adapter {
 
     @DrawableRes
     public int getSelectedIcon() {
-        return icons.get(selectedIconPosition);
+        return selectedIconPosition;
     }
 
     public IconGridAdapter(RecyclerView recyclerView, List<Integer> icons, OnItemSelected onItemSelectedListener) {
@@ -50,12 +50,16 @@ public class IconGridAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return IconHolder.newInstance(parent, this::onItemClick, selectedIconColor);
+    }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     private void onItemClick(IconHolder holder) {
         selectedIconPosition = holder.getItemPosition();
-        onItemSelectedListener.onItemSelected(icons.get(selectedIconPosition));
+        onItemSelectedListener.onItemSelected(selectedIconPosition);
         notifyDataSetChanged();
     }
 
@@ -72,14 +76,13 @@ public class IconGridAdapter extends RecyclerView.Adapter {
 
     public void setSelectedIcon(int selectedIcon) {
         this.selectedIconPosition = selectedIcon;
-        onItemSelectedListener.onItemSelected(icons.get(selectedIconPosition));
+        onItemSelectedListener.onItemSelected(selectedIconPosition);
         notifyDataSetChanged();
     }
 
     private static class IconHolder extends RecyclerView.ViewHolder {
 
         private ImageView icon;
-        private boolean selected = false;
         private int position;
         private int selectedIconColor;
 
@@ -101,7 +104,6 @@ public class IconGridAdapter extends RecyclerView.Adapter {
         }
 
         private void setSelected(boolean selected) {
-            this.selected = selected;
             icon.setBackgroundResource(selected
                     ? R.drawable.small_white_card
                     : R.drawable.transparent);
@@ -122,6 +124,6 @@ public class IconGridAdapter extends RecyclerView.Adapter {
     }
 
     public interface OnItemSelected {
-        void onItemSelected(int resId);
+        void onItemSelected(int iconId);
     }
 }

@@ -4,7 +4,7 @@ import com.agna.setmaster.entity.Profile;
 import com.agna.setmaster.module.profile.ProfileService;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.PerScreen;
-import com.agna.setmaster.ui.navigation.Navigator;
+import com.agna.setmaster.ui.common.navigation.Navigator;
 
 import java.util.ArrayList;
 

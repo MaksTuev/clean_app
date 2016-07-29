@@ -1,4 +1,4 @@
-package com.agna.setmaster.ui.navigation;
+package com.agna.setmaster.ui.common.navigation;
 
 import android.support.v7.app.AppCompatActivity;
 

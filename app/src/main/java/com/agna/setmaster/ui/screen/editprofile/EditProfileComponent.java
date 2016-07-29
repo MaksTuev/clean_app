@@ -10,7 +10,7 @@ import dagger.Component;
  *
  */
 @PerScreen
-@Component(dependencies = AppComponent.class, modules = {ActivityModule.class, EditProfileModule.class})
+@Component(dependencies = AppComponent.class, modules = {ActivityModule.class})
 public interface EditProfileComponent {
     void inject(EditProfileActivity view);
 }
