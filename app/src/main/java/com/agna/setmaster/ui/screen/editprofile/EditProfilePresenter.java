@@ -18,12 +18,9 @@ public class EditProfilePresenter extends BasePresenter<EditProfileActivity> {
     private Profile profile;
 
     @Inject
-    public EditProfilePresenter(ProfileService profileService, Navigator navigator) {
+    public EditProfilePresenter(ProfileService profileService, Navigator navigator, Profile profile) {
         this.profileService = profileService;
         this.navigator = navigator;
-    }
-
-    public void init(Profile profile) {
         this.profile = profile;
     }
 

@@ -12,7 +12,8 @@ import dagger.Component;
  */
 @Component(dependencies = AppComponent.class, modules = {
         ActivityModule.class,
-        ActivityDialogModule.class})
+        ActivityDialogModule.class,
+        TimeConditionModule.class})
 @PerScreen
 public interface ChangeTimeConditionComponent {
     void inject(ChangeTimeConditionActivity activity);

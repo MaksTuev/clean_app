@@ -40,10 +40,11 @@ public class ChangeWifiConditionActivity extends ChangeConditionBaseActivityView
 
     @Override
     protected void satisfyDependencies() {
+        WiFiCondition condition = (WiFiCondition) getIntent().getSerializableExtra(EXTRA_CONDITION);
         DaggerChangeWifiConditionComponent.builder()
                 .activityModule(new ActivityModule(this))
                 .appComponent(getApplicationComponent())
-                .changeWifiConditionModule(new ChangeWifiConditionModule())
+                .changeWifiConditionModule(new ChangeWifiConditionModule(condition))
                 .build()
                 .inject(this);
     }
@@ -81,8 +82,6 @@ public class ChangeWifiConditionActivity extends ChangeConditionBaseActivityView
     @Override
     public void initPresenter() {
         super.initPresenter();
-        WiFiCondition condition = (WiFiCondition) getIntent().getSerializableExtra(EXTRA_CONDITION);
-        presenter.init(condition);
     }
 
     private void findViews() {

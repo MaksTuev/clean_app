@@ -16,6 +16,7 @@ import com.agna.setmaster.entity.Profile;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.activity.ActivityModule;
 import com.agna.setmaster.ui.base.activity.BaseActivityView;
+import com.agna.setmaster.ui.screen.profile.ProfileModule;
 import com.agna.setmaster.util.ProfileIconHelper;
 import com.agna.setmaster.ui.util.ProfileViewUtil;
 
@@ -42,8 +43,10 @@ public class EditProfileActivity extends BaseActivityView {
 
     @Override
     protected void satisfyDependencies() {
+        Profile profile = (Profile) getIntent().getSerializableExtra(EXTRA_PROFILE);
         DaggerEditProfileComponent.builder()
                 .activityModule(new ActivityModule(this))
+                .profileModule(new ProfileModule(profile))
                 .appComponent(getApplicationComponent())
                 .build()
                 .inject(this);
@@ -60,8 +63,6 @@ public class EditProfileActivity extends BaseActivityView {
     @Override
     public void initPresenter() {
         super.initPresenter();
-        Profile profile = (Profile) getIntent().getSerializableExtra(EXTRA_PROFILE);
-        presenter.init(profile);
     }
 
     public void bindProfile(Profile profile) {

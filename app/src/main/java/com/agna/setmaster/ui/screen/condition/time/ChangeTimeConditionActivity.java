@@ -49,9 +49,11 @@ public class ChangeTimeConditionActivity extends ChangeConditionBaseActivityView
 
     @Override
     protected void satisfyDependencies() {
+        TimeCondition condition = (TimeCondition) getIntent().getSerializableExtra(EXTRA_CONDITION);
         DaggerChangeTimeConditionComponent.builder()
                 .activityModule(new ActivityModule(this))
                 .appComponent(getApplicationComponent())
+                .timeConditionModule(new TimeConditionModule(condition))
                 .build()
                 .inject(this);
     }
@@ -101,8 +103,6 @@ public class ChangeTimeConditionActivity extends ChangeConditionBaseActivityView
     @Override
     public void initPresenter() {
         super.initPresenter();
-        TimeCondition condition = (TimeCondition) getIntent().getSerializableExtra(EXTRA_CONDITION);
-        presenter.init(condition);
     }
 
     private void findViews() {
