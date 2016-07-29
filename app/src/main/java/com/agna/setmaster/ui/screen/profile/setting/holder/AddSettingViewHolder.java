@@ -15,7 +15,7 @@ public class AddSettingViewHolder extends RecyclerView.ViewHolder {
     public AddSettingViewHolder(View itemView, SettingGridAdapter.OnAddSettingClickListener listener) {
         super(itemView);
         View conatiner = itemView.findViewById(R.id.setting_container);
-        conatiner.setOnClickListener(v->listener.onClick());
+        conatiner.setOnClickListener(v -> listener.onClick());
 
 
     }

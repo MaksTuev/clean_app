@@ -25,12 +25,12 @@ public class SettingChangeDialogCreator {
         this.context = context;
     }
 
-    public BaseDialog createDialog(Profile profile, Setting setting){
+    public BaseDialog createDialog(Profile profile, Setting setting) {
         @ColorInt int accentColor = ProfileViewUtil.getProfileAccentColor(context, profile);
-        if(setting instanceof ValuableSetting){
-            return ChangeVolumeSettingDialog.newInstance((ValuableSetting)setting, accentColor);
+        if (setting instanceof ValuableSetting) {
+            return ChangeVolumeSettingDialog.newInstance((ValuableSetting) setting, accentColor);
         } else {
-            throw new IllegalArgumentException("Unsupported setting: "+ setting.getClass().getSimpleName());
+            throw new IllegalArgumentException("Unsupported setting: " + setting.getClass().getSimpleName());
         }
     }
 }

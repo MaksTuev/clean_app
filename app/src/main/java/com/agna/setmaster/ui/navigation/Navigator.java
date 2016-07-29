@@ -45,12 +45,12 @@ public class Navigator {
     }
 
     public void openChangeCondition(Condition condition, Profile profile) {
-        if(condition instanceof TimeCondition) {
+        if (condition instanceof TimeCondition) {
             ChangeTimeConditionActivity.start(activity, (TimeCondition) condition, profile);
-        } else if (condition instanceof WiFiCondition){
-            ChangeWifiConditionActivity.start(activity, (WiFiCondition)condition, profile);
+        } else if (condition instanceof WiFiCondition) {
+            ChangeWifiConditionActivity.start(activity, (WiFiCondition) condition, profile);
         } else {
-            throw new IllegalArgumentException("Unsupported condition: "+ condition);
+            throw new IllegalArgumentException("Unsupported condition: " + condition);
         }
     }
 }

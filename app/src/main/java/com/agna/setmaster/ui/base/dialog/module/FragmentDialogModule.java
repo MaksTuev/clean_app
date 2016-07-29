@@ -15,7 +15,7 @@ public class FragmentDialogModule {
 
     @Provides
     @PerScreen
-    DialogManager provideDialogManager(FragmentDialogManager dialogManager){
+    DialogManager provideDialogManager(FragmentDialogManager dialogManager) {
         return dialogManager;
     }
 }

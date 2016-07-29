@@ -8,7 +8,7 @@ import com.agna.setmaster.entity.Profile;
 
 public class ProfileViewUtil {
     public static int getProfileStatusText(Profile profile) {
-        if(profile.isActive()){
+        if (profile.isActive()) {
             return R.string.profile_status_active;
         } else {
             return R.string.profile_status_inactive;
@@ -16,7 +16,7 @@ public class ProfileViewUtil {
     }
 
     public static int getProfileAccentColor(Context context, Profile profile) {
-        boolean activeProfile = profile!=null && profile.isActive();
+        boolean activeProfile = profile != null && profile.isActive();
         int backgroundColor = activeProfile
                 ? ContextCompat.getColor(context, R.color.profile_active_bg)
                 : ContextCompat.getColor(context, R.color.profile_inactive_bg);

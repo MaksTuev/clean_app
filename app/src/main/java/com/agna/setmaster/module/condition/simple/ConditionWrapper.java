@@ -5,7 +5,7 @@ import com.agna.setmaster.entity.condition.Condition;
 /**
  *
  */
-public class  ConditionWrapper<C extends Condition> {
+public class ConditionWrapper<C extends Condition> {
     private C condition;
     private String profileId;
 

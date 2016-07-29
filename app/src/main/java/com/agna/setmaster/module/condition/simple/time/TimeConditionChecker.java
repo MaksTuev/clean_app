@@ -43,7 +43,7 @@ public class TimeConditionChecker implements SimpleConditionChecker<TimeConditio
     @Inject
     public TimeConditionChecker(Context appContext) {
         this.appContext = appContext;
-        this.alarmManager = (AlarmManager)appContext.getSystemService(Context.ALARM_SERVICE);
+        this.alarmManager = (AlarmManager) appContext.getSystemService(Context.ALARM_SERVICE);
     }
 
     @Override
@@ -86,16 +86,16 @@ public class TimeConditionChecker implements SimpleConditionChecker<TimeConditio
         Calendar currentCalendar = Calendar.getInstance();
         Calendar fromCalendar = getCalendar(conditionWrapper.getCondition().getFrom());
         Calendar toCalendar = getCalendar(conditionWrapper.getCondition().getTo());
-        if(toCalendar.getTimeInMillis() < fromCalendar.getTimeInMillis()){
-            toCalendar.setTimeInMillis(toCalendar.getTimeInMillis()+ MS_IN_DAY );
+        if (toCalendar.getTimeInMillis() < fromCalendar.getTimeInMillis()) {
+            toCalendar.setTimeInMillis(toCalendar.getTimeInMillis() + MS_IN_DAY);
         }
         boolean active = false;
-        if(currentCalendar.getTimeInMillis() > fromCalendar.getTimeInMillis()
-                && currentCalendar.getTimeInMillis() < toCalendar.getTimeInMillis()){
+        if (currentCalendar.getTimeInMillis() > fromCalendar.getTimeInMillis()
+                && currentCalendar.getTimeInMillis() < toCalendar.getTimeInMillis()) {
             active = true;
         }
         DayOfWeek currentDay = TimeUtil.getCurrentDayOfWeek();
-        if(conditionWrapper.getCondition().getDays().contains(currentDay)) {
+        if (conditionWrapper.getCondition().getDays().contains(currentDay)) {
             ConditionStateChangedEvent event = new ConditionStateChangedEvent(
                     conditionWrapper.getProfileId(), conditionWrapper.getCondition().getId(), active);
             conditionChangedSubject.onNext(event);
@@ -114,11 +114,11 @@ public class TimeConditionChecker implements SimpleConditionChecker<TimeConditio
     private long getFirstTimeAlarm(Date date) {
         Calendar currentCalendar = Calendar.getInstance();
         Calendar alarmCalendar = getCalendar(date);
-        if(currentCalendar.getTimeInMillis() > alarmCalendar.getTimeInMillis()){
+        if (currentCalendar.getTimeInMillis() > alarmCalendar.getTimeInMillis()) {
             alarmCalendar.setTimeInMillis(alarmCalendar.getTimeInMillis() + MS_IN_DAY); //add day
         }
-        Timber.d("Current: " + currentCalendar.getTimeInMillis()/1000);
-        Timber.d("alarm: " + alarmCalendar.getTimeInMillis()/1000);
+        Timber.d("Current: " + currentCalendar.getTimeInMillis() / 1000);
+        Timber.d("alarm: " + alarmCalendar.getTimeInMillis() / 1000);
         return alarmCalendar.getTimeInMillis();
     }
 
@@ -142,9 +142,9 @@ public class TimeConditionChecker implements SimpleConditionChecker<TimeConditio
         String conditionId = intent.getStringExtra(TimeConditionChecker.EXTRA_CONDITION_ID);
         String profileId = intent.getStringExtra(TimeConditionChecker.EXTRA_PROFILE_ID);
         boolean active = intent.getBooleanExtra(TimeConditionChecker.EXTRA_ACTIVE, false);
-        ArrayList<DayOfWeek> days = (ArrayList<DayOfWeek>)intent.getSerializableExtra(TimeConditionChecker.EXTRA_DAYS);
+        ArrayList<DayOfWeek> days = (ArrayList<DayOfWeek>) intent.getSerializableExtra(TimeConditionChecker.EXTRA_DAYS);
         DayOfWeek currentDay = TimeUtil.getCurrentDayOfWeek();
-        if(days.contains(currentDay)){
+        if (days.contains(currentDay)) {
             ConditionStateChangedEvent event = new ConditionStateChangedEvent(profileId, conditionId, active);
             conditionChangedSubject.onNext(event);
         }

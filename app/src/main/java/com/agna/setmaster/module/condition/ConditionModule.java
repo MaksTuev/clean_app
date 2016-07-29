@@ -25,7 +25,7 @@ public class ConditionModule {
     @PerApplication
     Map<Class<? extends Condition>, SimpleConditionChecker<?>> provideSimpleConditionCheckers(
             WifiConditionChecker wifiConditionChecker,
-            TimeConditionChecker timeConditionChecker){
+            TimeConditionChecker timeConditionChecker) {
         Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckers = new HashMap<>();
         simpleConditionCheckers.put(WiFiCondition.class, wifiConditionChecker);
         simpleConditionCheckers.put(TimeCondition.class, timeConditionChecker);
@@ -34,7 +34,7 @@ public class ConditionModule {
 
     @Provides
     @PerApplication
-    ArrayList<Class<? extends Condition>> provideSupportedConditions(){
+    ArrayList<Class<? extends Condition>> provideSupportedConditions() {
         ArrayList<Class<? extends Condition>> supportedConditions = new ArrayList<>();
         supportedConditions.add(TimeCondition.class);
         supportedConditions.add(WiFiCondition.class);

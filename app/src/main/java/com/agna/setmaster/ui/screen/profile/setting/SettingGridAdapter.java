@@ -43,7 +43,7 @@ public class SettingGridAdapter extends RecyclerView.Adapter {
         recyclerView.setLayoutManager(layoutManager);
     }
 
-    public void showSettings(ArrayList<Setting> settings, boolean allowAddSetting){
+    public void showSettings(ArrayList<Setting> settings, boolean allowAddSetting) {
         this.settings = settings;
         this.allowAddsetting = allowAddSetting;
         notifyDataSetChanged();
@@ -110,7 +110,7 @@ public class SettingGridAdapter extends RecyclerView.Adapter {
         void onClick(View container, int position);
     }
 
-    public interface OnSettingClickListener{
+    public interface OnSettingClickListener {
         void onClick(Setting setting, int yCenterPosition);
     }
 

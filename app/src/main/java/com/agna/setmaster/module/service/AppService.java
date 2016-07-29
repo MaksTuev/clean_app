@@ -21,7 +21,7 @@ public class AppService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        ((App)this.getApplicationContext()).getAppComponent().inject(this);
+        ((App) this.getApplicationContext()).getAppComponent().inject(this);
     }
 
     @Override

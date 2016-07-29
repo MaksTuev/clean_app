@@ -42,7 +42,7 @@ public class AddConditionListAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((ConditionHolder)holder).bindCondition(conditions.get(position));
+        ((ConditionHolder) holder).bindCondition(conditions.get(position));
     }
 
     @Override
@@ -55,7 +55,7 @@ public class AddConditionListAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-    public interface OnConditionChosenListener{
+    public interface OnConditionChosenListener {
         void onConditionChosen(Class<? extends Condition> conditionType);
     }
 

@@ -14,7 +14,7 @@ import rx.Observable;
 import timber.log.Timber;
 
 /**
- * TODO create normal storage
+ *
  */
 @PerApplication
 public class ProfileStorage {
@@ -27,9 +27,9 @@ public class ProfileStorage {
 
     public void add(Profile profile) {
         profileDao.saveAsync(new ProfileObj(profile))
-            .subscribe(
-                    profileObj -> {/*nothing*/},
-                    this::handleUnexpectedError);
+                .subscribe(
+                        profileObj -> {/*nothing*/},
+                        this::handleUnexpectedError);
     }
 
     private void handleUnexpectedError(Throwable throwable) {
@@ -58,7 +58,7 @@ public class ProfileStorage {
 
     private ArrayList<Profile> transformProfileObjList(List<ProfileObj> list) {
         ArrayList<Profile> profiles = new ArrayList<>();
-        for(ProfileObj profileObj : list){
+        for (ProfileObj profileObj : list) {
             profiles.add(profileObj.getProfile());
         }
         return profiles;

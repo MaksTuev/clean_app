@@ -114,7 +114,7 @@ public class ProfileActivity extends BaseActivityView {
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.profile_edit_menu) {
                 presenter.editProfile();
-            } else if(item.getItemId() == R.id.profile_delete_menu){
+            } else if (item.getItemId() == R.id.profile_delete_menu) {
                 presenter.deleteProfile();
             }
             return true;
@@ -178,8 +178,6 @@ public class ProfileActivity extends BaseActivityView {
             presenter.deleteCondition(conditionSetId, condition);
         }
     };
-
-
 
 
     public static void start(Activity activity, Profile profile) {

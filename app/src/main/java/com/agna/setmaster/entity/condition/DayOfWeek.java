@@ -46,6 +46,7 @@ public enum DayOfWeek {
     public static final DayOfWeek[] ENUMS = DayOfWeek.values();
 
     //-----------------------------------------------------------------------
+
     /**
      * Obtains an instance of {@code DayOfWeek} from an {@code int} value.
      * <p>
@@ -53,7 +54,7 @@ public enum DayOfWeek {
      * This factory allows the enum to be obtained from the {@code int} value.
      * The {@code int} value follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday).
      *
-     * @param dayOfWeek  the day-of-week to represent, from 1 (Monday) to 7 (Sunday)
+     * @param dayOfWeek the day-of-week to represent, from 1 (Monday) to 7 (Sunday)
      * @return the day-of-week singleton, not null
      * @throws IllegalArgumentException if the day-of-week is invalid
      */

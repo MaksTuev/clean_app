@@ -24,7 +24,7 @@ public class ChangeWifiConditionPresenter extends BasePresenter<ChangeWifiCondit
 
     @Inject
     public ChangeWifiConditionPresenter(DialogManager dialogManager,
-                                        ArrayList<WifiConfiguration> wifiNetworks){
+                                        ArrayList<WifiConfiguration> wifiNetworks) {
 
         this.dialogManager = dialogManager;
         this.wifiNetworks = wifiNetworks;

@@ -35,7 +35,7 @@ public class ConditionSetPagerAdapter extends PagerAdapter {
         };
     }
 
-    public void showConditionSets(ArrayList<ConditionSet> conditionSets){
+    public void showConditionSets(ArrayList<ConditionSet> conditionSets) {
         this.conditionSets = conditionSets;
         notifyDataSetChanged();
     }
@@ -51,7 +51,7 @@ public class ConditionSetPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        ConditionSetView conditionSetView = (ConditionSetView)LayoutInflater
+        ConditionSetView conditionSetView = (ConditionSetView) LayoutInflater
                 .from(container.getContext())
                 .inflate(R.layout.condition_set_view, container, false);
         conditionSetView.showConditionSet(conditionSets.get(position));

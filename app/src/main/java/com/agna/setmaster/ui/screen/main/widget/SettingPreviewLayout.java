@@ -52,25 +52,25 @@ public class SettingPreviewLayout extends LinearLayout {
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             this.addView(settingView, layoutParams);
-            ImageView settingIcon = (ImageView)settingView.findViewById(R.id.icon);
+            ImageView settingIcon = (ImageView) settingView.findViewById(R.id.icon);
             settingIcon.setImageResource(getSettingImage(setting));
         }
     }
 
     @DrawableRes
-        private int getSettingImage(Setting setting) {
+    private int getSettingImage(Setting setting) {
         if (setting instanceof RingSetting) {
             RingSetting ringSetting = (RingSetting) setting;
             return ringSetting.isEnabled()
                     ? R.drawable.ic_setting_ring_on
                     : R.drawable.ic_setting_ring_off;
-        } else if (setting instanceof MediaVolumeSetting){
+        } else if (setting instanceof MediaVolumeSetting) {
             MediaVolumeSetting ringSetting = (MediaVolumeSetting) setting;
             return ringSetting.isEnabled()
                     ? R.drawable.ic_setting_media_volume_on
                     : R.drawable.ic_setting_media_volume_off;
         } else {
-            throw new IllegalArgumentException("Setting "+ setting.getClass().getSimpleName()+ "not supported");
+            throw new IllegalArgumentException("Setting " + setting.getClass().getSimpleName() + "not supported");
         }
 
     }

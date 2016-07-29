@@ -23,13 +23,13 @@ public class RingSettingHolder extends RecyclerView.ViewHolder {
     public RingSettingHolder(View itemView, SettingGridAdapter.OnSettingHolderClickListener listener) {
         super(itemView);
         container = itemView.findViewById(R.id.setting_container);
-        icon = (ImageView)itemView.findViewById(R.id.setting_icon);
-        name = (TextView)itemView.findViewById(R.id.setting_name);
-        value = (SettingGridItemPreviewProgress)itemView.findViewById(R.id.setting_value);
+        icon = (ImageView) itemView.findViewById(R.id.setting_icon);
+        name = (TextView) itemView.findViewById(R.id.setting_name);
+        value = (SettingGridItemPreviewProgress) itemView.findViewById(R.id.setting_value);
         container.setOnClickListener(v -> listener.onClick(v, getAdapterPosition()));
     }
 
-    public void bind(RingSetting setting){
+    public void bind(RingSetting setting) {
         icon.setImageResource(setting.isEnabled()
                 ? R.drawable.ic_setting_ring_on
                 : R.drawable.ic_setting_ring_off);

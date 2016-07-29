@@ -34,7 +34,7 @@ public abstract class BaseFragmentView extends android.support.v4.app.Fragment i
         super.onActivityCreated(savedInstanceState);
         satisfyDependencies();
         initPresenter();
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             getPresenter().onRestore(savedInstanceState);
         }
         new Handler().post(() -> getPresenter().onLoad());
@@ -64,7 +64,7 @@ public abstract class BaseFragmentView extends android.support.v4.app.Fragment i
     }
 
     protected AppComponent getApplicationComponent() {
-        return ((App)getActivity().getApplication()).getAppComponent();
+        return ((App) getActivity().getApplication()).getAppComponent();
     }
 
     @Override
@@ -72,7 +72,7 @@ public abstract class BaseFragmentView extends android.support.v4.app.Fragment i
         getActivity().onBackPressed();
     }
 
-    public BaseActivity getBaseActivity(){
-        return (BaseActivity)getActivity();
+    public BaseActivity getBaseActivity() {
+        return (BaseActivity) getActivity();
     }
 }

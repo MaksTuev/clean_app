@@ -7,7 +7,7 @@ import rx.Observable;
 /**
  *
  */
-public interface  SimpleConditionChecker <C extends Condition> {
+public interface SimpleConditionChecker<C extends Condition> {
 
     void unregister(ConditionWrapper<C> condition);
 

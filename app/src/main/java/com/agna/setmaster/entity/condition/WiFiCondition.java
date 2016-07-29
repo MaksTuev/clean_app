@@ -6,7 +6,7 @@ package com.agna.setmaster.entity.condition;
 public class WiFiCondition extends Condition {
     private String networkName;
 
-    public WiFiCondition(){
+    public WiFiCondition() {
         this("Unspecified");
     }
 
@@ -14,7 +14,7 @@ public class WiFiCondition extends Condition {
         this.networkName = networkName;
     }
 
-    private WiFiCondition(String id, boolean active, String networkName){
+    private WiFiCondition(String id, boolean active, String networkName) {
         super(id, active);
         this.networkName = networkName;
     }

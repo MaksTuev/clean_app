@@ -43,32 +43,32 @@ public class DaysOfWeekView extends LinearLayout {
     private void initView(Context context) {
         inflate(context, R.layout.days_of_week_view_layout, this);
         dayViews.addAll(Arrays.asList(
-                (CheckedTextView)findViewById(R.id.monday),
-                (CheckedTextView)findViewById(R.id.tuesday),
-                (CheckedTextView)findViewById(R.id.wednesday),
-                (CheckedTextView)findViewById(R.id.thursday),
-                (CheckedTextView)findViewById(R.id.friday),
-                (CheckedTextView)findViewById(R.id.saturday),
-                (CheckedTextView)findViewById(R.id.sunday)));
-        for (CheckedTextView view : dayViews){
-            view.setOnClickListener(v ->{
-                CheckedTextView checkedTextView = (CheckedTextView)v;
+                (CheckedTextView) findViewById(R.id.monday),
+                (CheckedTextView) findViewById(R.id.tuesday),
+                (CheckedTextView) findViewById(R.id.wednesday),
+                (CheckedTextView) findViewById(R.id.thursday),
+                (CheckedTextView) findViewById(R.id.friday),
+                (CheckedTextView) findViewById(R.id.saturday),
+                (CheckedTextView) findViewById(R.id.sunday)));
+        for (CheckedTextView view : dayViews) {
+            view.setOnClickListener(v -> {
+                CheckedTextView checkedTextView = (CheckedTextView) v;
                 checkedTextView.setChecked(!checkedTextView.isChecked());
             });
         }
     }
 
-    public void show(List<DayOfWeek> daysOfWeek){
-        for(DayOfWeek day: daysOfWeek){
+    public void show(List<DayOfWeek> daysOfWeek) {
+        for (DayOfWeek day : daysOfWeek) {
             dayViews.get(day.ordinal()).setChecked(true);
         }
     }
 
-    public ArrayList<DayOfWeek> getDays(){
+    public ArrayList<DayOfWeek> getDays() {
         ArrayList<DayOfWeek> result = new ArrayList<>();
-        for (int i = 0; i < dayViews.size(); i++){
+        for (int i = 0; i < dayViews.size(); i++) {
             CheckedTextView v = dayViews.get(i);
-            if(v.isChecked()){
+            if (v.isChecked()) {
                 result.add(DayOfWeek.ENUMS[i]);
             }
         }
@@ -77,10 +77,10 @@ public class DaysOfWeekView extends LinearLayout {
 
 
     public void setAccentColor(int accentColor) {
-        for(CheckedTextView v: dayViews){
+        for (CheckedTextView v : dayViews) {
             int redColor = ContextCompat.getColor(getContext(), R.color.profile_active_bg);
             Drawable drawable;
-            if(accentColor == redColor){
+            if (accentColor == redColor) {
                 drawable = ContextCompat.getDrawable(getContext(), R.drawable.day_of_week_red_bg);
             } else {
                 drawable = ContextCompat.getDrawable(getContext(), R.drawable.day_of_week_blue_bg);

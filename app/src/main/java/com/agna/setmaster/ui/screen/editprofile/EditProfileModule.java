@@ -20,7 +20,7 @@ public class EditProfileModule {
 
     @Provides
     @PerScreen
-    List<Integer> provideIcons(){
+    List<Integer> provideIcons() {
         return Arrays.asList(
                 R.drawable.ic_profile_city,
                 R.drawable.ic_profile_home,

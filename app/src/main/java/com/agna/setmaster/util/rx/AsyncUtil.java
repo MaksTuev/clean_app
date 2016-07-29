@@ -16,7 +16,8 @@ public class AsyncUtil {
 
     public static <T> Observable<T> runIO(Function<T> f) {
         return Async.start(() -> {
-            try {                return f.call();
+            try {
+                return f.call();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

@@ -14,16 +14,16 @@ import dagger.Provides;
         SettingModule.class,
         ProfileModule.class})
 public class AppModule {
-        Context appContext;
+    Context appContext;
 
-        public AppModule(Context appContext) {
-                this.appContext = appContext;
-        }
+    public AppModule(Context appContext) {
+        this.appContext = appContext;
+    }
 
-        @PerApplication
-        @Provides
-        Context provideContext(){
-                return appContext;
-        }
+    @PerApplication
+    @Provides
+    Context provideContext() {
+        return appContext;
+    }
 
 }

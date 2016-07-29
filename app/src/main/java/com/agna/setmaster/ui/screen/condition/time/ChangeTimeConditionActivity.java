@@ -72,10 +72,10 @@ public class ChangeTimeConditionActivity extends ChangeConditionBaseActivityView
         toValue.setOnClickListener(v -> showTimePickerDialog(getDate(toValue), this::onToTimePicked));
     }
 
-    private Date getDate(TextView textView){
+    private Date getDate(TextView textView) {
         try {
             return dateFormat.parse(textView.getText().toString());
-        }catch (ParseException e){
+        } catch (ParseException e) {
             throw new RuntimeException(e);
         }
     }
@@ -101,18 +101,18 @@ public class ChangeTimeConditionActivity extends ChangeConditionBaseActivityView
     @Override
     public void initPresenter() {
         super.initPresenter();
-        TimeCondition condition = (TimeCondition)getIntent().getSerializableExtra(EXTRA_CONDITION);
+        TimeCondition condition = (TimeCondition) getIntent().getSerializableExtra(EXTRA_CONDITION);
         presenter.init(condition);
     }
 
     private void findViews() {
         saveBtn = findViewById(R.id.save_btn);
         declineBtn = findViewById(R.id.decline_btn);
-        name = (TextView)findViewById(R.id.condition_name);
-        fromText = (TextView)findViewById(R.id.time_condition_from_text);
-        fromValue = (TextView)findViewById(R.id.time_condition_from_time);
-        toText = (TextView)findViewById(R.id.time_condition_to_text);
-        toValue = (TextView)findViewById(R.id.time_condition_to_time);
+        name = (TextView) findViewById(R.id.condition_name);
+        fromText = (TextView) findViewById(R.id.time_condition_from_text);
+        fromValue = (TextView) findViewById(R.id.time_condition_from_time);
+        toText = (TextView) findViewById(R.id.time_condition_to_text);
+        toValue = (TextView) findViewById(R.id.time_condition_to_time);
         weekdaysView = (DaysOfWeekView) findViewById(R.id.weekdays);
         headerContainer = findViewById(R.id.condition_header);
     }
@@ -148,7 +148,7 @@ public class ChangeTimeConditionActivity extends ChangeConditionBaseActivityView
         toValue.setText(dateFormat.format(date));
     }
 
-    private Date getDate(int hour, int min){
+    private Date getDate(int hour, int min) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(0);
         calendar.set(Calendar.HOUR_OF_DAY, hour);

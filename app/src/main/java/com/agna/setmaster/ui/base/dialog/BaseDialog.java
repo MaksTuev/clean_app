@@ -35,21 +35,21 @@ public abstract class BaseDialog extends DialogFragment implements HasName {
         show(parentFragment.getFragmentManager());
     }
 
-    protected void show(android.support.v4.app.FragmentManager fragmentManager){
+    protected void show(android.support.v4.app.FragmentManager fragmentManager) {
         show(fragmentManager, this.getClass().getSimpleName());
     }
 
-    protected final <T> T getListener(Class<T> listenerClass){
+    protected final <T> T getListener(Class<T> listenerClass) {
         BasePresenter presenter = null;
-        switch (parentType){
+        switch (parentType) {
             case ACTIVITY:
-                presenter = ((BaseActivityView)getActivity()).getPresenter();
+                presenter = ((BaseActivityView) getActivity()).getPresenter();
                 break;
             case FRAGMENT:
-                presenter = ((BaseFragmentView)getTargetFragment()).getPresenter();
+                presenter = ((BaseFragmentView) getTargetFragment()).getPresenter();
                 break;
         }
-        T listener = (T)presenter;
+        T listener = (T) presenter;
         return listener;
     }
 
@@ -64,8 +64,8 @@ public abstract class BaseDialog extends DialogFragment implements HasName {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LogServerUtil.logViewCreated(this);
-        if(savedInstanceState != null){
-            parentType = (Parent)savedInstanceState.getSerializable(STATE_PARENT_TYPE);
+        if (savedInstanceState != null) {
+            parentType = (Parent) savedInstanceState.getSerializable(STATE_PARENT_TYPE);
         }
     }
 

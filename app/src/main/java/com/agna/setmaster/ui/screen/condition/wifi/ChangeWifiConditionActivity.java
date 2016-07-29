@@ -81,16 +81,16 @@ public class ChangeWifiConditionActivity extends ChangeConditionBaseActivityView
     @Override
     public void initPresenter() {
         super.initPresenter();
-        WiFiCondition condition = (WiFiCondition)getIntent().getSerializableExtra(EXTRA_CONDITION);
+        WiFiCondition condition = (WiFiCondition) getIntent().getSerializableExtra(EXTRA_CONDITION);
         presenter.init(condition);
     }
 
     private void findViews() {
         saveBtn = findViewById(R.id.save_btn);
         declineBtn = findViewById(R.id.decline_btn);
-        name = (TextView)findViewById(R.id.condition_name);
+        name = (TextView) findViewById(R.id.condition_name);
         headerContainer = findViewById(R.id.condition_header);
-        networkList = (RecyclerView)findViewById(R.id.wifi_network_list);
+        networkList = (RecyclerView) findViewById(R.id.wifi_network_list);
     }
 
     public void bind(WiFiCondition condition) {

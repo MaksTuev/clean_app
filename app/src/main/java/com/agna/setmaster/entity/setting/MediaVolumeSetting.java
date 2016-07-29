@@ -22,7 +22,7 @@ public class MediaVolumeSetting extends ValuableSetting {
         return new MediaVolumeSetting(getId(), getValue());
     }
 
-    public boolean isEnabled(){
+    public boolean isEnabled() {
         return getValue() != 0;
     }
 }

@@ -52,7 +52,7 @@ public class WifiNetworkAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         boolean selected = position == selectedIconPosition;
-        ((NetworkHolder)holder).bind(wifiNetworks.get(position), selected);
+        ((NetworkHolder) holder).bind(wifiNetworks.get(position), selected);
     }
 
     @Override
@@ -61,15 +61,15 @@ public class WifiNetworkAdapter extends RecyclerView.Adapter {
     }
 
     public void setSelectedNetwork(String networkName) {
-        for(int i = 0; i<wifiNetworks.size(); i++){
-            if(wifiNetworks.get(i).SSID.equals(networkName)){
+        for (int i = 0; i < wifiNetworks.size(); i++) {
+            if (wifiNetworks.get(i).SSID.equals(networkName)) {
                 this.selectedIconPosition = i;
             }
         }
         notifyDataSetChanged();
     }
 
-    public WifiConfiguration getSelectedNetwork(){
+    public WifiConfiguration getSelectedNetwork() {
         return wifiNetworks.get(selectedIconPosition);
     }
 
@@ -87,7 +87,7 @@ public class WifiNetworkAdapter extends RecyclerView.Adapter {
         public NetworkHolder(View itemView, OnClickListener onClickListener, @ColorInt int colorAccent) {
             super(itemView);
             this.colorAccent = colorAccent;
-            name = (AppCompatRadioButton ) itemView.findViewById(R.id.network_rb);
+            name = (AppCompatRadioButton) itemView.findViewById(R.id.network_rb);
             name.setSupportButtonTintList(ColorStateList.valueOf(colorAccent));
             name.setOnClickListener(v -> {
                 onClickListener.onClick(this);
@@ -108,7 +108,7 @@ public class WifiNetworkAdapter extends RecyclerView.Adapter {
             return new NetworkHolder(v, onClickListener, accentColor);
         }
 
-        interface OnClickListener{
+        interface OnClickListener {
             void onClick(NetworkHolder holder);
         }
 

@@ -14,7 +14,7 @@ import dagger.Provides;
 public class ActivityDialogModule {
     @Provides
     @PerScreen
-    DialogManager provideDialogManager(ActivityDialogManager dialogManager){
+    DialogManager provideDialogManager(ActivityDialogManager dialogManager) {
         return dialogManager;
     }
 }

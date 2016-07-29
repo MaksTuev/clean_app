@@ -9,12 +9,12 @@ import rx.subscriptions.CompositeSubscription;
 
 /**
  * базовый класс для презентера
- *
+ * <p>
  * имеет методы, соответствующие жизненному циклу view
  * при пересоздании View, заново создается и презентер
  *
  * @param <V> тип View
- *           если V не интерфейс, то использование методов View, относящихся к андроид фреймворку запрещено
+ *            если V не интерфейс, то использование методов View, относящихся к андроид фреймворку запрещено
  */
 public class BasePresenter<V> {
 
@@ -22,11 +22,11 @@ public class BasePresenter<V> {
 
     private V view;
 
-    public void attachView(V view){
+    public void attachView(V view) {
         this.view = view;
     }
 
-    protected V getView(){
+    protected V getView() {
         return view;
     }
 
@@ -34,7 +34,7 @@ public class BasePresenter<V> {
     }
 
     public void onDestroy() {
-        if(!compositeSubscription.isUnsubscribed()){
+        if (!compositeSubscription.isUnsubscribed()) {
             compositeSubscription.unsubscribe();
         }
     }
@@ -45,7 +45,7 @@ public class BasePresenter<V> {
     public void onSave(@NonNull Bundle outState) {
     }
 
-    protected void addToSubscriptions(Subscription subscription){
+    protected void addToSubscriptions(Subscription subscription) {
         compositeSubscription.add(subscription);
     }
 

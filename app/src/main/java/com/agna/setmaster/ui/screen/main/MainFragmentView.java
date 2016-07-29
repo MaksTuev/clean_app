@@ -31,7 +31,7 @@ public class MainFragmentView extends BaseFragmentView implements ProfileListIte
     private ProfilesAdapter profilesAdapter;
     private View addProfileBtn;
 
-    public static Fragment newInstance(){
+    public static Fragment newInstance() {
         Fragment fragment = new MainFragmentView();
         return fragment;
     }
@@ -51,21 +51,23 @@ public class MainFragmentView extends BaseFragmentView implements ProfileListIte
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        profilesRecyclerView = (RecyclerView)view.findViewById(R.id.main_profiles_recycler_view);
+        profilesRecyclerView = (RecyclerView) view.findViewById(R.id.main_profiles_recycler_view);
         addProfileBtn = view.findViewById(R.id.main_add_fab);
         initRecyclerView();
         initListeners();
     }
 
     private void initListeners() {
-        addProfileBtn.setOnClickListener(v -> {presenter.createNewProfile();});
+        addProfileBtn.setOnClickListener(v -> {
+            presenter.createNewProfile();
+        });
     }
 
-    public void showProfiles(ArrayList<Profile> profiles){
+    public void showProfiles(ArrayList<Profile> profiles) {
         profilesAdapter.showData(profiles);
     }
 
-    public void updateProfile(int position){
+    public void updateProfile(int position) {
         profilesAdapter.notifyItemChanged(position);
     }
 

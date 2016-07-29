@@ -19,8 +19,8 @@ public class AppServiceInteractor {
         this.context = context;
     }
 
-    public void start(){
-        Intent i  = new Intent(context, AppService.class);
+    public void start() {
+        Intent i = new Intent(context, AppService.class);
         context.startService(i);
     }
 }

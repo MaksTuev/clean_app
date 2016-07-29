@@ -50,7 +50,7 @@ public class ProfileService {
         initListeners();
     }
 
-    public Observable<Void> initialize(){
+    public Observable<Void> initialize() {
         return profileStorage.getAllProfiles()
                 .map(profiles -> initGlobalProfile(profiles))
                 .flatMap(Observable::from)
@@ -59,16 +59,16 @@ public class ProfileService {
                 .flatMap(profiles -> Observable.just(null));
     }
 
-    private  ArrayList<Profile> initGlobalProfile(ArrayList<Profile> profiles) {
+    private ArrayList<Profile> initGlobalProfile(ArrayList<Profile> profiles) {
         Profile globalProfile = null;
-        for(Profile profile : profiles){
-            if(profile.isGlobal()){
+        for (Profile profile : profiles) {
+            if (profile.isGlobal()) {
                 globalProfile = profile;
                 profiles.remove(profile);
                 break;
             }
         }
-        if(globalProfile == null){
+        if (globalProfile == null) {
             globalProfile = defaultProfileCreator.createGlobal();
             profileStorage.add(globalProfile);
         }
@@ -133,8 +133,8 @@ public class ProfileService {
     public ArrayList<Profile> getAllProfiles() {
         synchronized (this) {
             ArrayList<Profile> profiles = CloneUtil.cloneProfiles(this.profiles);
-            for(Profile profile: profiles){
-                if(profile.isGlobal()){
+            for (Profile profile : profiles) {
+                if (profile.isGlobal()) {
                     profiles.remove(profile);
                     break;
                 }
@@ -144,8 +144,8 @@ public class ProfileService {
         }
     }
 
-    private void initProfile(Profile profile){
-        synchronized (this){
+    private void initProfile(Profile profile) {
+        synchronized (this) {
             Profile newProfile = profile.clone();
             profiles.add(newProfile);
             updateConditionRegistrations(null, newProfile);
@@ -193,7 +193,7 @@ public class ProfileService {
     private Profile getProfileOrigin(String id) {
         return StreamSupport.stream(profiles)
                 .filter(profile -> profile.getId().equals(id))
-                .reduce(null, (prev, next)->next);
+                .reduce(null, (prev, next) -> next);
     }
 
     private void initListeners() {

@@ -62,7 +62,7 @@ public class ConditionListAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((ConditionHolder)holder).bind(conditions.get(position));
+        ((ConditionHolder) holder).bind(conditions.get(position));
     }
 
     private OnConditionHolderActionListener onConditionHolderActionListener = new OnConditionHolderActionListener() {
@@ -90,11 +90,13 @@ public class ConditionListAdapter extends RecyclerView.Adapter {
 
     public interface OnConditionHolderActionListener {
         void onClick(View container, int position);
+
         void onDelete(int position);
     }
 
     public interface OnConditionActionListener {
         void onClick(Condition condition);
+
         void onDelete(Condition condition);
     }
 }

@@ -20,7 +20,7 @@ public class AddConditionOrConditionSetDialog extends BaseBottomSheetDialog {
         View addConditionSetBtn = view.findViewById(R.id.add_condition_set);
         View addConditionBtn = view.findViewById(R.id.add_condition);
 
-        addConditionSetBtn.setOnClickListener(v->{
+        addConditionSetBtn.setOnClickListener(v -> {
             getListener(AddConditionOrConditionSetDialogListener.class).onNewConditionSet();
             dismiss();
         });
@@ -53,8 +53,9 @@ public class AddConditionOrConditionSetDialog extends BaseBottomSheetDialog {
         return "AddConditionOrConditionSetDialog";
     }
 
-    public interface AddConditionOrConditionSetDialogListener{
+    public interface AddConditionOrConditionSetDialogListener {
         void onNewConditionSet();
+
         void onNewCondition();
     }
 }

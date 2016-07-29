@@ -20,7 +20,7 @@ public class ChangeWifiConditionModule {
 
     @Provides
     @PerScreen
-    ArrayList<WifiConfiguration> provideWifiNetworks(Context context){
+    ArrayList<WifiConfiguration> provideWifiNetworks(Context context) {
         ArrayList<WifiConfiguration> result = new ArrayList<>();
         WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         List<WifiConfiguration> configurations = wifiManager.getConfiguredNetworks();

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  *
  */
-public class ProfilesAdapter extends RecyclerView.Adapter{
+public class ProfilesAdapter extends RecyclerView.Adapter {
 
     private static final int ITEM_TYPE_PROFILE = 1;
     private static final int ITEM_TYPE_FOOTER = 2;
@@ -29,6 +29,7 @@ public class ProfilesAdapter extends RecyclerView.Adapter{
         initLayoutManager(recyclerView);
         recyclerView.setAdapter(this);
     }
+
     private void initLayoutManager(RecyclerView recyclerView) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(recyclerView.getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -54,9 +55,9 @@ public class ProfilesAdapter extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(holder instanceof ProfileHolder) {
+        if (holder instanceof ProfileHolder) {
             Profile profile = profiles.get(position);
-            ((ProfileHolder)holder).bind(profile);
+            ((ProfileHolder) holder).bind(profile);
         }
     }
 
@@ -77,7 +78,8 @@ public class ProfilesAdapter extends RecyclerView.Adapter{
     public static class ProfileHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         ProfileListItemView profileListItemView;
-        public ProfileHolder(View v,  ProfileListItemView.OnProfileActionListener onProfileActionListener) {
+
+        public ProfileHolder(View v, ProfileListItemView.OnProfileActionListener onProfileActionListener) {
             super(v);
             profileListItemView = (ProfileListItemView) v.findViewById(R.id.profile_list_item_view);
             profileListItemView.setListener(onProfileActionListener);

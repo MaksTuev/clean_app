@@ -17,7 +17,7 @@ public class ActivityModule {
 
     @Provides
     @PerScreen
-    AppCompatActivity provideActivity(){
+    AppCompatActivity provideActivity() {
         return activity;
     }
 }

@@ -32,29 +32,45 @@ import dagger.Component;
 @PerApplication
 public interface AppComponent {
     void inject(TimeBroadcastReceiver obj);
+
     void inject(WifiStatusBroadcastReceiver obj);
+
     void inject(AppService obj);
+
     void inject(DeviceBootReceiver obj);
 
     ComplexConditionChecker conditionChecker();
+
     Map<Class<? extends Condition>, SimpleConditionChecker<?>> simpleConditionCheckers();
+
     TimeConditionChecker timeConditionChecker();
+
     WifiConditionChecker wifiConditionChecker();
+
     ArrayList<Class<? extends Condition>> conditionsTypes();
 
     Map<Class<? extends Setting>, SettingApplier> settingAppliers();
+
     RingSettingApplier ringSettingApplier();
+
     MediaVolumeSettingApplier mediaVolumeSettingApplier();
+
     ArrayList<Class<? extends Setting>> settingsTypes();
+
     SettingManager settingManager();
 
     ProfileService profileService();
+
     DefaultProfileCreator defaultProfileCreator();
+
     ProfileDao profileDao();
+
     InitializeAppInteractor initializeAppInteractor();
 
     DataBaseHelper dataBaseHelper();
+
     AppServiceInteractor appServiceInteractor();
+
     Context appContext();
 
 }

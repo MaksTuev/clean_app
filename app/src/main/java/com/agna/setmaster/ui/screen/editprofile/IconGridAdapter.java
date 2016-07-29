@@ -62,7 +62,7 @@ public class IconGridAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         boolean selected = position == selectedIconPosition;
-        ((IconHolder)holder).bind(icons.get(position), position, selected);
+        ((IconHolder) holder).bind(icons.get(position), position, selected);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class IconGridAdapter extends RecyclerView.Adapter {
             return new IconHolder(v, onClickListener, selectedIconColor);
         }
 
-        interface OnClickListener{
+        interface OnClickListener {
             void onClick(IconHolder holder);
         }
 

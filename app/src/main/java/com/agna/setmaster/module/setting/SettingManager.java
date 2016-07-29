@@ -49,7 +49,7 @@ public class SettingManager {
         }
     }
 
-    public Observable<Profile> observeGlogalProfileChanged(){
+    public Observable<Profile> observeGlogalProfileChanged() {
         return globalProfileChangedSubject;
     }
 
@@ -65,7 +65,7 @@ public class SettingManager {
             Profile appliedProfilesWithSetting = profilesWithSetting.get(0);
             if (appliedProfilesWithSetting.getId().equals(newProfile.getId())) {
                 SettingApplier settingApplier = settingAppliers.get(settingType);
-                if(profilesWithSetting.size() == 1 && !appliedProfilesWithSetting.isGlobal()){
+                if (profilesWithSetting.size() == 1 && !appliedProfilesWithSetting.isGlobal()) {
                     saveOldSettingInGlobalProfile(settingType);
                 }
                 Setting newSetting = newProfile.getSetting(settingType);
@@ -88,7 +88,7 @@ public class SettingManager {
                     Profile newAppliedProfilesWithSetting = profilesWithSetting.get(1);
                     Setting newSetting = newAppliedProfilesWithSetting.getSetting(settingType);
                     settingAppliers.get(settingType).apply(newSetting);
-                    if(newAppliedProfilesWithSetting.isGlobal()){
+                    if (newAppliedProfilesWithSetting.isGlobal()) {
                         clearSettingInGlobalProfile(newAppliedProfilesWithSetting, settingType);
                     }
                 }
@@ -105,16 +105,16 @@ public class SettingManager {
 
     private void saveOldSettingInGlobalProfile(Class<? extends Setting> settingType) {
         Profile globalProfile = getGlobalProfile();
-        if(globalProfile != null) {
+        if (globalProfile != null) {
             Setting currentSetting = settingAppliers.get(settingType).getCurrent();
             globalProfile.addSetting(currentSetting);
             globalProfileChangedSubject.onNext(globalProfile);
         }
     }
 
-    private Profile getGlobalProfile(){
-        for(Profile profile: activeProfiles){
-            if(profile.isGlobal()){
+    private Profile getGlobalProfile() {
+        for (Profile profile : activeProfiles) {
+            if (profile.isGlobal()) {
                 return profile;
             }
         }

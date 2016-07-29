@@ -38,7 +38,7 @@ public class SplashPresenter extends BasePresenter<SplashActivity> {
         Observable.zip(
                 initializeAppInteractor.initialize(),
                 Observable.timer(500, TimeUnit.MILLISECONDS),
-                (o1, o2)->null)
+                (o1, o2) -> null)
                 .subscribe(this::onInitialized);
     }
 

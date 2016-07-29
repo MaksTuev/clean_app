@@ -16,7 +16,7 @@ public class ProfileModule {
 
     @Provides
     @PerApplication
-    ProfileDao provideProfileDao(DataBaseHelper dataBaseHelper){
+    ProfileDao provideProfileDao(DataBaseHelper dataBaseHelper) {
         return dataBaseHelper.safeGetDao(ProfileObj.class);
     }
 }

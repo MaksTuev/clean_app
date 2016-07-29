@@ -45,7 +45,7 @@ public class DayOfWeekUtil {
             if (day.ordinal() - prevDay.ordinal() != 1) {
                 if (prevDay != startRange) {
                     if (prevDay.ordinal() - startRange.ordinal() == 1) {
-                        result += ", " + DayOfWeekUtil.getStringValue(context, prevDay)+", ";
+                        result += ", " + DayOfWeekUtil.getStringValue(context, prevDay) + ", ";
                     } else {
                         result += "-" + DayOfWeekUtil.getStringValue(context, prevDay) + ", ";
                     }

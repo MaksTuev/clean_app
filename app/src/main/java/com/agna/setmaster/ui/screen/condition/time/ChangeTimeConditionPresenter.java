@@ -23,7 +23,7 @@ public class ChangeTimeConditionPresenter extends BasePresenter<ChangeTimeCondit
     private TimeCondition condition;
 
     @Inject
-    public ChangeTimeConditionPresenter(DialogManager dialogManager){
+    public ChangeTimeConditionPresenter(DialogManager dialogManager) {
 
         this.dialogManager = dialogManager;
     }

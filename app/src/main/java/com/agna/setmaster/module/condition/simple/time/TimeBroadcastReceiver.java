@@ -20,7 +20,7 @@ public class TimeBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        ((App)context.getApplicationContext()).getAppComponent().inject(this);
+        ((App) context.getApplicationContext()).getAppComponent().inject(this);
         Timber.v("alarm");
         timeConditionChecker.onAlarmReceived(intent);
     }

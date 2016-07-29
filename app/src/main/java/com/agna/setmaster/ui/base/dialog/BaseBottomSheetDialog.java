@@ -15,7 +15,7 @@ import com.agna.setmaster.app.log.LogServerUtil;
 /**
  *
  */
-public abstract class BaseBottomSheetDialog extends BottomSheetDialogFragment implements HasName{
+public abstract class BaseBottomSheetDialog extends BottomSheetDialogFragment implements HasName {
     private static final String STATE_PARENT_TYPE = "state_parent";
 
     private Parent parentType;
@@ -31,21 +31,21 @@ public abstract class BaseBottomSheetDialog extends BottomSheetDialogFragment im
         show(parentFragment.getFragmentManager());
     }
 
-    protected void show(FragmentManager fragmentManager){
+    protected void show(FragmentManager fragmentManager) {
         show(fragmentManager, this.getClass().getSimpleName());
     }
 
-    protected final <T> T getListener(Class<T> listenerClass){
+    protected final <T> T getListener(Class<T> listenerClass) {
         BasePresenter presenter = null;
-        switch (parentType){
+        switch (parentType) {
             case ACTIVITY:
-                presenter = ((BaseActivityView)getActivity()).getPresenter();
+                presenter = ((BaseActivityView) getActivity()).getPresenter();
                 break;
             case FRAGMENT:
-                presenter = ((BaseFragmentView)getTargetFragment()).getPresenter();
+                presenter = ((BaseFragmentView) getTargetFragment()).getPresenter();
                 break;
         }
-        T listener = (T)presenter;
+        T listener = (T) presenter;
         return listener;
     }
 
@@ -60,8 +60,8 @@ public abstract class BaseBottomSheetDialog extends BottomSheetDialogFragment im
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LogServerUtil.logViewCreated(this);
-        if(savedInstanceState != null){
-            parentType = (Parent)savedInstanceState.getSerializable(STATE_PARENT_TYPE);
+        if (savedInstanceState != null) {
+            parentType = (Parent) savedInstanceState.getSerializable(STATE_PARENT_TYPE);
         }
     }
 

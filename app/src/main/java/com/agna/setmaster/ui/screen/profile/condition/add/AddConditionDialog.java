@@ -35,7 +35,7 @@ public class AddConditionDialog extends BaseBottomSheetDialog {
     }
 
     private void initViews(View view) {
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.condition_list);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.condition_list);
         adapter = new AddConditionListAdapter(recyclerView, this::onConditionChosen);
         adapter.showConditions(conditions);
     }
@@ -43,7 +43,7 @@ public class AddConditionDialog extends BaseBottomSheetDialog {
     @Override
     public void setupDialog(Dialog dialog, int style) {
         super.setupDialog(dialog, style);
-        conditions = (ArrayList<Class<? extends Condition>>)getArguments().getSerializable(EXTRA_CONDITIONS);
+        conditions = (ArrayList<Class<? extends Condition>>) getArguments().getSerializable(EXTRA_CONDITIONS);
         View contentView = View.inflate(getContext(), R.layout.add_condition_dialog, null);
         dialog.setContentView(contentView);
         mBottomSheetBehavior = BottomSheetBehavior.from(((View) contentView.getParent()));
@@ -64,7 +64,7 @@ public class AddConditionDialog extends BaseBottomSheetDialog {
         return "AddConditionDialog";
     }
 
-    public interface AddConditionDialogListener{
+    public interface AddConditionDialogListener {
         void onAddCondition(Class<? extends Condition> conditionType);
     }
 }

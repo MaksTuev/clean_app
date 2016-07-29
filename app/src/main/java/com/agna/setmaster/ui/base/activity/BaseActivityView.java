@@ -18,6 +18,7 @@ public abstract class BaseActivityView extends BaseActivity implements BaseView,
 
 
     private Handler handler = new Handler();
+
     /**
      * в реализации этого метода необходимо удовлетворить зависимости
      */

@@ -26,7 +26,7 @@ public class InitializeAppInteractor {
     }
 
     public Observable<Void> initialize() {
-        if(initialized){
+        if (initialized) {
             return Observable.just(null);
 
         } else {

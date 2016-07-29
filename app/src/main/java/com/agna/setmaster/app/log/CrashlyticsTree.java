@@ -30,7 +30,7 @@ public class CrashlyticsTree extends Timber.Tree {
 
     @Override
     protected void log(int priority, String tag, String message, Throwable throwable) {
-        if(priority < logPriority){
+        if (priority < logPriority) {
             return;
         }
         String logMessage = message;

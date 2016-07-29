@@ -16,7 +16,7 @@ import java8.util.stream.StreamSupport;
 /**
  *
  */
-public class Profile implements Cloneable, Serializable, Comparable<Profile>{
+public class Profile implements Cloneable, Serializable, Comparable<Profile> {
     public static final int PRIORITY_GLOBAL = 0;
     private static final int PRIORITY_DEFAULT = 1;
 
@@ -38,12 +38,12 @@ public class Profile implements Cloneable, Serializable, Comparable<Profile>{
 
 
     private Profile(String id,
-                   String name,
-                   int imageResId,
-                   boolean active,
+                    String name,
+                    int imageResId,
+                    boolean active,
                     int priority,
-                   ArrayList<ConditionSet> conditionSets,
-                   ArrayList<Setting> settings) {
+                    ArrayList<ConditionSet> conditionSets,
+                    ArrayList<Setting> settings) {
         this.id = id;
         this.name = name;
         this.imageResId = imageResId;
@@ -105,24 +105,24 @@ public class Profile implements Cloneable, Serializable, Comparable<Profile>{
         this.settings = settings;
     }
 
-    public <S extends Setting> S getSetting(Class<S> settingClass){
-        return (S)StreamSupport.stream(settings)
+    public <S extends Setting> S getSetting(Class<S> settingClass) {
+        return (S) StreamSupport.stream(settings)
                 .filter(setting -> setting.getClass() == settingClass)
                 .reduce(null, (prev, next) -> next);
     }
 
     public void addSetting(Setting setting) {
         Setting oldSetting = getSetting(setting.getClass());
-        if(oldSetting != null){
+        if (oldSetting != null) {
             settings.remove(oldSetting);
         }
         this.settings.add(setting);
     }
 
     public void updateSetting(Setting updatedSetting) {
-        for(int i = 0; i< settings.size(); i++){
+        for (int i = 0; i < settings.size(); i++) {
             Setting setting = settings.get(i);
-            if(updatedSetting.getId().equals(setting.getId())){
+            if (updatedSetting.getId().equals(setting.getId())) {
                 settings.remove(i);
                 settings.add(i, updatedSetting);
                 break;
@@ -131,9 +131,9 @@ public class Profile implements Cloneable, Serializable, Comparable<Profile>{
     }
 
     public void deleteSetting(Setting deletedSetting) {
-        for(int i = 0; i< settings.size(); i++){
+        for (int i = 0; i < settings.size(); i++) {
             Setting setting = settings.get(i);
-            if(deletedSetting.getId().equals(setting.getId())){
+            if (deletedSetting.getId().equals(setting.getId())) {
                 settings.remove(i);
                 break;
             }
@@ -143,64 +143,64 @@ public class Profile implements Cloneable, Serializable, Comparable<Profile>{
     public ConditionSet getConditionSet(String conditionSetId) {
         return StreamSupport.stream(conditionSets)
                 .filter(conditionSet -> conditionSet.getId().equals(conditionSetId))
-                .reduce(null, (prev, next)->next);
+                .reduce(null, (prev, next) -> next);
     }
 
     @Override
-    public Profile clone(){
+    public Profile clone() {
         return new Profile(id, name, imageResId, active, priority,
                 CloneUtil.cloneConditionSetList(conditionSets),
                 CloneUtil.cloneSettingList(settings));
     }
 
     public void updateCondition(Condition newCondition) {
-        for(ConditionSet conditionSet : conditionSets){
+        for (ConditionSet conditionSet : conditionSets) {
             boolean updated = false;
             List<Condition> conditions = conditionSet.getConditions();
-            for(int i = 0; i<conditions.size(); i++){
+            for (int i = 0; i < conditions.size(); i++) {
                 Condition condition = conditions.get(i);
-                if(condition.getId().equals(newCondition.getId())){
+                if (condition.getId().equals(newCondition.getId())) {
                     conditions.remove(i);
                     conditions.add(i, newCondition);
                     updated = true;
                     break;
                 }
             }
-            if(updated){
+            if (updated) {
                 return;
             }
         }
-        throw new IllegalArgumentException("condition "+ newCondition+ "not exist");
+        throw new IllegalArgumentException("condition " + newCondition + "not exist");
     }
 
     public void deleteConditionSet(ConditionSet conditionSetForDelete) {
-        for(ConditionSet conditionSet : conditionSets){
-            if(conditionSet.getId().equals(conditionSetForDelete.getId())){
+        for (ConditionSet conditionSet : conditionSets) {
+            if (conditionSet.getId().equals(conditionSetForDelete.getId())) {
                 conditionSets.remove(conditionSet);
                 return;
             }
         }
-        throw new IllegalArgumentException("conditionSet "+ conditionSetForDelete+ "not exist");
+        throw new IllegalArgumentException("conditionSet " + conditionSetForDelete + "not exist");
     }
 
     public void clearActiveState() {
         active = false;
-        for(ConditionSet conditionSet : conditionSets){
+        for (ConditionSet conditionSet : conditionSets) {
             conditionSet.setActive(false);
-            for(Condition condition: conditionSet.getConditions()){
+            for (Condition condition : conditionSet.getConditions()) {
                 condition.setActive(false);
             }
         }
     }
 
-    public boolean isGlobal(){
+    public boolean isGlobal() {
         return priority == PRIORITY_GLOBAL;
     }
 
     @Override
     public int compareTo(Profile another) {
         int priorityOrder = getPriority() - another.getPriority();
-        if(priorityOrder != 0){
+        if (priorityOrder != 0) {
             return priorityOrder;
         } else {
             return getName().compareTo(another.getName());

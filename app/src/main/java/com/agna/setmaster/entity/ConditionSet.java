@@ -10,7 +10,7 @@ import java.util.UUID;
 /**
  *
  */
-public class ConditionSet implements Cloneable, Serializable{
+public class ConditionSet implements Cloneable, Serializable {
     private ArrayList<Condition> conditions = new ArrayList<>();
     private boolean active;
     private String id;
@@ -34,7 +34,7 @@ public class ConditionSet implements Cloneable, Serializable{
     }
 
     @Override
-    public ConditionSet clone(){
+    public ConditionSet clone() {
         return new ConditionSet(id, CloneUtil.cloneConditionList(conditions), active);
     }
 
@@ -51,14 +51,14 @@ public class ConditionSet implements Cloneable, Serializable{
     }
 
     public void delete(Condition conditionForDelete) {
-        for(int i = 0; i<conditions.size(); i++){
+        for (int i = 0; i < conditions.size(); i++) {
             Condition condition = conditions.get(i);
-            if(condition.getId().equals(conditionForDelete.getId())){
+            if (condition.getId().equals(conditionForDelete.getId())) {
                 conditions.remove(i);
                 return;
             }
         }
-        throw new IllegalArgumentException("Condition "+conditionForDelete+" not exist");
+        throw new IllegalArgumentException("Condition " + conditionForDelete + " not exist");
     }
 
     public boolean isEmpty() {

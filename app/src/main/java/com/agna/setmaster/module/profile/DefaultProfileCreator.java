@@ -21,7 +21,7 @@ public class DefaultProfileCreator {
         this.appContext = appContext;
     }
 
-    public Profile createGlobal(){
+    public Profile createGlobal() {
         Profile globalProfile = new Profile("Global", R.drawable.ic_profile_world);
         globalProfile.setPriority(Profile.PRIORITY_GLOBAL);
         globalProfile.setActive(true);

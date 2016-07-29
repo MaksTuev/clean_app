@@ -42,7 +42,7 @@ public class SettingListAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((SettingHolder)holder).bindSetting(settings.get(position));
+        ((SettingHolder) holder).bindSetting(settings.get(position));
     }
 
     @Override
@@ -55,7 +55,7 @@ public class SettingListAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-    public interface OnSettingClickListener{
+    public interface OnSettingClickListener {
         void onSettingClick(Class<? extends Setting> settingClass);
     }
 

@@ -23,12 +23,12 @@ public class EditProfilePresenter extends BasePresenter<EditProfileActivity> {
         this.navigator = navigator;
     }
 
-    public void init(Profile profile){
+    public void init(Profile profile) {
         this.profile = profile;
     }
 
     public void saveProfile(String name, int iconRes) {
-        if(profile == null){
+        if (profile == null) {
             profile = new Profile(name, iconRes);
             profileService.addProfile(profile);
         } else {

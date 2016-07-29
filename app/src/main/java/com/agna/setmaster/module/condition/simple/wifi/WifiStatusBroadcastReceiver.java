@@ -23,14 +23,14 @@ public class WifiStatusBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        ((App)context.getApplicationContext()).getAppComponent().inject(this);
-        Timber.d("WifiStatusBroadcastReceiver: "+ intent);
+        ((App) context.getApplicationContext()).getAppComponent().inject(this);
+        Timber.d("WifiStatusBroadcastReceiver: " + intent);
         String action = intent.getAction();
         Log.d("TEMP", action);
-        if(action.equals(WifiManager.NETWORK_STATE_CHANGED_ACTION)){
+        if (action.equals(WifiManager.NETWORK_STATE_CHANGED_ACTION)) {
             NetworkInfo info = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
-            if(info.getType() == ConnectivityManager.TYPE_WIFI){
-                if(info.isConnected()){
+            if (info.getType() == ConnectivityManager.TYPE_WIFI) {
+                if (info.isConnected()) {
                     wifiConditionChecker.onConnected();
                 } else {
                     wifiConditionChecker.onDisconnected();

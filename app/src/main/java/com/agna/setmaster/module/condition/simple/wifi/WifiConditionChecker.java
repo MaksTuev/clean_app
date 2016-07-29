@@ -32,7 +32,7 @@ public class WifiConditionChecker implements SimpleConditionChecker<WiFiConditio
     @Inject
     public WifiConditionChecker(Context appContext) {
         this.appContext = appContext;
-        wifiManager = (WifiManager)appContext.getSystemService(Context.WIFI_SERVICE);
+        wifiManager = (WifiManager) appContext.getSystemService(Context.WIFI_SERVICE);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class WifiConditionChecker implements SimpleConditionChecker<WiFiConditio
     private void checkCondition(ConditionWrapper<WiFiCondition> conditionWrapper) {
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         String ssid = wifiInfo.getSSID();
-        if(conditionWrapper.getCondition().getNetworkName().equals(ssid)){
+        if (conditionWrapper.getCondition().getNetworkName().equals(ssid)) {
             conditionWrapper.getCondition().setActive(true);
             updateListeners(conditionWrapper, true);
         }

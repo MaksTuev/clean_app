@@ -19,7 +19,7 @@ public class ProfileModule {
 
     @Provides
     @PerScreen
-    public Profile provideProfile(){
+    public Profile provideProfile() {
         return profile;
     }
 }

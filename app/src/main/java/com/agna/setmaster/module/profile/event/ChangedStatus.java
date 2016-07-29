@@ -3,7 +3,7 @@ package com.agna.setmaster.module.profile.event;
 /**
  *
  */
-public enum  ChangedStatus {
+public enum ChangedStatus {
     UPDATED,
     DELETED
 }

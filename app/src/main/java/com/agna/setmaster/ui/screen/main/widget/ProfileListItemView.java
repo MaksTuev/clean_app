@@ -54,7 +54,7 @@ public class ProfileListItemView extends RelativeLayout {
         this.setOnClickListener(v -> onProfileActionListener.onProfileClick(profile));
     }
 
-    public void show(Profile profile){
+    public void show(Profile profile) {
         this.profile = profile;
         profileIcon.setImageResource(profile.getImageResId());
         profileActiveIndicator.setVisibility(profile.isActive() ? VISIBLE : GONE);
@@ -63,16 +63,16 @@ public class ProfileListItemView extends RelativeLayout {
         profileSettingPreviewLayout.showSettings(profile.getSettings());
     }
 
-    public void setListener(OnProfileActionListener onProfileActionListener){
+    public void setListener(OnProfileActionListener onProfileActionListener) {
         this.onProfileActionListener = onProfileActionListener;
     }
 
     private void findChildViews(Context context) {
-        profileIcon = (ImageView)findViewById(R.id.profile_icon);
+        profileIcon = (ImageView) findViewById(R.id.profile_icon);
         profileActiveIndicator = findViewById(R.id.profile_active_indicator);
-        profileNameText = (TextView)findViewById(R.id.profile_name_text);
-        profileStatusText = (TextView)findViewById(R.id.profile_status_text);
-        profileSettingPreviewLayout = (SettingPreviewLayout)findViewById(R.id.profile_setting_preview);
+        profileNameText = (TextView) findViewById(R.id.profile_name_text);
+        profileStatusText = (TextView) findViewById(R.id.profile_status_text);
+        profileSettingPreviewLayout = (SettingPreviewLayout) findViewById(R.id.profile_setting_preview);
     }
 
 

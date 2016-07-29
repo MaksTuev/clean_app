@@ -43,12 +43,12 @@ public class ConditionSetView extends FrameLayout {
         this.onConditionActionListener = onConditionActionListener;
     }
 
-    void initView(Context context){
+    void initView(Context context) {
         inflate(context);
         initList();
     }
 
-    public void showConditionSet(ConditionSet conditionSet){
+    public void showConditionSet(ConditionSet conditionSet) {
         this.conditionSet = conditionSet;
         adapter.showConditions(conditionSet.getConditions());
     }
@@ -70,11 +70,12 @@ public class ConditionSetView extends FrameLayout {
 
     private void inflate(Context context) {
         inflate(context, R.layout.condition_set_view_layout, this);
-        conditionList = (RecyclerView)findViewById(R.id.condition_list);
+        conditionList = (RecyclerView) findViewById(R.id.condition_list);
     }
 
-    public interface OnConditionActionListener{
+    public interface OnConditionActionListener {
         void onClick(String conditionSetId, Condition condition);
+
         void onDelete(String conditionSetId, Condition condition);
     }
 }

@@ -18,14 +18,14 @@ public class FragmentModule {
 
     @Provides
     @PerScreen
-    Fragment provideFragment(){
+    Fragment provideFragment() {
         return fragment;
     }
 
     @Provides
     @PerScreen
-    AppCompatActivity provideActivity(){
-        return (AppCompatActivity)fragment.getActivity();
+    AppCompatActivity provideActivity() {
+        return (AppCompatActivity) fragment.getActivity();
     }
 
 }

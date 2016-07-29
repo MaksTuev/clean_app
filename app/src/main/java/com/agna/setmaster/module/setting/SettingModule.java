@@ -25,7 +25,7 @@ public class SettingModule {
     @PerApplication
     Map<Class<? extends Setting>, SettingApplier> provideSettingAppliers(
             RingSettingApplier ringSettingApplier,
-            MediaVolumeSettingApplier mediaVolumeSettingApplier){
+            MediaVolumeSettingApplier mediaVolumeSettingApplier) {
         Map<Class<? extends Setting>, SettingApplier> settingAppliers = new HashMap<>();
         settingAppliers.put(RingSetting.class, ringSettingApplier);
         settingAppliers.put(MediaVolumeSetting.class, mediaVolumeSettingApplier);
@@ -34,7 +34,7 @@ public class SettingModule {
 
     @Provides
     @PerApplication
-    ArrayList<Class<? extends Setting>> provideSettingTypes(){
+    ArrayList<Class<? extends Setting>> provideSettingTypes() {
         ArrayList<Class<? extends Setting>> settingTypes = new ArrayList<>();
         settingTypes.add(RingSetting.class);
         settingTypes.add(MediaVolumeSetting.class);

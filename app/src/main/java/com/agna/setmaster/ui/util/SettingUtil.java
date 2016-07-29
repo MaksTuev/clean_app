@@ -6,8 +6,8 @@ import com.agna.setmaster.entity.setting.Setting;
  *
  */
 public class SettingUtil {
-    public static Setting newInstance(Class<? extends Setting> settingClass){
-        try{
+    public static Setting newInstance(Class<? extends Setting> settingClass) {
+        try {
             return settingClass.newInstance();
         } catch (InstantiationException e) {
             throw new RuntimeException(e);

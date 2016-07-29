@@ -22,7 +22,7 @@ public class RingSetting extends ValuableSetting {
         return new RingSetting(getId(), getValue());
     }
 
-    public boolean isEnabled(){
+    public boolean isEnabled() {
         return getValue() != 0;
     }
 }

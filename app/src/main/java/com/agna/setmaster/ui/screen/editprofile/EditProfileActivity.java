@@ -64,12 +64,12 @@ public class EditProfileActivity extends BaseActivityView {
     @Override
     public void initPresenter() {
         super.initPresenter();
-        Profile profile = (Profile)getIntent().getSerializableExtra(EXTRA_PROFILE);
+        Profile profile = (Profile) getIntent().getSerializableExtra(EXTRA_PROFILE);
         presenter.init(profile);
     }
 
-    public void bindProfile(Profile profile){
-        if(profile!=null){
+    public void bindProfile(Profile profile) {
+        if (profile != null) {
             nameEt.setText(profile.getName());
             iconAdapter.setSelectedIcon(icons.indexOf(profile.getImageResId()));
         } else {
@@ -85,9 +85,9 @@ public class EditProfileActivity extends BaseActivityView {
         contentContainer = findViewById(R.id.edit_profile_content_container);
         backBtn = findViewById(R.id.edit_profile_decline_btn);
         saveBtn = findViewById(R.id.edit_profile_save_btn);
-        nameEt = (EditText)findViewById(R.id.edit_profile_name_et);
-        iconGrid = (RecyclerView)findViewById(R.id.edit_profile_icons_grid);
-        icon = (ImageView)findViewById(R.id.edit_profile_icon);
+        nameEt = (EditText) findViewById(R.id.edit_profile_name_et);
+        iconGrid = (RecyclerView) findViewById(R.id.edit_profile_icons_grid);
+        icon = (ImageView) findViewById(R.id.edit_profile_icon);
         icon.setColorFilter(ContextCompat.getColor(this, R.color.profile_icon_half_transparent), PorterDuff.Mode.DST_IN);
     }
 
