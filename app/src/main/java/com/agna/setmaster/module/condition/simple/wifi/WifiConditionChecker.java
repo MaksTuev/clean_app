@@ -10,14 +10,13 @@ import com.agna.setmaster.entity.condition.WiFiCondition;
 import com.agna.setmaster.module.condition.simple.ConditionStateChangedEvent;
 import com.agna.setmaster.module.condition.simple.ConditionWrapper;
 import com.agna.setmaster.module.condition.simple.SimpleConditionChecker;
-import com.agna.setmaster.util.rx.SimpleOnSubscribe;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.schedulers.Schedulers;
+import rx.subjects.PublishSubject;
 
 /**
  *
@@ -28,7 +27,7 @@ public class WifiConditionChecker implements SimpleConditionChecker<WiFiConditio
     private Context appContext;
     private WifiManager wifiManager;
     private ArrayList<ConditionWrapper<WiFiCondition>> conditions = new ArrayList<>();
-    private SimpleOnSubscribe<ConditionStateChangedEvent> onConditionChangedOnSubscribe = new SimpleOnSubscribe<>();
+    private PublishSubject<ConditionStateChangedEvent> conditionChangedSubject = PublishSubject.create();
 
     @Inject
     public WifiConditionChecker(Context appContext) {
@@ -59,8 +58,7 @@ public class WifiConditionChecker implements SimpleConditionChecker<WiFiConditio
 
     @Override
     public Observable<ConditionStateChangedEvent> observeConditionStateChanged() {
-        return Observable.create(onConditionChangedOnSubscribe)
-                .subscribeOn(Schedulers.io());
+        return conditionChangedSubject;
     }
 
     public void onConnected() {
@@ -99,6 +97,6 @@ public class WifiConditionChecker implements SimpleConditionChecker<WiFiConditio
     private void updateListeners(ConditionWrapper conditionWrapper, boolean active) {
         ConditionStateChangedEvent event = new ConditionStateChangedEvent(
                 conditionWrapper.getProfileId(), conditionWrapper.getCondition().getId(), active);
-        onConditionChangedOnSubscribe.emit(event);
+        conditionChangedSubject.onNext(event);
     }
 }

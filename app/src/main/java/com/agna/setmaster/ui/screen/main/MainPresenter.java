@@ -2,7 +2,6 @@ package com.agna.setmaster.ui.screen.main;
 
 import com.agna.setmaster.entity.Profile;
 import com.agna.setmaster.module.profile.ProfileService;
-import com.agna.setmaster.module.profile.event.ChangedStatus;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.navigation.Navigator;
@@ -39,13 +38,7 @@ public class MainPresenter extends BasePresenter<MainFragmentView> {
     private void observeChanges() {
         profileService.observeProfileChanged()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(event -> {
-                    if (event.getStatus() == ChangedStatus.DELETED) {
-                        showData();
-                    } else {
-                        showData();
-                    }
-                });
+                .subscribe(event -> showData());
     }
 
     private void showData() {

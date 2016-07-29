@@ -3,7 +3,6 @@ package com.agna.setmaster.module.setting;
 import com.agna.setmaster.app.PerApplication;
 import com.agna.setmaster.entity.Profile;
 import com.agna.setmaster.entity.setting.Setting;
-import com.agna.setmaster.module.profile.ProfileService;
 import com.agna.setmaster.module.profile.event.ChangedStatus;
 import com.agna.setmaster.module.profile.event.ProfileChangedEvent;
 import com.agna.setmaster.module.setting.applyer.SettingApplier;
@@ -16,6 +15,8 @@ import javax.inject.Inject;
 
 import java8.util.stream.Collectors;
 import java8.util.stream.StreamSupport;
+import rx.Observable;
+import rx.subjects.PublishSubject;
 
 /**
  *
@@ -24,22 +25,18 @@ import java8.util.stream.StreamSupport;
 public class SettingManager {
     private Map<Class<? extends Setting>, SettingApplier> settingAppliers;
     private List<Class<? extends Setting>> settingTypes;
-    private final ProfileService profileService;
+    private PublishSubject<Profile> globalProfileChangedSubject = PublishSubject.create();
 
     private List<Profile> activeProfiles = new ArrayList<>();
 
     @Inject
     public SettingManager(Map<Class<? extends Setting>, SettingApplier> settingAppliers,
-                          ArrayList<Class<? extends Setting>> settingTypes,
-                          ProfileService profileService) {
+                          ArrayList<Class<? extends Setting>> settingTypes) {
         this.settingAppliers = settingAppliers;
         this.settingTypes = settingTypes;
-        this.profileService = profileService;
-        profileService.observeProfileChanged()
-                .subscribe(this::onProfileChanged);
     }
 
-    private void onProfileChanged(ProfileChangedEvent event) {
+    public void onProfileChanged(ProfileChangedEvent event) {
         synchronized (this) {
             Profile newProfile = event.getProfile();
             Profile oldProfile = getProfile(newProfile.getId());
@@ -50,6 +47,10 @@ public class SettingManager {
                 enableProfile(newProfile);
             }
         }
+    }
+
+    public Observable<Profile> observeGlogalProfileChanged(){
+        return globalProfileChangedSubject;
     }
 
     private void enableProfile(Profile newProfile) {
@@ -99,7 +100,7 @@ public class SettingManager {
     private void clearSettingInGlobalProfile(Profile globalProfile, Class<? extends Setting> settingType) {
         Setting setting = globalProfile.getSetting(settingType);
         globalProfile.deleteSetting(setting);
-        profileService.updateGlobalProfile(globalProfile);
+        globalProfileChangedSubject.onNext(globalProfile);
     }
 
     private void saveOldSettingInGlobalProfile(Class<? extends Setting> settingType) {
@@ -107,7 +108,7 @@ public class SettingManager {
         if(globalProfile != null) {
             Setting currentSetting = settingAppliers.get(settingType).getCurrent();
             globalProfile.addSetting(currentSetting);
-            profileService.updateGlobalProfile(globalProfile);
+            globalProfileChangedSubject.onNext(globalProfile);
         }
     }
 

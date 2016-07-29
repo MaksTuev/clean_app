@@ -10,9 +10,9 @@ import com.agna.setmaster.module.condition.ComplexConditionChecker;
 import com.agna.setmaster.module.condition.simple.ConditionStateChangedEvent;
 import com.agna.setmaster.module.profile.event.ChangedStatus;
 import com.agna.setmaster.module.profile.event.ProfileChangedEvent;
+import com.agna.setmaster.module.setting.SettingManager;
 import com.agna.setmaster.module.storage.ProfileStorage;
 import com.agna.setmaster.util.CloneUtil;
-import com.agna.setmaster.util.rx.SimpleOnSubscribe;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +21,7 @@ import javax.inject.Inject;
 
 import java8.util.stream.StreamSupport;
 import rx.Observable;
-import rx.schedulers.Schedulers;
+import rx.subjects.PublishSubject;
 
 /**
  *
@@ -32,18 +32,21 @@ public class ProfileService {
     private ComplexConditionChecker complexConditionChecker;
     private ProfileStorage profileStorage;
     private DefaultProfileCreator defaultProfileCreator;
+    private SettingManager settingManager;
 
     private ArrayList<Profile> profiles = new ArrayList<>();
 
-    private SimpleOnSubscribe<ProfileChangedEvent> profileChangedOnSubscribe = new SimpleOnSubscribe<>();;
+    private PublishSubject<ProfileChangedEvent> profileChangedSubject = PublishSubject.create();
 
     @Inject
     public ProfileService(ComplexConditionChecker complexConditionChecker,
                           ProfileStorage profileStorage,
-                          DefaultProfileCreator defaultProfileCreator) {
+                          DefaultProfileCreator defaultProfileCreator,
+                          SettingManager settingManager) {
         this.complexConditionChecker = complexConditionChecker;
         this.profileStorage = profileStorage;
         this.defaultProfileCreator = defaultProfileCreator;
+        this.settingManager = settingManager;
         initListeners();
     }
 
@@ -76,8 +79,7 @@ public class ProfileService {
     }
 
     public Observable<ProfileChangedEvent> observeProfileChanged() {
-        return Observable.create(profileChangedOnSubscribe)
-                .subscribeOn(Schedulers.io());
+        return profileChangedSubject;
     }
 
     public void updateProfile(Profile profile) {
@@ -92,9 +94,8 @@ public class ProfileService {
         }
     }
 
-    public void updateGlobalProfile(Profile globalProfile) {
+    public void onGlobalProfileChanged(Profile globalProfile) {
         synchronized (this) {
-            assert globalProfile.isGlobal();
             Profile newProfile = globalProfile.clone();
             Profile oldProfile = getProfileOrigin(newProfile.getId());
             profiles.remove(oldProfile);
@@ -183,7 +184,9 @@ public class ProfileService {
     }
 
     private void notifyOnProfileChangedListeners(Profile profile, ChangedStatus status) {
-        profileChangedOnSubscribe.emit(new ProfileChangedEvent(profile.clone(), status));
+        ProfileChangedEvent profileChangedEvent = new ProfileChangedEvent(profile.clone(), status);
+        settingManager.onProfileChanged(profileChangedEvent);
+        profileChangedSubject.onNext(profileChangedEvent);
     }
 
     @Nullable
@@ -196,6 +199,8 @@ public class ProfileService {
     private void initListeners() {
         complexConditionChecker.observeConditionStateChanged()
                 .subscribe(this::onConditionStateChanged);
+        settingManager.observeGlogalProfileChanged()
+                .subscribe(this::onGlobalProfileChanged);
     }
 
 }

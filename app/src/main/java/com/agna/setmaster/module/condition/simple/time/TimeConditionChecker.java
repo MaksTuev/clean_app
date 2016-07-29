@@ -12,7 +12,6 @@ import com.agna.setmaster.module.condition.simple.ConditionStateChangedEvent;
 import com.agna.setmaster.module.condition.simple.ConditionWrapper;
 import com.agna.setmaster.module.condition.simple.SimpleConditionChecker;
 import com.agna.setmaster.util.TimeUtil;
-import com.agna.setmaster.util.rx.SimpleOnSubscribe;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -21,7 +20,7 @@ import java.util.Date;
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.schedulers.Schedulers;
+import rx.subjects.PublishSubject;
 import timber.log.Timber;
 
 /**
@@ -39,7 +38,7 @@ public class TimeConditionChecker implements SimpleConditionChecker<TimeConditio
 
     private Context appContext;
     private AlarmManager alarmManager;
-    private SimpleOnSubscribe<ConditionStateChangedEvent> onConditionChangedOnSubscribe = new SimpleOnSubscribe<>();
+    private PublishSubject<ConditionStateChangedEvent> conditionChangedSubject = PublishSubject.create();
 
     @Inject
     public TimeConditionChecker(Context appContext) {
@@ -60,7 +59,7 @@ public class TimeConditionChecker implements SimpleConditionChecker<TimeConditio
 
         ConditionStateChangedEvent event = new ConditionStateChangedEvent(
                 conditionWrapper.getProfileId(), conditionWrapper.getCondition().getId(), false);
-        onConditionChangedOnSubscribe.emit(event);
+        conditionChangedSubject.onNext(event);
     }
 
     @Override
@@ -69,11 +68,11 @@ public class TimeConditionChecker implements SimpleConditionChecker<TimeConditio
 
         PendingIntent fromIntent = createIntent(conditionWrapper, true);
         alarmManager.set(AlarmManager.RTC_WAKEUP, getFirstTimeAlarm(conditionWrapper.getCondition().getFrom()), fromIntent);
-       /* alarmManager.setRepeating(
+        alarmManager.setRepeating(
                 AlarmManager.RTC_WAKEUP,
                 getFirstTimeAlarm(conditionWrapper.getCondition().getFrom()),
                 AlarmManager.INTERVAL_DAY,
-                fromIntent);*/
+                fromIntent);
 
         PendingIntent toIntent = createIntent(conditionWrapper, false);
         alarmManager.setRepeating(
@@ -99,7 +98,7 @@ public class TimeConditionChecker implements SimpleConditionChecker<TimeConditio
         if(conditionWrapper.getCondition().getDays().contains(currentDay)) {
             ConditionStateChangedEvent event = new ConditionStateChangedEvent(
                     conditionWrapper.getProfileId(), conditionWrapper.getCondition().getId(), active);
-            onConditionChangedOnSubscribe.emit(event);
+            conditionChangedSubject.onNext(event);
         }
     }
 
@@ -136,8 +135,7 @@ public class TimeConditionChecker implements SimpleConditionChecker<TimeConditio
 
     @Override
     public Observable<ConditionStateChangedEvent> observeConditionStateChanged() {
-        return Observable.create(onConditionChangedOnSubscribe)
-                .subscribeOn(Schedulers.io());
+        return conditionChangedSubject;
     }
 
     public void onAlarmReceived(Intent intent) {
@@ -148,7 +146,7 @@ public class TimeConditionChecker implements SimpleConditionChecker<TimeConditio
         DayOfWeek currentDay = TimeUtil.getCurrentDayOfWeek();
         if(days.contains(currentDay)){
             ConditionStateChangedEvent event = new ConditionStateChangedEvent(profileId, conditionId, active);
-            onConditionChangedOnSubscribe.emit(event);
+            conditionChangedSubject.onNext(event);
         }
 
     }
