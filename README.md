@@ -49,7 +49,7 @@ Next example demonstrate how organize classes in Interactor layer's module.
 
 For exmple you need create module for obtaining books from server or from cache. Then package for this module can look like this:
 - **book** - is root module package, it contains BookRepository class, Dagger module and next subpackges:
-  - **network** - contains api interface for retrofit and subpackages:
+  - **network** - contains interface BookApi for retrofit which contains only part of server's api and subpackages:
     - **response** - contains responce objects
     - **request** - contains request objects
   - **cache** - contains all classes, which is nessasry for book's cache, e.g. BookDao
