@@ -7,7 +7,7 @@ In project used:
 - Simple MVP (how implement advanced MVP see [Ferro library](https://github.com/MaksTuev/ferro))
 - [Dagger2](http://google.github.io/dagger/) 
 - [RxJava](http://reactivex.io/)
-- Useful package structure
+- Useful packages structure
 
 ##Arhcitecture
 The architecture is a simplified version of  [CleanArchitecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html).
@@ -19,8 +19,8 @@ The application divided into 4 layers:
 - **View** - is responsible for interaction with the user
 In most cases, each layer must depends on only previous layer and Domain layer. 
 
-##Package structure
-Package sructure is hybrid of package-by-layer and package-by-feature styles.
+##Packages structure
+Packages sructure is hybrid of package-by-layer and package-by-feature styles.
 
 Root package contains five subpackages
 - **app** - contains the application class and other classes which is corresponding context of all applications (such as dagger application-level component)
