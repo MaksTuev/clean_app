@@ -16,6 +16,7 @@
 package com.agna.setmaster.ui.screen.splash;
 
 import com.agna.setmaster.interactor.initialize.InitializeAppInteractor;
+import com.agna.setmaster.interactor.scheduler.SchedulersProvider;
 import com.agna.setmaster.interactor.service.AppServiceInteractor;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.PerScreen;
@@ -36,14 +37,17 @@ public class SplashPresenter extends BasePresenter<SplashActivity> {
     private InitializeAppInteractor initializeAppInteractor;
     private AppServiceInteractor appServiceInteractor;
     private Navigator navigator;
+    private final SchedulersProvider schedulersProvider;
 
     @Inject
     public SplashPresenter(InitializeAppInteractor initializeAppInteractor,
                            AppServiceInteractor appServiceInteractor,
-                           Navigator navigator) {
+                           Navigator navigator,
+                           SchedulersProvider schedulersProvider) {
         this.initializeAppInteractor = initializeAppInteractor;
         this.appServiceInteractor = appServiceInteractor;
         this.navigator = navigator;
+        this.schedulersProvider = schedulersProvider;
     }
 
     @Override
@@ -54,6 +58,7 @@ public class SplashPresenter extends BasePresenter<SplashActivity> {
                 initializeAppInteractor.initialize(),
                 Observable.timer(500, TimeUnit.MILLISECONDS),
                 (o1, o2) -> null)
+                .observeOn(schedulersProvider.main())
                 .subscribe(this::onInitialized);
     }
 
