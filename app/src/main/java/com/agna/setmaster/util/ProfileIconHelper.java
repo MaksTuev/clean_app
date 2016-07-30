@@ -58,6 +58,6 @@ public class ProfileIconHelper {
     }
 
     public static int getGlobalProfileIconId() {
-        return icons.get(0);
+        return 0;
     }
 }
