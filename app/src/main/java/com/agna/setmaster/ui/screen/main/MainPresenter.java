@@ -17,7 +17,7 @@ package com.agna.setmaster.ui.screen.main;
 
 import com.agna.setmaster.domain.Profile;
 import com.agna.setmaster.interactor.profile.ProfileService;
-import com.agna.setmaster.interactor.scheduler.SchedulersProvider;
+import com.agna.setmaster.app.scheduler.SchedulersProvider;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.common.navigation.Navigator;

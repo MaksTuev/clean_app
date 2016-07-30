@@ -28,7 +28,7 @@ import com.agna.setmaster.interactor.condition.simple.wifi.WifiConditionChecker;
 import com.agna.setmaster.interactor.condition.simple.wifi.WifiStatusBroadcastReceiver;
 import com.agna.setmaster.interactor.profile.DefaultProfileCreator;
 import com.agna.setmaster.interactor.profile.ProfileService;
-import com.agna.setmaster.interactor.scheduler.SchedulersProvider;
+import com.agna.setmaster.app.scheduler.SchedulersProvider;
 import com.agna.setmaster.interactor.service.AppService;
 import com.agna.setmaster.interactor.service.AppServiceInteractor;
 import com.agna.setmaster.interactor.service.DeviceBootReceiver;

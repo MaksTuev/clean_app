@@ -16,7 +16,7 @@
 package com.agna.setmaster.ui.screen.splash;
 
 import com.agna.setmaster.interactor.initialize.InitializeAppInteractor;
-import com.agna.setmaster.interactor.scheduler.SchedulersProvider;
+import com.agna.setmaster.app.scheduler.SchedulersProvider;
 import com.agna.setmaster.interactor.service.AppServiceInteractor;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.PerScreen;

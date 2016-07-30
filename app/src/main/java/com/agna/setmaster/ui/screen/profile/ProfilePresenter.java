@@ -24,7 +24,7 @@ import com.agna.setmaster.domain.setting.Setting;
 import com.agna.setmaster.interactor.profile.ProfileService;
 import com.agna.setmaster.interactor.profile.event.ChangedStatus;
 import com.agna.setmaster.interactor.profile.event.ProfileChangedEvent;
-import com.agna.setmaster.interactor.scheduler.SchedulersProvider;
+import com.agna.setmaster.app.scheduler.SchedulersProvider;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.base.dialog.DialogManager;

@@ -1,4 +1,4 @@
-package com.agna.setmaster.interactor.scheduler;
+package com.agna.setmaster.app.scheduler;
 
 import com.agna.setmaster.app.dagger.PerApplication;
 

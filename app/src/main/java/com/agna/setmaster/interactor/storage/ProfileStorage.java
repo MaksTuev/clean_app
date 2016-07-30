@@ -17,7 +17,7 @@ package com.agna.setmaster.interactor.storage;
 
 import com.agna.setmaster.app.dagger.PerApplication;
 import com.agna.setmaster.domain.Profile;
-import com.agna.setmaster.interactor.scheduler.SchedulersProvider;
+import com.agna.setmaster.app.scheduler.SchedulersProvider;
 import com.agna.setmaster.interactor.storage.db.dao.ProfileDao;
 import com.agna.setmaster.interactor.storage.db.entity.ProfileObj;
 
