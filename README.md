@@ -2,6 +2,7 @@
 Example of real app with CleanArchitecture
 
 This project demonstrate how create real app with well architecture
+
 In project used:
 - [CleanArchitecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) (simplifyed for Android)
 - Simple MVP (how implement advanced MVP see [Ferro library](https://github.com/MaksTuev/ferro))
