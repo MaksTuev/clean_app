@@ -21,8 +21,8 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.ConditionSet;
-import com.agna.setmaster.entity.condition.Condition;
+import com.agna.setmaster.domain.ConditionSet;
+import com.agna.setmaster.domain.condition.Condition;
 
 /**
  *

@@ -25,7 +25,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.setting.Setting;
+import com.agna.setmaster.domain.setting.Setting;
 import com.agna.setmaster.ui.base.dialog.BaseDialog;
 
 import java.util.ArrayList;

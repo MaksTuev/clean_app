@@ -15,7 +15,7 @@
  */
 package com.agna.setmaster.ui.screen.profile.condition.holder;
 
-import com.agna.setmaster.entity.condition.Condition;
+import com.agna.setmaster.domain.condition.Condition;
 
 /**
  *

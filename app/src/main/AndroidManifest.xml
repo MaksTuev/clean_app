@@ -58,18 +58,18 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"/>
 
-        <service android:name="com.agna.setmaster.module.service.AppService"/>
+        <service android:name="com.agna.setmaster.interactor.service.AppService"/>
 
-        <receiver android:name="com.agna.setmaster.module.condition.simple.time.TimeBroadcastReceiver"/>
+        <receiver android:name="com.agna.setmaster.interactor.condition.simple.time.TimeBroadcastReceiver"/>
 
-        <receiver android:name="com.agna.setmaster.module.condition.simple.wifi.WifiStatusBroadcastReceiver">
+        <receiver android:name="com.agna.setmaster.interactor.condition.simple.wifi.WifiStatusBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.net.wifi.STATE_CHANGE" />
             </intent-filter>
         </receiver>
 
         <receiver
-            android:name="com.agna.setmaster.module.service.DeviceBootReceiver" >
+            android:name="com.agna.setmaster.interactor.service.DeviceBootReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

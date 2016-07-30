@@ -15,8 +15,8 @@
  */
 package com.agna.setmaster.ui.screen.editprofile;
 
-import com.agna.setmaster.entity.Profile;
-import com.agna.setmaster.module.profile.ProfileService;
+import com.agna.setmaster.domain.Profile;
+import com.agna.setmaster.interactor.profile.ProfileService;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.common.navigation.Navigator;

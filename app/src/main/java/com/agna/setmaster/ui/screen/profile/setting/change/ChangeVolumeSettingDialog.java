@@ -34,7 +34,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.setting.ValuableSetting;
+import com.agna.setmaster.domain.setting.ValuableSetting;
 import com.agna.setmaster.ui.base.dialog.BaseDialog;
 import com.agna.setmaster.ui.util.SettingViewUtil;
 

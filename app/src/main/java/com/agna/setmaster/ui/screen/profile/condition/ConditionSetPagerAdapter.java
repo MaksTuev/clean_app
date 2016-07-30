@@ -21,8 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.ConditionSet;
-import com.agna.setmaster.entity.condition.Condition;
+import com.agna.setmaster.domain.ConditionSet;
+import com.agna.setmaster.domain.condition.Condition;
 
 import java.util.ArrayList;
 

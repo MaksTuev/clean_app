@@ -25,7 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.condition.Condition;
+import com.agna.setmaster.domain.condition.Condition;
 import com.agna.setmaster.ui.util.ConditionViewUtil;
 
 import java.util.ArrayList;

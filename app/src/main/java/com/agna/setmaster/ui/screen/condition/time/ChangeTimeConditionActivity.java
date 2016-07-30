@@ -22,8 +22,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.Profile;
-import com.agna.setmaster.entity.condition.TimeCondition;
+import com.agna.setmaster.domain.Profile;
+import com.agna.setmaster.domain.condition.TimeCondition;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.activity.ActivityModule;
 import com.agna.setmaster.ui.screen.condition.ChangeConditionBaseActivityView;

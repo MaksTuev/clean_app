@@ -16,9 +16,9 @@
 package com.agna.setmaster.ui.util;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.condition.Condition;
-import com.agna.setmaster.entity.condition.TimeCondition;
-import com.agna.setmaster.entity.condition.WiFiCondition;
+import com.agna.setmaster.domain.condition.Condition;
+import com.agna.setmaster.domain.condition.TimeCondition;
+import com.agna.setmaster.domain.condition.WiFiCondition;
 
 /**
  *

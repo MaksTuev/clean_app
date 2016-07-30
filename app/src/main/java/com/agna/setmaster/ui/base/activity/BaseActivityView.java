@@ -23,13 +23,12 @@ import android.support.annotation.LayoutRes;
 
 import com.agna.setmaster.ui.base.BaseView;
 import com.agna.setmaster.ui.base.HasName;
-import com.agna.setmaster.ui.base.HasPresenter;
-import com.agna.setmaster.app.log.LogServerUtil;
+import com.agna.setmaster.app.log.RemoteLogger;
 
 /**
  * базовый класс для вью, основанной на Activity
  */
-public abstract class BaseActivityView extends BaseActivity implements BaseView, HasPresenter, HasName {
+public abstract class BaseActivityView extends BaseActivity implements BaseView, HasName {
 
 
     private Handler handler = new Handler();
@@ -45,7 +44,7 @@ public abstract class BaseActivityView extends BaseActivity implements BaseView,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LogServerUtil.logViewCreated(this);
+        RemoteLogger.logViewCreated(this);
         setContentView(getContentView());
         satisfyDependencies();
         initPresenter();
@@ -76,7 +75,7 @@ public abstract class BaseActivityView extends BaseActivity implements BaseView,
     protected void onDestroy() {
         super.onDestroy();
         getPresenter().onDestroy();
-        LogServerUtil.logViewDestroyed(this);
+        RemoteLogger.logViewDestroyed(this);
     }
 
     @Override

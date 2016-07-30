@@ -27,7 +27,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.Profile;
+import com.agna.setmaster.domain.Profile;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.activity.ActivityModule;
 import com.agna.setmaster.ui.base.activity.BaseActivityView;

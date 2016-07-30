@@ -15,7 +15,7 @@
  */
 package com.agna.setmaster.ui.util;
 
-import com.agna.setmaster.entity.setting.Setting;
+import com.agna.setmaster.domain.setting.Setting;
 
 /**
  *

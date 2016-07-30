@@ -17,13 +17,14 @@ package com.agna.setmaster.ui.screen.profile;
 
 import android.content.Intent;
 
-import com.agna.setmaster.entity.ConditionSet;
-import com.agna.setmaster.entity.Profile;
-import com.agna.setmaster.entity.condition.Condition;
-import com.agna.setmaster.entity.setting.Setting;
-import com.agna.setmaster.module.profile.ProfileService;
-import com.agna.setmaster.module.profile.event.ChangedStatus;
-import com.agna.setmaster.module.profile.event.ProfileChangedEvent;
+import com.agna.setmaster.domain.ConditionSet;
+import com.agna.setmaster.domain.Profile;
+import com.agna.setmaster.domain.condition.Condition;
+import com.agna.setmaster.domain.setting.Setting;
+import com.agna.setmaster.interactor.profile.ProfileService;
+import com.agna.setmaster.interactor.profile.event.ChangedStatus;
+import com.agna.setmaster.interactor.profile.event.ProfileChangedEvent;
+import com.agna.setmaster.interactor.scheduler.SchedulersProvider;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.base.dialog.DialogManager;
@@ -42,7 +43,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
 
 /**
  *
@@ -57,6 +57,7 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
     private ProfileService profileService;
     private Navigator navigator;
     private DialogManager dialogManager;
+    private final SchedulersProvider schedulersProvider;
     private ArrayList<Class<? extends Setting>> supportedSettings;
     private SettingChangeDialogCreator settingChangeDialogCreator;
     private ArrayList<Class<? extends Condition>> supportedConditions;
@@ -68,12 +69,14 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
                             ProfileService profileService,
                             Navigator navigator,
                             DialogManager dialogManager,
+                            SchedulersProvider schedulersProvider,
                             ArrayList<Class<? extends Setting>> supportedSettings,
                             SettingChangeDialogCreator settingChangeDialogCreator,
                             ArrayList<Class<? extends Condition>> supportedConditions) {
         this.profileService = profileService;
         this.navigator = navigator;
         this.dialogManager = dialogManager;
+        this.schedulersProvider = schedulersProvider;
         this.supportedSettings = supportedSettings;
         this.settingChangeDialogCreator = settingChangeDialogCreator;
         this.supportedConditions = supportedConditions;
@@ -104,7 +107,7 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
     private void initListeners() {
         Subscription onProfileChangedSubscription = profileService.observeProfileChanged()
                 .filter(event -> event.getProfile().getId().equals(profile.getId()))
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(schedulersProvider.main())
                 .subscribe(this::onProfileChanged);
         addToSubscriptions(onProfileChangedSubscription);
     }

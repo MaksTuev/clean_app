@@ -15,7 +15,7 @@
  */
 package com.agna.setmaster.ui.screen.profile.setting.change;
 
-import com.agna.setmaster.entity.setting.Setting;
+import com.agna.setmaster.domain.setting.Setting;
 
 /**
  *

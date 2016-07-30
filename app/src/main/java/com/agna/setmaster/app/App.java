@@ -17,9 +17,12 @@ package com.agna.setmaster.app;
 
 import android.app.Application;
 
-import com.crashlytics.android.Crashlytics;
 import com.agna.setmaster.BuildConfig;
+import com.agna.setmaster.app.dagger.AppComponent;
+import com.agna.setmaster.app.dagger.AppModule;
+import com.agna.setmaster.app.dagger.DaggerAppComponent;
 import com.agna.setmaster.app.log.CrashlyticsTree;
+import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;

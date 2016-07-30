@@ -19,7 +19,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.wifi.WifiConfiguration;
 
-import com.agna.setmaster.entity.condition.WiFiCondition;
+import com.agna.setmaster.domain.condition.WiFiCondition;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.base.dialog.DialogManager;

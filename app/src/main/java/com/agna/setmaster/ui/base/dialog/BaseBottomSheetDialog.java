@@ -25,7 +25,7 @@ import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.HasName;
 import com.agna.setmaster.ui.base.activity.BaseActivityView;
 import com.agna.setmaster.ui.base.fragment.BaseFragmentView;
-import com.agna.setmaster.app.log.LogServerUtil;
+import com.agna.setmaster.app.log.RemoteLogger;
 
 /**
  *
@@ -74,7 +74,7 @@ public abstract class BaseBottomSheetDialog extends BottomSheetDialogFragment im
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LogServerUtil.logViewCreated(this);
+        RemoteLogger.logViewCreated(this);
         if (savedInstanceState != null) {
             parentType = (Parent) savedInstanceState.getSerializable(STATE_PARENT_TYPE);
         }
@@ -83,7 +83,7 @@ public abstract class BaseBottomSheetDialog extends BottomSheetDialogFragment im
     @Override
     public void onDestroy() {
         super.onDestroy();
-        LogServerUtil.logViewDestroyed(this);
+        RemoteLogger.logViewDestroyed(this);
     }
 
     public enum Parent {

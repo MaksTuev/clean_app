@@ -19,7 +19,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.agna.setmaster.app.App;
-import com.agna.setmaster.app.AppComponent;
+import com.agna.setmaster.app.dagger.AppComponent;
 
 
 /**

@@ -20,9 +20,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.agna.setmaster.entity.condition.Condition;
-import com.agna.setmaster.entity.condition.TimeCondition;
-import com.agna.setmaster.entity.condition.WiFiCondition;
+import com.agna.setmaster.domain.condition.Condition;
+import com.agna.setmaster.domain.condition.TimeCondition;
+import com.agna.setmaster.domain.condition.WiFiCondition;
 import com.agna.setmaster.ui.screen.profile.condition.holder.ConditionHolder;
 import com.agna.setmaster.ui.screen.profile.condition.holder.TimeConditionHolder;
 import com.agna.setmaster.ui.screen.profile.condition.holder.WiFiConditionHolder;

@@ -25,9 +25,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.setting.MediaVolumeSetting;
-import com.agna.setmaster.entity.setting.RingSetting;
-import com.agna.setmaster.entity.setting.Setting;
+import com.agna.setmaster.domain.setting.MediaVolumeSetting;
+import com.agna.setmaster.domain.setting.RingSetting;
+import com.agna.setmaster.domain.setting.Setting;
 
 import java.util.ArrayList;
 

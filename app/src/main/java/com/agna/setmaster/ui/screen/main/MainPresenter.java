@@ -15,8 +15,9 @@
  */
 package com.agna.setmaster.ui.screen.main;
 
-import com.agna.setmaster.entity.Profile;
-import com.agna.setmaster.module.profile.ProfileService;
+import com.agna.setmaster.domain.Profile;
+import com.agna.setmaster.interactor.profile.ProfileService;
+import com.agna.setmaster.interactor.scheduler.SchedulersProvider;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.common.navigation.Navigator;
@@ -24,8 +25,6 @@ import com.agna.setmaster.ui.common.navigation.Navigator;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
-
-import rx.android.schedulers.AndroidSchedulers;
 
 /**
  *
@@ -35,12 +34,16 @@ public class MainPresenter extends BasePresenter<MainFragmentView> {
 
     private ProfileService profileService;
     private Navigator navigator;
+    private SchedulersProvider schedulersProvider;
     private ArrayList<Profile> profiles = new ArrayList<>();
 
     @Inject
-    public MainPresenter(ProfileService profileService, Navigator navigator) {
+    public MainPresenter(ProfileService profileService,
+                         Navigator navigator,
+                         SchedulersProvider schedulersProvider) {
         this.profileService = profileService;
         this.navigator = navigator;
+        this.schedulersProvider = schedulersProvider;
     }
 
     @Override
@@ -52,7 +55,7 @@ public class MainPresenter extends BasePresenter<MainFragmentView> {
 
     private void observeChanges() {
         profileService.observeProfileChanged()
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(schedulersProvider.main())
                 .subscribe(event -> showData());
     }
 

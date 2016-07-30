@@ -24,7 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.Profile;
+import com.agna.setmaster.domain.Profile;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.fragment.BaseFragmentView;
 import com.agna.setmaster.ui.base.fragment.FragmentModule;

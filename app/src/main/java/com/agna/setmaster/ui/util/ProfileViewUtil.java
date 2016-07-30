@@ -19,7 +19,7 @@ import android.content.Context;
 import android.support.v4.content.ContextCompat;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.Profile;
+import com.agna.setmaster.domain.Profile;
 
 public class ProfileViewUtil {
     public static int getProfileStatusText(Profile profile) {

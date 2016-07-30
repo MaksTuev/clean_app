@@ -19,5 +19,9 @@ package com.agna.setmaster.ui.base;
  *
  */
 public interface BaseView {
+    BasePresenter getPresenter();
+
+    void initPresenter();
+
     void goBack();
 }

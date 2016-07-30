@@ -23,7 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.setting.MediaVolumeSetting;
+import com.agna.setmaster.domain.setting.MediaVolumeSetting;
 import com.agna.setmaster.ui.screen.profile.setting.SettingGridAdapter;
 
 /**

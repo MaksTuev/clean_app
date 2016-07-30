@@ -18,7 +18,7 @@ package com.agna.setmaster.ui.util;
 import android.content.Context;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.condition.DayOfWeek;
+import com.agna.setmaster.domain.condition.DayOfWeek;
 
 import java.util.ArrayList;
 

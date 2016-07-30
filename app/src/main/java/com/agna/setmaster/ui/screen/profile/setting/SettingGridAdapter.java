@@ -20,9 +20,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.agna.setmaster.entity.setting.MediaVolumeSetting;
-import com.agna.setmaster.entity.setting.RingSetting;
-import com.agna.setmaster.entity.setting.Setting;
+import com.agna.setmaster.domain.setting.MediaVolumeSetting;
+import com.agna.setmaster.domain.setting.RingSetting;
+import com.agna.setmaster.domain.setting.Setting;
 import com.agna.setmaster.ui.screen.profile.setting.holder.AddSettingViewHolder;
 import com.agna.setmaster.ui.screen.profile.setting.holder.MediaVolumeSettingHolder;
 import com.agna.setmaster.ui.screen.profile.setting.holder.RingSettingHolder;

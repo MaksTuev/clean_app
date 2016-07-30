@@ -23,7 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.Profile;
+import com.agna.setmaster.domain.Profile;
 import com.agna.setmaster.util.ProfileIconHelper;
 import com.agna.setmaster.ui.util.ProfileViewUtil;
 

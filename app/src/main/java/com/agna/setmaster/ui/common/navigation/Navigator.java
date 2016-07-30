@@ -17,10 +17,10 @@ package com.agna.setmaster.ui.common.navigation;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.agna.setmaster.entity.Profile;
-import com.agna.setmaster.entity.condition.Condition;
-import com.agna.setmaster.entity.condition.TimeCondition;
-import com.agna.setmaster.entity.condition.WiFiCondition;
+import com.agna.setmaster.domain.Profile;
+import com.agna.setmaster.domain.condition.Condition;
+import com.agna.setmaster.domain.condition.TimeCondition;
+import com.agna.setmaster.domain.condition.WiFiCondition;
 import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.screen.condition.time.ChangeTimeConditionActivity;
 import com.agna.setmaster.ui.screen.condition.wifi.ChangeWifiConditionActivity;

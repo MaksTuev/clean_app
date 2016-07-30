@@ -23,7 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.condition.WiFiCondition;
+import com.agna.setmaster.domain.condition.WiFiCondition;
 import com.agna.setmaster.ui.screen.profile.condition.ConditionListAdapter;
 import com.agna.setmaster.ui.util.ConditionViewUtil;
 

@@ -23,7 +23,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.condition.Condition;
+import com.agna.setmaster.domain.condition.Condition;
 import com.agna.setmaster.ui.base.dialog.BaseBottomSheetDialog;
 
 import java.util.ArrayList;

@@ -15,7 +15,7 @@
  */
 package com.agna.setmaster.ui.screen.profile;
 
-import com.agna.setmaster.entity.Profile;
+import com.agna.setmaster.domain.Profile;
 import com.agna.setmaster.ui.base.PerScreen;
 
 import dagger.Module;

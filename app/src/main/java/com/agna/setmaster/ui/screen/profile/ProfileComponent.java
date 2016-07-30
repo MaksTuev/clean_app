@@ -15,7 +15,7 @@
  */
 package com.agna.setmaster.ui.screen.profile;
 
-import com.agna.setmaster.app.AppComponent;
+import com.agna.setmaster.app.dagger.AppComponent;
 import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.base.activity.ActivityModule;
 import com.agna.setmaster.ui.base.dialog.module.ActivityDialogModule;

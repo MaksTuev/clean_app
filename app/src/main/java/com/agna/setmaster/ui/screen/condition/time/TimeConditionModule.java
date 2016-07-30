@@ -15,7 +15,7 @@
  */
 package com.agna.setmaster.ui.screen.condition.time;
 
-import com.agna.setmaster.entity.condition.TimeCondition;
+import com.agna.setmaster.domain.condition.TimeCondition;
 import com.agna.setmaster.ui.base.PerScreen;
 
 import dagger.Module;

@@ -21,17 +21,16 @@ import android.support.annotation.CallSuper;
 import android.view.View;
 
 import com.agna.setmaster.app.App;
-import com.agna.setmaster.app.AppComponent;
+import com.agna.setmaster.app.dagger.AppComponent;
 import com.agna.setmaster.ui.base.BaseView;
 import com.agna.setmaster.ui.base.HasName;
-import com.agna.setmaster.ui.base.HasPresenter;
 import com.agna.setmaster.ui.base.activity.BaseActivity;
-import com.agna.setmaster.app.log.LogServerUtil;
+import com.agna.setmaster.app.log.RemoteLogger;
 
 /**
  * базовый класс для вью, основанной на Fragment
  */
-public abstract class BaseFragmentView extends android.support.v4.app.Fragment implements BaseView, HasPresenter, HasName {
+public abstract class BaseFragmentView extends android.support.v4.app.Fragment implements BaseView, HasName {
 
     /**
      * в реализации этого метода необходимо удовлетворить зависимости
@@ -41,7 +40,7 @@ public abstract class BaseFragmentView extends android.support.v4.app.Fragment i
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LogServerUtil.logViewCreated(this);
+        RemoteLogger.logViewCreated(this);
     }
 
     @Override
@@ -75,7 +74,7 @@ public abstract class BaseFragmentView extends android.support.v4.app.Fragment i
     public void onDestroy() {
         super.onDestroy();
         getPresenter().onDestroy();
-        LogServerUtil.logViewDestroyed(this);
+        RemoteLogger.logViewDestroyed(this);
     }
 
     protected AppComponent getApplicationComponent() {

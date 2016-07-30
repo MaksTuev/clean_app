@@ -15,7 +15,7 @@
  */
 package com.agna.setmaster.util;
 
-import com.agna.setmaster.entity.condition.DayOfWeek;
+import com.agna.setmaster.domain.condition.DayOfWeek;
 
 import java.util.Calendar;
 

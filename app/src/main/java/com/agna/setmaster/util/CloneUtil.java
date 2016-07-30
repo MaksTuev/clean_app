@@ -15,10 +15,10 @@
  */
 package com.agna.setmaster.util;
 
-import com.agna.setmaster.entity.ConditionSet;
-import com.agna.setmaster.entity.Profile;
-import com.agna.setmaster.entity.condition.Condition;
-import com.agna.setmaster.entity.setting.Setting;
+import com.agna.setmaster.domain.ConditionSet;
+import com.agna.setmaster.domain.Profile;
+import com.agna.setmaster.domain.condition.Condition;
+import com.agna.setmaster.domain.setting.Setting;
 
 import java.util.ArrayList;
 import java.util.List;

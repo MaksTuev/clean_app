@@ -24,7 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.entity.setting.Setting;
+import com.agna.setmaster.domain.setting.Setting;
 import com.agna.setmaster.ui.util.SettingViewUtil;
 
 import java.util.ArrayList;

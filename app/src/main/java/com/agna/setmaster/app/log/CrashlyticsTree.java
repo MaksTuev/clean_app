@@ -56,7 +56,7 @@ public class CrashlyticsTree extends Timber.Tree {
             logMessage = logMessage + "\n" + throwable.getMessage() + '\n' + Log.getStackTraceString(throwable);
         }
         try {
-            LogServerUtil.logMessage(logMessage);
+            RemoteLogger.logMessage(logMessage);
         } catch (Exception e) {
             e("error  " + e.getMessage() + " when send message: " + logMessage + "... with priority: " + priority);
         }
