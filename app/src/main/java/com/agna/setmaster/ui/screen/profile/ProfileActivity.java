@@ -73,7 +73,7 @@ public class ProfileActivity extends BaseActivityView {
         DaggerProfileComponent.builder()
                 .appComponent(getApplicationComponent())
                 .activityModule(new ActivityModule(this))
-                .profileModule(new ProfileModule(profile))
+                .profileScreenModule(new ProfileScreenModule(profile))
                 .build()
                 .inject(this);
     }

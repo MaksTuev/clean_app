@@ -25,10 +25,10 @@ import dagger.Provides;
  *
  */
 @Module
-public class ProfileModule {
+public class ProfileScreenModule {
     private Profile profile;
 
-    public ProfileModule(Profile profile) {
+    public ProfileScreenModule(Profile profile) {
         this.profile = profile;
     }
 

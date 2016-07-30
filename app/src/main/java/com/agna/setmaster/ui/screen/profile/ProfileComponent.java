@@ -27,7 +27,7 @@ import dagger.Component;
  */
 @Component(dependencies = AppComponent.class, modules = {
         ActivityModule.class,
-        ProfileModule.class,
+        ProfileScreenModule.class,
         ActivityDialogModule.class})
 @PerScreen
 public interface ProfileComponent {

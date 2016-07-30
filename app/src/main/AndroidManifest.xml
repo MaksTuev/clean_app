@@ -21,7 +21,6 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.agna.setmaster.ui.screen.splash.SplashActivity"
-            android:label="Splash"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

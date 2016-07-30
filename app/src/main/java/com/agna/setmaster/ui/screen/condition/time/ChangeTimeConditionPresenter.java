@@ -21,6 +21,7 @@ import android.content.Intent;
 import com.agna.setmaster.entity.condition.DayOfWeek;
 import com.agna.setmaster.entity.condition.TimeCondition;
 import com.agna.setmaster.ui.base.BasePresenter;
+import com.agna.setmaster.ui.base.PerScreen;
 import com.agna.setmaster.ui.base.dialog.DialogManager;
 import com.agna.setmaster.ui.screen.condition.ChangeConditionBaseActivityView;
 
@@ -32,6 +33,7 @@ import javax.inject.Inject;
 /**
  *
  */
+@PerScreen
 public class ChangeTimeConditionPresenter extends BasePresenter<ChangeTimeConditionActivity> {
 
     private DialogManager dialogManager;
