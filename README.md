@@ -16,7 +16,7 @@ If you are not familiar with Dagger and MVP, I recommend first get acquainted wi
 This application can automatically change device settings when specified conditions is fulfilled and return previous settings when conditions ceases to be fulfilled
 
 
-##Arhcitecture
+##Architecture
 The architecture is a simplified version of  [CleanArchitecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html).
 
 The application divided into 4 layers:
