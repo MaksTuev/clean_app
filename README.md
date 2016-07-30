@@ -1,7 +1,6 @@
 # CleanApp
-Example of real app with CleanArchitecture
 
-This project demonstrate how create real app with well architecture
+This project demonstrates how to make complex Android application with good architecture
 
 In project is used:
 - [CleanArchitecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) (simplifyed for Android)
@@ -9,6 +8,8 @@ In project is used:
 - [Dagger2](http://google.github.io/dagger/) 
 - [RxJava](http://reactivex.io/)
 - Сonvenient Structure Packages 
+
+If you are not familiar with Dagger and MVP, I recommend first get acquainted with the less complex projects [link1] (https://github.com/grandstaish/hello-mvp-dagger-2) [link2](https://github.com/JorgeCastilloPrz/EasyMVP) [link3](http://antonioleiva.com/mvp-android/) 
 
 ![SchematicImage](setmaster.gif)
 
@@ -25,6 +26,8 @@ The application divided into 4 layers:
 - **View** - is responsible for interaction with the user
 
 In most cases, each layer must depends on only previous layer and Domain layer. 
+
+In this project interfaces for Interactor and View layers is not used, but if they need for tests or you want to create absolutely clean architecture, you can extract interfaces in AndroidStudio in two clicks.
 
 ##Structure Packages 
 Structure packages is hybrid of package-by-layer and package-by-feature styles. It have a special significance as far as defining the basic architecture and determines the way of thinking of developer.
