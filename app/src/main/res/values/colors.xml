@@ -9,4 +9,6 @@
     <color name="light_gray">#aaaaaa</color>
     <color name="gray">#424242</color>
     <color name="background">#2f353d</color>
+    <color name="status_bar_active" >#c03648</color>
+    <color name="status_bar_inactive">#3a4581</color>
 </resources>

@@ -15,6 +15,7 @@
  */
 package com.agna.setmaster.ui.screen.editprofile;
 
+import android.graphics.PorterDuff;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.v7.widget.GridLayoutManager;
@@ -67,11 +68,6 @@ public class IconGridAdapter extends RecyclerView.Adapter {
         return IconHolder.newInstance(parent, this::onItemClick, selectedIconColor);
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return position;
-    }
-
     private void onItemClick(IconHolder holder) {
         selectedIconPosition = holder.getItemPosition();
         onItemSelectedListener.onItemSelected(selectedIconPosition);
@@ -119,12 +115,13 @@ public class IconGridAdapter extends RecyclerView.Adapter {
         }
 
         private void setSelected(boolean selected) {
+            int iconColor = selected
+                    ? selectedIconColor
+                    : 0xFFFFFF;
+            icon.getDrawable().setColorFilter(iconColor, PorterDuff.Mode.SRC_ATOP);
             icon.setBackgroundResource(selected
                     ? R.drawable.small_white_card
                     : R.drawable.transparent);
-            icon.setColorFilter(selected
-                    ? selectedIconColor
-                    : 0XFFFFFFFF);
         }
 
         public static IconHolder newInstance(ViewGroup parent, OnClickListener onClickListener, int selectedIconColor) {

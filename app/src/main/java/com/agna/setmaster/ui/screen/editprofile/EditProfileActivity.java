@@ -32,6 +32,7 @@ import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.activity.ActivityModule;
 import com.agna.setmaster.ui.base.activity.BaseActivityView;
 import com.agna.setmaster.ui.util.ProfileViewUtil;
+import com.agna.setmaster.ui.util.StatusBarUtil;
 import com.agna.setmaster.util.ProfileIconHelper;
 
 import javax.inject.Inject;
@@ -86,7 +87,7 @@ public class EditProfileActivity extends BaseActivityView {
         } else {
             handler.post(() -> iconAdapter.setSelectedIcon(0));
         }
-
+        StatusBarUtil.changeColor(this, profile != null && profile.isActive());
         iconAdapter.setSelectedIconColor(ProfileViewUtil.getProfileAccentColor(this, profile));
         contentContainer.setBackgroundColor(ProfileViewUtil.getProfileAccentColor(this, profile));
 

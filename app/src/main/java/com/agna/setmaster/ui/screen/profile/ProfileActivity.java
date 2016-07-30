@@ -39,6 +39,7 @@ import com.agna.setmaster.ui.screen.profile.condition.ConditionSetPagerAdapter;
 import com.agna.setmaster.ui.screen.profile.condition.ConditionSetView;
 import com.agna.setmaster.ui.screen.profile.setting.SettingGridAdapter;
 import com.agna.setmaster.ui.util.ProfileViewUtil;
+import com.agna.setmaster.ui.util.StatusBarUtil;
 import com.agna.setmaster.util.ProfileIconHelper;
 
 import javax.inject.Inject;
@@ -160,13 +161,8 @@ public class ProfileActivity extends BaseActivityView {
         addConditionFab = findViewById(R.id.profile_add_fab);
     }
 
-    @Override
-    public void initPresenter() {
-        super.initPresenter();
-
-    }
-
     public void bindProfile(Profile profile) {
+        StatusBarUtil.changeColor(this, profile.isActive());
         name.setText(profile.getName());
         status.setText(ProfileViewUtil.getProfileStatusText(profile));
         settingGridAdapter.showSettings(profile.getSettings(), presenter.allowAddSetting());
