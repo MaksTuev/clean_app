@@ -40,7 +40,7 @@ Root package contains five subpackages
 - **interactor** - corresponds to Interactor layer. Every module of this layer is placed inside appropriate subpackage. This package can also contains 'common' subpackage with classes, which are used by several modules 
 - **ui** - corresponds to Presenter and View layers. It contains four subpackages: 
   - **base** - contains base classes for View, Presenter, Dialog etc.
-  - **screen** - each screen placed inside corresponding subpackges. This subpackage can contains View, Presenter, Dagger screen component, Dagger screen module, Adapters, ViewHolders, custom android.Views etc. If some of this classes is logically coupled, they should be placed inside appropriate subpackage. If some of screens is logically coupled, they should be placed inside appropriate subpackage inside screen package.
+  - **screen** - each screen placed inside corresponding subpackges. This subpackage can contains View, Presenter, Dagger screen component, Dagger screen module, Adapters, ViewHolders, custom android.Views etc. If some of this classes is logically coupled, they should be placed inside appropriate subpackage. If some of screens is logically coupled, they should be placed inside appropriate subpackage inside 'screen' package.
   - **common** - contains classes, which are used by several screens.
   - **util** - contains util classes, which are used only inside Presenter/View layers.
 - **util** - util classes, which are used throughout the application.
