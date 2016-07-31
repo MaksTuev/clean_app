@@ -16,9 +16,9 @@
 package com.agna.setmaster.interactor.profile;
 
 import com.agna.setmaster.app.dagger.PerApplication;
-import com.agna.setmaster.interactor.storage.db.DataBaseHelper;
-import com.agna.setmaster.interactor.storage.db.dao.ProfileDao;
-import com.agna.setmaster.interactor.storage.db.entity.ProfileObj;
+import com.agna.setmaster.interactor.profile.storage.db.DataBaseHelper;
+import com.agna.setmaster.interactor.profile.storage.db.dao.ProfileDao;
+import com.agna.setmaster.interactor.profile.storage.db.entity.ProfileObj;
 
 import dagger.Module;
 import dagger.Provides;

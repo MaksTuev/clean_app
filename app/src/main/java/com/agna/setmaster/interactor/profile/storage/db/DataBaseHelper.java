@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.agna.setmaster.interactor.storage.db;
+package com.agna.setmaster.interactor.profile.storage.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.agna.setmaster.app.dagger.PerApplication;
-import com.agna.setmaster.interactor.storage.db.entity.ProfileObj;
+import com.agna.setmaster.interactor.profile.storage.db.entity.ProfileObj;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.misc.TransactionManager;

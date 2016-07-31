@@ -36,8 +36,8 @@ import com.agna.setmaster.interactor.setting.SettingManager;
 import com.agna.setmaster.interactor.setting.applyer.MediaVolumeSettingApplier;
 import com.agna.setmaster.interactor.setting.applyer.RingSettingApplier;
 import com.agna.setmaster.interactor.setting.applyer.SettingApplier;
-import com.agna.setmaster.interactor.storage.db.DataBaseHelper;
-import com.agna.setmaster.interactor.storage.db.dao.ProfileDao;
+import com.agna.setmaster.interactor.profile.storage.db.DataBaseHelper;
+import com.agna.setmaster.interactor.profile.storage.db.dao.ProfileDao;
 
 import java.util.ArrayList;
 import java.util.Map;

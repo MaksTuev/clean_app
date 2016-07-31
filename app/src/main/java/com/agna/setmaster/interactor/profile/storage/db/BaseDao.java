@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.agna.setmaster.interactor.storage.db;
+package com.agna.setmaster.interactor.profile.storage.db;
 
 import com.agna.setmaster.app.log.RemoteLogger;
 import com.j256.ormlite.dao.BaseDaoImpl;

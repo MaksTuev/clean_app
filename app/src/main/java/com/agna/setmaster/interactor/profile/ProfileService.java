@@ -26,7 +26,7 @@ import com.agna.setmaster.interactor.condition.simple.ConditionStateChangedEvent
 import com.agna.setmaster.interactor.profile.event.ChangedStatus;
 import com.agna.setmaster.interactor.profile.event.ProfileChangedEvent;
 import com.agna.setmaster.interactor.setting.SettingManager;
-import com.agna.setmaster.interactor.storage.ProfileStorage;
+import com.agna.setmaster.interactor.profile.storage.ProfileStorage;
 import com.agna.setmaster.util.CloneUtil;
 
 import java.util.ArrayList;

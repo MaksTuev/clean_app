@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.agna.setmaster.interactor.storage;
+package com.agna.setmaster.interactor.profile.storage;
 
 import com.agna.setmaster.app.dagger.PerApplication;
 import com.agna.setmaster.domain.Profile;
 import com.agna.setmaster.app.scheduler.SchedulersProvider;
-import com.agna.setmaster.interactor.storage.db.dao.ProfileDao;
-import com.agna.setmaster.interactor.storage.db.entity.ProfileObj;
+import com.agna.setmaster.interactor.profile.storage.db.dao.ProfileDao;
+import com.agna.setmaster.interactor.profile.storage.db.entity.ProfileObj;
 
 import java.util.ArrayList;
 import java.util.List;

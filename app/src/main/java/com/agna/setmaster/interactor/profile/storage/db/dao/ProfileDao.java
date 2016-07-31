@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.agna.setmaster.interactor.storage.db.dao;
+package com.agna.setmaster.interactor.profile.storage.db.dao;
 
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.DatabaseTableConfig;
-import com.agna.setmaster.interactor.storage.db.BaseDao;
-import com.agna.setmaster.interactor.storage.db.entity.ProfileObj;
+import com.agna.setmaster.interactor.profile.storage.db.BaseDao;
+import com.agna.setmaster.interactor.profile.storage.db.entity.ProfileObj;
 
 import java.sql.SQLException;
 

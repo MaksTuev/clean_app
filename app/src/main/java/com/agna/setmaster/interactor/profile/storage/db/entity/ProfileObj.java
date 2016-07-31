@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.agna.setmaster.interactor.storage.db.entity;
+package com.agna.setmaster.interactor.profile.storage.db.entity;
 
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import com.agna.setmaster.domain.Profile;
-import com.agna.setmaster.interactor.storage.db.dao.ProfileDao;
+import com.agna.setmaster.interactor.profile.storage.db.dao.ProfileDao;
 
 /**
  * TODO Maks Tuev create flexible storage
