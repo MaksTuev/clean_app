@@ -30,7 +30,7 @@ In most cases, each layer must depends on only previous layer and Domain layer.
 In this project interfaces for Interactor and View layers is not used, but if they need for tests or you want to create absolutely clean architecture, you can extract interfaces in AndroidStudio in two clicks.
 
 ##Structure Packages 
-Structure packages is hybrid of package-by-layer and package-by-feature styles. It have a special significance as far as defining the basic architecture and determines the way of thinking of developer.
+Structure packages is hybrid of package-by-layer and package-by-feature styles. It have a special significance because it defines the basic architecture and the way of thinking of developer.
 
 
 
