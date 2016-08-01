@@ -32,6 +32,8 @@ In this project interfaces for Interactor and View layers is not used, but if th
 ##Structure Packages 
 Structure packages is hybrid of package-by-layer and package-by-feature styles. It have a special significance because it defines the basic architecture and the way of thinking of developer.
 
+The main purpose of this structure packages is divide application code on most independent parts.
+
 
 
 Root package contains five subpackages
