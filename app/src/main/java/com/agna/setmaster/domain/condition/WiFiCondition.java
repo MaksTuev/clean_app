@@ -16,7 +16,7 @@
 package com.agna.setmaster.domain.condition;
 
 /**
- *
+ * Wifi Condition entity
  */
 public class WiFiCondition extends Condition {
     private String networkName;

@@ -16,7 +16,7 @@
 package com.agna.setmaster.domain.setting;
 
 /**
- *
+ * MediaVolume setting entity
  */
 public class MediaVolumeSetting extends ValuableSetting {
 

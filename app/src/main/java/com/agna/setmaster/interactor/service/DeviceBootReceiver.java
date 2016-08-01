@@ -24,7 +24,7 @@ import com.agna.setmaster.app.App;
 import javax.inject.Inject;
 
 /**
- *
+ * Responsible for start {@link AppService} when the device is switched on
  */
 public class DeviceBootReceiver extends BroadcastReceiver {
     @Inject

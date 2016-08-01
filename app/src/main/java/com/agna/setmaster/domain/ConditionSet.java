@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- *
+ * Set of conditions
  */
 public class ConditionSet implements Cloneable, Serializable {
     private ArrayList<Condition> conditions = new ArrayList<>();

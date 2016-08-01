@@ -35,7 +35,7 @@ import rx.Observable;
 import timber.log.Timber;
 
 /**
- *
+ * Responsible for checking conditions
  */
 @PerApplication
 public class ComplexConditionChecker {

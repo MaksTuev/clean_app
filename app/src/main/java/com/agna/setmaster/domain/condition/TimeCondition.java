@@ -15,13 +15,15 @@
  */
 package com.agna.setmaster.domain.condition;
 
+import com.agna.setmaster.domain.DayOfWeek;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
 /**
- *
+ * Time Condition entity
  */
 public class TimeCondition extends Condition {
     private Date from;

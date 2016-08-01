@@ -18,7 +18,7 @@ package com.agna.setmaster.ui.screen.condition.time;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.agna.setmaster.domain.condition.DayOfWeek;
+import com.agna.setmaster.domain.DayOfWeek;
 import com.agna.setmaster.domain.condition.TimeCondition;
 import com.agna.setmaster.ui.base.BasePresenter;
 import com.agna.setmaster.ui.base.PerScreen;

@@ -18,7 +18,7 @@ package com.agna.setmaster.interactor.setting.applyer;
 import com.agna.setmaster.domain.setting.Setting;
 
 /**
- *
+ * Responsible for applying setting
  */
 public interface SettingApplier<S extends Setting> {
     void apply(S setting);

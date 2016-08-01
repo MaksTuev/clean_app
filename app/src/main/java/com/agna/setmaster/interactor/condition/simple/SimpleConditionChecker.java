@@ -20,7 +20,7 @@ import com.agna.setmaster.domain.condition.Condition;
 import rx.Observable;
 
 /**
- *
+ * Responsible for checking condition
  */
 public interface SimpleConditionChecker<C extends Condition> {
 

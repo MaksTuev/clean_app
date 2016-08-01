@@ -39,7 +39,7 @@ import rx.Observable;
 import rx.subjects.PublishSubject;
 
 /**
- *
+ * manage profiles
  */
 @PerApplication
 public class ProfileService {
@@ -71,26 +71,7 @@ public class ProfileService {
                 .flatMap(Observable::from)
                 .doOnNext(this::initProfile)
                 .toList()
-                .flatMap(profiles -> Observable.just(null));
-    }
-
-    private ArrayList<Profile> initGlobalProfile(ArrayList<Profile> profiles) {
-        Profile globalProfile = null;
-        for (Profile profile : profiles) {
-            if (profile.isGlobal()) {
-                globalProfile = profile;
-                profiles.remove(profile);
-                break;
-            }
-        }
-        if (globalProfile == null) {
-            globalProfile = defaultProfileCreator.createGlobal();
-            profileStorage.add(globalProfile);
-        }
-        globalProfile.setActive(true);
-        this.profiles.add(globalProfile);
-        notifyOnProfileChangedListeners(globalProfile, ChangedStatus.UPDATED);
-        return profiles;
+                .map(list -> null);
     }
 
     public Observable<ProfileChangedEvent> observeProfileChanged() {
@@ -106,16 +87,6 @@ public class ProfileService {
             profileStorage.update(newProfile);
             updateConditionRegistrations(oldProfile, newProfile);
             notifyOnProfileChangedListeners(newProfile, ChangedStatus.UPDATED);
-        }
-    }
-
-    public void onGlobalProfileChanged(Profile globalProfile) {
-        synchronized (this) {
-            Profile newProfile = globalProfile.clone();
-            Profile oldProfile = getProfileOrigin(newProfile.getId());
-            profiles.remove(oldProfile);
-            profiles.add(newProfile);
-            profileStorage.update(newProfile);
         }
     }
 
@@ -158,6 +129,36 @@ public class ProfileService {
             return profiles;
         }
     }
+
+    public void onGlobalProfileChanged(Profile globalProfile) {
+        synchronized (this) {
+            Profile newProfile = globalProfile.clone();
+            Profile oldProfile = getProfileOrigin(newProfile.getId());
+            profiles.remove(oldProfile);
+            profiles.add(newProfile);
+            profileStorage.update(newProfile);
+        }
+    }
+
+    private ArrayList<Profile> initGlobalProfile(ArrayList<Profile> profiles) {
+        Profile globalProfile = null;
+        for (Profile profile : profiles) {
+            if (profile.isGlobal()) {
+                globalProfile = profile;
+                profiles.remove(profile);
+                break;
+            }
+        }
+        if (globalProfile == null) {
+            globalProfile = defaultProfileCreator.createGlobal();
+            profileStorage.add(globalProfile);
+        }
+        globalProfile.setActive(true);
+        this.profiles.add(globalProfile);
+        notifyOnProfileChangedListeners(globalProfile, ChangedStatus.UPDATED);
+        return profiles;
+    }
+
 
     private void initProfile(Profile profile) {
         synchronized (this) {

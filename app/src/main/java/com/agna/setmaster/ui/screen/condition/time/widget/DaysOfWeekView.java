@@ -23,7 +23,7 @@ import android.widget.CheckedTextView;
 import android.widget.LinearLayout;
 
 import com.agna.setmaster.R;
-import com.agna.setmaster.domain.condition.DayOfWeek;
+import com.agna.setmaster.domain.DayOfWeek;
 
 import java.util.ArrayList;
 import java.util.Arrays;

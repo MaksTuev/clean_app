@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 /**
- *
+ * Base setting entity
  */
 public abstract class Setting implements Cloneable, Serializable {
 

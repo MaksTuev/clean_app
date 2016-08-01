@@ -21,7 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.agna.setmaster.app.dagger.PerApplication;
-import com.agna.setmaster.domain.condition.DayOfWeek;
+import com.agna.setmaster.domain.DayOfWeek;
 import com.agna.setmaster.domain.condition.TimeCondition;
 import com.agna.setmaster.interactor.condition.simple.ConditionStateChangedEvent;
 import com.agna.setmaster.interactor.condition.simple.ConditionWrapper;
@@ -39,7 +39,7 @@ import rx.subjects.PublishSubject;
 import timber.log.Timber;
 
 /**
- *
+ * Responsible for checking time condition
  */
 @PerApplication
 public class TimeConditionChecker implements SimpleConditionChecker<TimeCondition> {

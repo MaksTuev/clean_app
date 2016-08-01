@@ -30,7 +30,7 @@ import rx.Observable;
 import timber.log.Timber;
 
 /**
- *
+ * Responsible for store profiles
  */
 @PerApplication
 public class ProfileStorage {

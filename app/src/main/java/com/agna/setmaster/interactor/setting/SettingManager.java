@@ -34,7 +34,7 @@ import rx.Observable;
 import rx.subjects.PublishSubject;
 
 /**
- *
+ * Responsible for applying settings and returning previous settings
  */
 @PerApplication
 public class SettingManager {

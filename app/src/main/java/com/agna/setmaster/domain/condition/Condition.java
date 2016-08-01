@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 /**
- *
+ * Base Condition entity
  */
 public abstract class Condition implements Cloneable, Serializable {
     private String id;

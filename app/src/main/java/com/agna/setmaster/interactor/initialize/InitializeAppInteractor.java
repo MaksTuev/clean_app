@@ -23,7 +23,7 @@ import javax.inject.Inject;
 import rx.Observable;
 
 /**
- *
+ * Responsible for app initialization
  */
 @PerApplication
 public class InitializeAppInteractor {

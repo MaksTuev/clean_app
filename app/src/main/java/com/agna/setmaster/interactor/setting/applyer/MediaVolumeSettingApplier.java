@@ -24,7 +24,7 @@ import com.agna.setmaster.domain.setting.MediaVolumeSetting;
 import javax.inject.Inject;
 
 /**
- *
+ * Responsible for applying MediaVolume setting
  */
 @PerApplication
 public class MediaVolumeSettingApplier implements SettingApplier<MediaVolumeSetting> {

@@ -23,7 +23,7 @@ import com.agna.setmaster.app.dagger.PerApplication;
 import javax.inject.Inject;
 
 /**
- *
+ * Responsible for starting {@link AppService}
  */
 @PerApplication
 public class AppServiceInteractor {

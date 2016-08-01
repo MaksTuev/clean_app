@@ -34,7 +34,7 @@ import rx.Observable;
 import rx.subjects.PublishSubject;
 
 /**
- *
+ * Responsible for checking wifi condition
  */
 @PerApplication
 public class WifiConditionChecker implements SimpleConditionChecker<WiFiCondition> {

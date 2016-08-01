@@ -26,7 +26,7 @@ import com.agna.setmaster.interactor.initialize.InitializeAppInteractor;
 import javax.inject.Inject;
 
 /**
- *
+ * Responsible for holding process alive
  */
 public class AppService extends Service {
 

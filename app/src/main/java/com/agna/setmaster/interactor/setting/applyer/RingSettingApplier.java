@@ -24,7 +24,7 @@ import com.agna.setmaster.domain.setting.RingSetting;
 import javax.inject.Inject;
 
 /**
- *
+ * Responsible for applying Ring setting
  */
 @PerApplication
 public class RingSettingApplier implements SettingApplier<RingSetting> {

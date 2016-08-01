@@ -31,11 +31,11 @@ import javax.inject.Inject;
  *
  */
 @PerScreen
-public class SettingChangeDialogCreator {
+public class SettingChangeDialogFactory {
     private Context context;
 
     @Inject
-    public SettingChangeDialogCreator(Context context) {
+    public SettingChangeDialogFactory(Context context) {
 
         this.context = context;
     }

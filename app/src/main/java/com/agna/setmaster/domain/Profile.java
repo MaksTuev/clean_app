@@ -15,7 +15,7 @@
  */
 package com.agna.setmaster.domain;
 
-import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
 
 import com.agna.setmaster.domain.condition.Condition;
 import com.agna.setmaster.domain.setting.Setting;
@@ -26,10 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import java8.util.stream.StreamSupport;
-
 /**
- *
+ * Profile entity
  */
 public class Profile implements Cloneable, Serializable, Comparable<Profile> {
     public static final int PRIORITY_GLOBAL = 0;
@@ -37,17 +35,16 @@ public class Profile implements Cloneable, Serializable, Comparable<Profile> {
 
     private String id;
     private String name;
-    @DrawableRes
     private int iconId;
     private int priority = PRIORITY_DEFAULT;
     private boolean active;
     private ArrayList<ConditionSet> conditionSets = new ArrayList<>();
     private ArrayList<Setting> settings = new ArrayList<>();
 
-    public Profile(String name, @DrawableRes int image) {
+    public Profile(String name, int iconId) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
-        this.iconId = image;
+        this.iconId = iconId;
         conditionSets.add(new ConditionSet());
     }
 
@@ -120,10 +117,14 @@ public class Profile implements Cloneable, Serializable, Comparable<Profile> {
         this.settings = settings;
     }
 
+    @Nullable
     public <S extends Setting> S getSetting(Class<S> settingClass) {
-        return (S) StreamSupport.stream(settings)
-                .filter(setting -> setting.getClass() == settingClass)
-                .reduce(null, (prev, next) -> next);
+        for(Setting setting:settings){
+            if(setting.getClass() == settingClass){
+                return (S)setting;
+            }
+        }
+        return null;
     }
 
     public void addSetting(Setting setting) {
@@ -156,9 +157,12 @@ public class Profile implements Cloneable, Serializable, Comparable<Profile> {
     }
 
     public ConditionSet getConditionSet(String conditionSetId) {
-        return StreamSupport.stream(conditionSets)
-                .filter(conditionSet -> conditionSet.getId().equals(conditionSetId))
-                .reduce(null, (prev, next) -> next);
+        for(ConditionSet conditionSet :conditionSets){
+            if(conditionSet.getId().equals(conditionSetId)){
+                return conditionSet;
+            }
+        }
+        throw new IllegalArgumentException("ConditionSet id: "+ conditionSetId);
     }
 
     @Override

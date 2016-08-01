@@ -16,7 +16,7 @@
 package com.agna.setmaster.domain.setting;
 
 /**
- *
+ * Base valuable setting entity
  */
 public abstract class ValuableSetting extends Setting {
     private float value;

@@ -9,7 +9,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
- *
+ * provide Schedulers for rx
  */
 @PerApplication
 public class SchedulersProvider {

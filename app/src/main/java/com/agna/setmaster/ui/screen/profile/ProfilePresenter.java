@@ -33,7 +33,7 @@ import com.agna.setmaster.ui.screen.condition.ChangeConditionBaseActivityView;
 import com.agna.setmaster.ui.screen.profile.condition.add.AddConditionDialog;
 import com.agna.setmaster.ui.screen.profile.condition.add.AddConditionOrConditionSetDialog;
 import com.agna.setmaster.ui.screen.profile.setting.change.OnSettingChangeListener;
-import com.agna.setmaster.ui.screen.profile.setting.change.SettingChangeDialogCreator;
+import com.agna.setmaster.ui.screen.profile.setting.change.SettingChangeDialogFactory;
 import com.agna.setmaster.ui.screen.profile.setting.choose.ChooseSettingDialog;
 import com.agna.setmaster.ui.util.SettingUtil;
 
@@ -59,7 +59,7 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
     private DialogManager dialogManager;
     private final SchedulersProvider schedulersProvider;
     private ArrayList<Class<? extends Setting>> supportedSettings;
-    private SettingChangeDialogCreator settingChangeDialogCreator;
+    private SettingChangeDialogFactory settingChangeDialogFactory;
     private ArrayList<Class<? extends Condition>> supportedConditions;
 
     private Profile profile;
@@ -71,14 +71,14 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
                             DialogManager dialogManager,
                             SchedulersProvider schedulersProvider,
                             ArrayList<Class<? extends Setting>> supportedSettings,
-                            SettingChangeDialogCreator settingChangeDialogCreator,
+                            SettingChangeDialogFactory settingChangeDialogFactory,
                             ArrayList<Class<? extends Condition>> supportedConditions) {
         this.profileService = profileService;
         this.navigator = navigator;
         this.dialogManager = dialogManager;
         this.schedulersProvider = schedulersProvider;
         this.supportedSettings = supportedSettings;
-        this.settingChangeDialogCreator = settingChangeDialogCreator;
+        this.settingChangeDialogFactory = settingChangeDialogFactory;
         this.supportedConditions = supportedConditions;
         this.profile = profile;
     }
@@ -143,7 +143,7 @@ public class ProfilePresenter extends BasePresenter<ProfileActivity> implements
     }
 
     public void openChangeSetting(Setting setting) {
-        dialogManager.show(settingChangeDialogCreator.createDialog(profile, setting));
+        dialogManager.show(settingChangeDialogFactory.createDialog(profile, setting));
     }
 
     @Override

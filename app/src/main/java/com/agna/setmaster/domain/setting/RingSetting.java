@@ -16,7 +16,7 @@
 package com.agna.setmaster.domain.setting;
 
 /**
- *
+ * Ring setting entity
  */
 public class RingSetting extends ValuableSetting {
 
