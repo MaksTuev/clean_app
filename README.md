@@ -13,7 +13,7 @@ If you are not familiar with Dagger and MVP, I recommend first get acquainted wi
 
 ![SchematicImage](setmaster.gif)
 
-This application can automatically change device settings when specified conditions is fulfilled and return previous settings when conditions ceases to be fulfilled
+This application can automatically change device settings when specified conditions is fulfilled and return previous settings when conditions ceases to be fulfilled ([Download apk](https://drive.google.com/open?id=0B4ZYxS4AjIXeWWM5U3BrbG1Db0E) minSdkVersion 21)
 
 
 ##Architecture
