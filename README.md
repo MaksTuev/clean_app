@@ -16,7 +16,7 @@ If you are not familiar with Dagger and MVP, I recommend first get acquainted wi
 This application can automatically change device settings when specified conditions is fulfilled and return previous settings when conditions ceases to be fulfilled ([Download apk](https://drive.google.com/open?id=0B4ZYxS4AjIXeWWM5U3BrbG1Db0E) minSdkVersion 21)
 
 
-##Architecture
+## Architecture
 The architecture is a simplified version of  [CleanArchitecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html).
 
 The application divided into 4 layers:
@@ -29,7 +29,7 @@ In most cases, each layer must depends on only previous layer and Domain layer.
 
 In this project interfaces for Interactor and View layers is not used, but if they need for tests or you want to create absolutely clean architecture, you can extract interfaces in AndroidStudio in two clicks.
 
-##Structure Packages 
+## Structure Packages 
 Structure packages is hybrid of package-by-layer and package-by-feature styles. It have a special significance because it defines the basic architecture and the way of thinking of developer.
 
 The main purpose of this structure packages is divide application code on most independent parts.
