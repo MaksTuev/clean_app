@@ -1,3 +1,7 @@
+#### ** THIS REPO IS DEPRECATED AND IS NO LONGER BEING ACTIVELY MAINTAINED **
+
+You can find more mature architecture in [Surf Android Standard](https://bitbucket.org/surfstudio/android-standard/) repository (Documentation in Russian). It contains modules and architectural guidance, which is used for developing Android projects by mobile studio [Surf](http://surfstudio.ru/). 
+
 # CleanApp
 
 This project demonstrates how to make complex Android application with good architecture
